@@ -22,7 +22,7 @@ class Brosur extends CI_Controller{
 	}
 		
 	function update_brosur(){				
-		$config['upload_path'] = './assets/images/'; //path folder
+		$config['upload_path'] = UPLOAD_IMAGES_PATH; //path folder
 		$config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
 		$config['encrypt_name'] = TRUE; //nama yang terupload nantinya
 
@@ -32,10 +32,10 @@ class Brosur extends CI_Controller{
 			$gbr = $this->upload->data();
 			//Compress Image
 			$config['image_library']='gd2';
-			$config['source_image']='./assets/images/'.$gbr['file_name'];
+			$config['source_image']=UPLOAD_IMAGES_PATH.$gbr['file_name'];
 			$config['create_thumb']= FALSE;
 			$config['maintain_ratio']= FALSE;
-			$config['new_image']= './assets/images/'.$gbr['file_name'];
+			$config['new_image']= UPLOAD_IMAGES_PATH.$gbr['file_name'];
 			$this->load->library('image_lib', $config);
 			$this->image_lib->resize();
 
@@ -43,8 +43,8 @@ class Brosur extends CI_Controller{
 			$brosur_id=$this->input->post('kode');
 			$type=$this->input->post('type');
 			$images=$this->input->post('gambar');
-			$path='./assets/images/'.$images;
-			unlink($path);
+			$path=UPLOAD_IMAGES_PATH.$images;
+			upload_delete($path);
 			$kode=$this->session->userdata('idadmin');
 			$user=$this->m_pengguna->get_pengguna_login($kode);
 			$p=$user->row_array();
@@ -61,8 +61,8 @@ class Brosur extends CI_Controller{
 	function hapus_brosur(){
 		$kode=$this->input->post('kode');
 		$gambar=$this->input->post('gambar');
-		$path='./assets/images/'.$gambar;
-		unlink($path);
+		$path=UPLOAD_IMAGES_PATH.$gambar;
+		upload_delete($path);
 		$this->m_brosur->hapus_brosur($kode);
 		echo $this->session->set_flashdata('msg','success-hapus');
 		redirect('admin/brosur');

@@ -7,8 +7,24 @@
     }
   },
   "routes": [
-    { "src": "/(assets|theme)/(.*)", "dest": "/$1/$2" },
-    { "src": "/install", "dest": "/api/install.php" },
-    { "src": "/(.*)", "dest": "/api/index.php" }
+    {
+      "src": "/install",
+      "dest": "/api/install.php"
+    },
+    {
+      "src": "^/(?!assets/|theme/)(.*)$",
+      "dest": "/api/index.php"
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "^/assets/(images|files)/([^/]+)$",
+      "dest": "/api/blob.php?p=$1/$2"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/api/index.php"
+    }
   ]
 }

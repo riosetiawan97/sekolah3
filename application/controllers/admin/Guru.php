@@ -23,7 +23,7 @@ class Guru extends CI_Controller{
 	}
 	
 	function simpan_guru(){
-				$config['upload_path'] = './assets/images/'; //path folder
+				$config['upload_path'] = UPLOAD_IMAGES_PATH; //path folder
 	            $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
 	            $config['encrypt_name'] = TRUE; //nama yang terupload nantinya
 
@@ -35,13 +35,13 @@ class Guru extends CI_Controller{
 	                        $gbr = $this->upload->data();
 	                        //Compress Image
 	                        $config['image_library']='gd2';
-	                        $config['source_image']='./assets/images/'.$gbr['file_name'];
+	                        $config['source_image']=UPLOAD_IMAGES_PATH.$gbr['file_name'];
 	                        $config['create_thumb']= FALSE;
 	                        $config['maintain_ratio']= FALSE;
 	                        $config['quality']= '60%';
 	                        $config['width']= 300;
 	                        $config['height']= 300;
-	                        $config['new_image']= './assets/images/'.$gbr['file_name'];
+	                        $config['new_image']= UPLOAD_IMAGES_PATH.$gbr['file_name'];
 	                        $this->load->library('image_lib', $config);
 	                        $this->image_lib->resize();
 
@@ -78,7 +78,7 @@ class Guru extends CI_Controller{
 	
 	function update_guru(){
 				
-	            $config['upload_path'] = './assets/images/'; //path folder
+	            $config['upload_path'] = UPLOAD_IMAGES_PATH; //path folder
 	            $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
 	            $config['encrypt_name'] = TRUE; //nama yang terupload nantinya
 
@@ -90,18 +90,18 @@ class Guru extends CI_Controller{
 	                        $gbr = $this->upload->data();
 	                        //Compress Image
 	                        $config['image_library']='gd2';
-	                        $config['source_image']='./assets/images/'.$gbr['file_name'];
+	                        $config['source_image']=UPLOAD_IMAGES_PATH.$gbr['file_name'];
 	                        $config['create_thumb']= FALSE;
 	                        $config['maintain_ratio']= FALSE;
 	                        $config['quality']= '60%';
 	                        $config['width']= 300;
 	                        $config['height']= 300;
-	                        $config['new_image']= './assets/images/'.$gbr['file_name'];
+	                        $config['new_image']= UPLOAD_IMAGES_PATH.$gbr['file_name'];
 	                        $this->load->library('image_lib', $config);
 	                        $this->image_lib->resize();
 	                        $gambar=$this->input->post('gambar');
-							$path='./assets/images/'.$gambar;
-							unlink($path);
+							$path=UPLOAD_IMAGES_PATH.$gambar;
+							upload_delete($path);
 
 	                        $photo=$gbr['file_name'];
 	                        $kode=$this->input->post('kode');
@@ -139,8 +139,8 @@ class Guru extends CI_Controller{
 	function hapus_guru(){
 		$kode=$this->input->post('kode');
 		$gambar=$this->input->post('gambar');
-		$path='./assets/images/'.$gambar;
-		unlink($path);
+		$path=UPLOAD_IMAGES_PATH.$gambar;
+		upload_delete($path);
 		$this->m_guru->hapus_guru($kode);
 		echo $this->session->set_flashdata('msg','success-hapus');
 		redirect('admin/guru');
