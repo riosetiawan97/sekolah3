@@ -1,0 +1,102 @@
+# Website SMP Islam Al-Hadiriyah (sekolah3)
+
+Website profil sekolah dan sistem informasi sederhana untuk SMP Islam Al-Hadiriyah, Duren Sawit, Jakarta Timur. Ada halaman publik untuk pengunjung (berita, agenda, galeri, PPDB, absensi) dan panel admin untuk mengelola semua kontennya.
+
+**Live:** https://sekolah3-riosetiawan97s-projects.vercel.app
+
+## Fitur
+
+**Halaman publik**
+- Beranda dengan slider, berita terbaru, agenda, dan pengumuman
+- Tentang sekolah, visi & misi
+- Berita/artikel dengan kategori dan komentar (`/artikel`)
+- Agenda/event, pengumuman, FAQ
+- Galeri foto per album
+- Download file/dokumen sekolah
+- PPDB: alur pendaftaran dan link formulir pendaftaran
+- Absensi guru (`/guru`) dan absensi siswa (`/siswa`)
+- Kontak: formulir pesan, peta lokasi, WhatsApp, Instagram
+
+**Panel admin** (`/administrator`)
+- Dashboard ringkasan dan statistik pengunjung
+- Kelola berita/tulisan, kategori, komentar, dan inbox pesan
+- Kelola agenda, pengumuman, FAQ, brosur, alur pendaftaran
+- Kelola galeri, album, video YouTube, dan file download
+- Kelola data guru, siswa, kelas, dan kuis
+- Kelola pengguna admin (level admin / user)
+- Pengaturan website: nama sekolah, logo, alamat, kontak, halaman About, Visi Misi, Pendaftaran
+
+**Penyimpanan upload**: foto dan file dari panel admin disimpan di Vercel Blob, jadi tidak hilang saat redeploy. Nama file di database tetap sama, dan URL `/assets/images/<nama>` otomatis diarahkan ke Blob.
+
+## Stack
+
+| Bagian | Teknologi |
+| --- | --- |
+| Framework | CodeIgniter 3.1.13 (PHP 8.3) |
+| Tampilan | Metronic 8 (Bootstrap 5), jQuery |
+| Database | MySQL 8 (Aiven), koneksi SSL |
+| Session | Disimpan di database (tabel `ci_sessions`) |
+| Upload file | Vercel Blob (store `sekolah3-uploads`) |
+| Deploy | Vercel, runtime `vercel-php` |
+
+## Environment variable
+
+| Nama | Keterangan |
+| --- | --- |
+| `DB_HOST`, `DB_PORT` | Host dan port MySQL Aiven |
+| `DB_USERNAME`, `DB_PASSWORD` | User dan password database |
+| `DB_DATABASE` | Nama database (`sekolah3`) |
+| `MYSQL_SSL_CA_CONTENT` | Isi sertifikat CA Aiven untuk SSL |
+| `APP_KEY` | Encryption key CodeIgniter (string acak) |
+| `CI_ENV` | `production` (error tidak ditampilkan ke pengunjung) |
+| `BLOB_READ_WRITE_TOKEN` | Otomatis terisi saat store Blob dihubungkan ke project |
+| `APP_URL` | Opsional, paksa base URL (default: dideteksi dari domain) |
+
+Semua variabel di atas opsional untuk development lokal. Tanpa variabel tersebut aplikasi memakai `localhost`, user `root`, dan menyimpan upload di folder `assets/`.
+
+## Menjalankan secara lokal
+
+Butuh PHP 8.x (ekstensi `mysqli`, `gd`, `curl`) dan MySQL/MariaDB (misalnya XAMPP).
+
+1. Buat database, lalu import `install/database.sql`.
+2. Atur koneksi lewat environment variable, atau ubah nilai default di `application/config/database.php`.
+3. Jalankan:
+
+```bash
+php -S localhost:8000 api/index.php
+```
+
+Buka http://localhost:8000. Panel admin ada di http://localhost:8000/administrator.
+
+## Deploy (Vercel)
+
+1. Import repo ini di Vercel (tanpa framework; `vercel.json` sudah mengatur runtime PHP).
+2. Isi environment variable di atas, lalu hubungkan Vercel Blob dari tab **Storage**.
+3. Isi database kosong sekali: set env `INSTALL_TOKEN` (string acak), deploy, lalu buka `https://<domain>/install?token=<INSTALL_TOKEN>`. Installer membuat database `DB_DATABASE` dan mengimpor `install/database.sql`. Setelah selesai, hapus `INSTALL_TOKEN` lalu redeploy.
+
+Setiap push ke branch `main` otomatis terdeploy.
+
+Catatan Aiven: `sql_mode` Aiven ketat (ANSI, STRICT, ONLY_FULL_GROUP_BY). Hook `application/hooks/Db_sql_mode.php` melonggarkannya per koneksi, jadi query lama tetap jalan.
+
+## Struktur
+
+```
+api/
+  index.php        entry point Vercel, meneruskan request ke CodeIgniter
+  install.php      installer database sekali pakai (/install?token=...)
+  blob.php         redirect file upload ke Vercel Blob
+application/
+  controllers/     halaman publik; admin/ untuk panel admin
+  models/          query database (M_*.php)
+  views/           depan/ (publik), admin/ (panel admin), template
+  helpers/         upload_storage_helper.php (upload ke Vercel Blob), dll.
+  hooks/           Db_sql_mode.php (kompatibilitas sql_mode Aiven)
+  config/          konfigurasi (membaca environment variable)
+assets/            CSS/JS (Metronic, plugin), gambar & file bawaan
+theme/             aset tema halaman publik
+install/           database.sql: dump siap import ke MySQL 8 / Aiven
+system/            core CodeIgniter 3.1.13
+vercel.json        runtime PHP dan aturan routing
+```
+
+File `*.sql` di root (mis. `127_0_0_1.sql`) adalah dump lama dari hosting sebelumnya, disimpan sebagai arsip. Untuk instalasi baru pakai `install/database.sql`.
