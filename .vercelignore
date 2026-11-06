@@ -1,0 +1,14 @@
+.git
+*.zip
+**/*.zip
+/*.sql
+/d
+/dasdasda
+/riosetiawan97
+/riosetiawan97.pub
+/tests
+/user_guide
+/slide.txt
+/.cpanel.yml
+/composer.json
+/composer.lock

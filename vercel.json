@@ -1,0 +1,14 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "functions": {
+    "api/*.php": {
+      "runtime": "vercel-php@0.7.4",
+      "excludeFiles": "{theme/**,assets/metronic/**,assets/images/**,assets/plugins/**,assets/ckeditor/**,assets/dist/**,assets/bootstrap/**,assets/jquery-ui/**,assets/font-awesome/**,assets/build/**}"
+    }
+  },
+  "routes": [
+    { "src": "/(assets|theme)/(.*)", "dest": "/$1/$2" },
+    { "src": "/install", "dest": "/api/install.php" },
+    { "src": "/(.*)", "dest": "/api/index.php" }
+  ]
+}
