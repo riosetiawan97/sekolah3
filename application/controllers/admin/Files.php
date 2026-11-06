@@ -29,8 +29,7 @@ class Files extends CI_Controller{
 		$get_db=$this->m_files->get_file_byid($id);
 		$q=$get_db->row_array();
 		$file=$q['file_data'];
-		$path='./assets/files/'.$file;
-		$data =  file_get_contents($path);
+		$data = upload_read('files', $file);
 		$name = $file;
 
 		force_download($name, $data); 
@@ -38,7 +37,7 @@ class Files extends CI_Controller{
 	}
 	
 	function simpan_file(){
-				$config['upload_path'] = './assets/files/'; //path folder
+				$config['upload_path'] = UPLOAD_FILES_PATH; //path folder
 	            $config['allowed_types'] = 'pdf|doc|docx|ppt|pptx|zip'; //type yang dapat diakses bisa anda sesuaikan
 	            $config['encrypt_name'] = TRUE; //nama yang terupload nantinya
 
@@ -69,7 +68,7 @@ class Files extends CI_Controller{
 	
 	function update_file(){
 				
-	            $config['upload_path'] = './assets/files/'; //path folder
+	            $config['upload_path'] = UPLOAD_FILES_PATH; //path folder
 	            $config['allowed_types'] = 'pdf|doc|docx|ppt|pptx|zip'; //type yang dapat diakses bisa anda sesuaikan
 	            $config['encrypt_name'] = TRUE; //nama yang terupload nantinya
 
@@ -85,8 +84,8 @@ class Files extends CI_Controller{
 							$deskripsi=$this->input->post('xdeskripsi');
 							$oleh=strip_tags($this->input->post('xoleh'));
 							$data=$this->input->post('file');
-							$path='./assets/files/'.$data;
-							unlink($path);
+							$path=UPLOAD_FILES_PATH.$data;
+							upload_delete($path);
 							$this->m_files->update_file($kode,$judul,$deskripsi,$oleh,$file);
 							echo $this->session->set_flashdata('msg','info');
 							redirect('admin/files');
@@ -111,8 +110,8 @@ class Files extends CI_Controller{
 	function hapus_file(){
 		$kode=$this->input->post('kode');
 		$data=$this->input->post('file');
-		$path='./assets/files/'.$data;
-		unlink($path);
+		$path=UPLOAD_FILES_PATH.$data;
+		upload_delete($path);
 		$this->m_files->hapus_file($kode);
 		echo $this->session->set_flashdata('msg','success-hapus');
 		redirect('admin/files');

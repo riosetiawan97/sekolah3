@@ -26,7 +26,7 @@ class Galeri extends CI_Controller{
 	}
 	
 function simpan_galeri(){
-		$config['upload_path'] = './assets/images/'; //path folder
+		$config['upload_path'] = UPLOAD_IMAGES_PATH; //path folder
 		$config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
 		$config['encrypt_name'] = TRUE; //nama yang terupload nantinya
 
@@ -38,13 +38,13 @@ function simpan_galeri(){
 					$gbr = $this->upload->data();
 					//Compress Image
 					$config['image_library']='gd2';
-					$config['source_image']='./assets/images/'.$gbr['file_name'];
+					$config['source_image']=UPLOAD_IMAGES_PATH.$gbr['file_name'];
 					$config['create_thumb']= FALSE;
 					$config['maintain_ratio']= FALSE;
 					/* $config['quality']= '60%';
 					$config['width']= 500;
 					$config['height']= 400; */
-					$config['new_image']= './assets/images/'.$gbr['file_name'];
+					$config['new_image']= UPLOAD_IMAGES_PATH.$gbr['file_name'];
 					$this->load->library('image_lib', $config);
 					$this->image_lib->resize();
 
@@ -71,7 +71,7 @@ function simpan_galeri(){
 	
 	function update_galeri(){
 				
-	            $config['upload_path'] = './assets/images/'; //path folder
+	            $config['upload_path'] = UPLOAD_IMAGES_PATH; //path folder
 	            $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
 	            $config['encrypt_name'] = TRUE; //nama yang terupload nantinya
 
@@ -83,13 +83,13 @@ function simpan_galeri(){
 	                        $gbr = $this->upload->data();
 	                        //Compress Image
 	                        $config['image_library']='gd2';
-	                        $config['source_image']='./assets/images/'.$gbr['file_name'];
+	                        $config['source_image']=UPLOAD_IMAGES_PATH.$gbr['file_name'];
 	                        $config['create_thumb']= FALSE;
 	                        $config['maintain_ratio']= FALSE;
 	                       /*  $config['quality']= '60%';
 	                        $config['width']= 500;
 	                        $config['height']= 400; */
-	                        $config['new_image']= './assets/images/'.$gbr['file_name'];
+	                        $config['new_image']= UPLOAD_IMAGES_PATH.$gbr['file_name'];
 	                        $this->load->library('image_lib', $config);
 	                        $this->image_lib->resize();
 
@@ -99,8 +99,8 @@ function simpan_galeri(){
 							$album=strip_tags($this->input->post('xalbum'));
 							$slider=$this->input->post('slider');
 							$images=$this->input->post('gambar');
-							$path='./assets/images/'.$images;
-							unlink($path);
+							$path=UPLOAD_IMAGES_PATH.$images;
+							upload_delete($path);
 							$kode=$this->session->userdata('idadmin');
 							$user=$this->m_pengguna->get_pengguna_login($kode);
 							$p=$user->row_array();
@@ -136,8 +136,8 @@ function simpan_galeri(){
 		$kode=$this->input->post('kode');
 		$album=$this->input->post('album');
 		$gambar=$this->input->post('gambar');
-		$path='./assets/images/'.$gambar;
-		unlink($path);
+		$path=UPLOAD_IMAGES_PATH.$gambar;
+		upload_delete($path);
 		$this->m_galeri->hapus_galeri($kode,$album);
 		echo $this->session->set_flashdata('msg','success-hapus');
 		redirect('admin/galeri');

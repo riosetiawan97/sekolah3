@@ -22,8 +22,7 @@ class Download extends CI_Controller{
 		$get_db=$this->m_files->get_file_byid($id);
 		$q=$get_db->row_array();
 		$file=$q['file_data'];
-		$path='./assets/files/'.$file;
-		$data = file_get_contents($path);
+		$data = upload_read('files', $file);
 		$name = $file;
 		force_download($name, $data);
 	}
