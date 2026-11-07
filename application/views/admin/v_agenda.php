@@ -219,6 +219,13 @@
                         </div>
 
                         <div class="form-group mb-4">
+                            <label class="col-sm-4 control-label">Kategori</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="xkategori" maxlength="50" list="daftar-kategori-agenda" placeholder="Contoh: PPDB, Akademik, Keagamaan">
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-4">
                             <label for="inputUserName" class="col-sm-4 control-label">Remarks</label>
                             <div class="col-sm-7">
                                 <textarea class="form-control" name="xketerangan" rows="2" placeholder="Remarks ..."></textarea>
@@ -330,6 +337,13 @@
                                 <label for="inputUserName" class="col-sm-4 control-label">Time</label>
                                 <div class="col-sm-7">
                                     <input type="text" name="xwaktu" class="form-control" value="<?php echo $agenda_waktu;?>" id="inputUserName" placeholder="Example: 10.30-11.00 WIB" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group mb-4">
+                                <label class="col-sm-4 control-label">Kategori</label>
+                                <div class="col-sm-7">
+                                  <input type="text" class="form-control" name="xkategori" maxlength="50" list="daftar-kategori-agenda" value="<?php echo html_escape($i['agenda_kategori']);?>" placeholder="Contoh: PPDB, Akademik, Keagamaan">
                                 </div>
                             </div>
 
@@ -452,3 +466,8 @@
     <?php else:?>
 
     <?php endif;?>
+<datalist id="daftar-kategori-agenda">
+<?php foreach (array_unique(array_filter(array_merge(array('PPDB','Akademik','Keagamaan','Seremonial','Orientasi','Olahraga'), array_column($data->result_array(), 'agenda_kategori')))) as $kat): ?>
+	<option value="<?php echo html_escape($kat); ?>">
+<?php endforeach; ?>
+</datalist>

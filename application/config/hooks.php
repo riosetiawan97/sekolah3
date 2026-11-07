@@ -9,3 +9,11 @@ $hook['post_controller_constructor'][] = array(
 	'filename' => 'Db_sql_mode.php',
 	'filepath' => 'hooks'
 );
+
+// Membuat tabel/kolom baru untuk desain baru (pengaturan tampilan, PPDB, FAQ) jika belum ada.
+$hook['post_controller_constructor'][] = array(
+	'class'    => 'Skema_tampilan',
+	'function' => 'apply',
+	'filename' => 'Skema_tampilan.php',
+	'filepath' => 'hooks'
+);

@@ -50,6 +50,7 @@ class Agenda extends CI_Controller{
 				$waktu=$this->input->post('xwaktu');
 				$keterangan=$this->input->post('xketerangan');
 				$this->m_agenda->simpan_agenda($nama_agenda,$deskripsi,$mulai,$selesai,$tempat,$waktu,$keterangan,$gambar);
+				$this->simpan_kategori($this->db->insert_id());
 				echo $this->session->set_flashdata('msg','success');
 				redirect('admin/agenda');
 			}else{
@@ -65,6 +66,7 @@ class Agenda extends CI_Controller{
 			$waktu=$this->input->post('xwaktu');
 			$keterangan=$this->input->post('xketerangan');
 			$this->m_agenda->simpan_agenda_tanpa_img($nama_agenda,$deskripsi,$mulai,$selesai,$tempat,$waktu,$keterangan);
+			$this->simpan_kategori($this->db->insert_id());
 			echo $this->session->set_flashdata('msg','success');
 			redirect('admin/agenda');
 		}
@@ -103,6 +105,7 @@ class Agenda extends CI_Controller{
 				$waktu=$this->input->post('xwaktu');
 				$keterangan=$this->input->post('xketerangan');
 				$this->m_agenda->update_agenda($kode,$nama_agenda,$deskripsi,$mulai,$selesai,$tempat,$waktu,$keterangan,$gambar);
+				$this->simpan_kategori($kode);
 				echo $this->session->set_flashdata('msg','info');
 				redirect('admin/agenda');
 			}else{
@@ -119,6 +122,7 @@ class Agenda extends CI_Controller{
 			$waktu=$this->input->post('xwaktu');
 			$keterangan=$this->input->post('xketerangan');
 			$this->m_agenda->update_agenda_tanpa_img($kode,$nama_agenda,$deskripsi,$mulai,$selesai,$tempat,$waktu,$keterangan);
+			$this->simpan_kategori($kode);
 			echo $this->session->set_flashdata('msg','info');
 			redirect('admin/agenda');
 		}
@@ -133,4 +137,10 @@ class Agenda extends CI_Controller{
 		redirect('admin/agenda');
 	}
 
+
+	// Kategori event (label berwarna di halaman Event).
+	private function simpan_kategori($id){
+		$kategori = mb_substr(trim((string) $this->input->post('xkategori')), 0, 50);
+		$this->db->where('agenda_id', (int) $id)->update('tbl_agenda', array('agenda_kategori' => $kategori));
+	}
 }
