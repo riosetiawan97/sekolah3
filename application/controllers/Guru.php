@@ -10,17 +10,18 @@ class Guru extends CI_Controller{
 
 	function index(){
 		$x['setup']=$this->m_setup->get_setup()->row();
-		$judul_website=$x['setup']->judul_website;
-			  //$this->load->view('depan/v_contact');      
-		  $x['title']="$judul_website | Absen Guru";
+		$x['guru']=$this->db->order_by('guru_nama')->get('tbl_guru');
+		$x['title']='Absensi Guru | '.$x['setup']->judul_website;
+		$x['halaman']='guru';
 		  $this->template->load('template_depan', 'depan/v_absen_guru', $x);
 		}
 	
 	  function simpan_absen_guru(){
 		$tipe='guru';
-		$nama=$this->input->post('nama',TRUE);
-		$this->m_guru->simpan_absen_guru($tipe,$nama,date('Ymd'),date('His'));
-		echo $this->session->set_flashdata('msg','<br><p><strong> NB: </strong> Terima Kasih Sudah Absen.</p>');
+		$nama=trim((string) $this->input->post('nama',TRUE));
+		if ($nama === '') redirect('guru');
+		$this->db->insert('tbl_absen', array('tipe' => $tipe, 'nama' => $nama, 'tanggal' => date('Ymd'), 'waktu' => date('His')));
+		$this->session->set_flashdata('absen_guru', $nama);
 		redirect('guru');
 	  }
 

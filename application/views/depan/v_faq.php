@@ -1,113 +1,39 @@
-
-<!--begin::Toolbar-->
-<div class="toolbar" id="kt_toolbar">
-    <!--begin::Container-->
-    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
-        <!--begin::Page title-->
-        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-            <!--begin::Title-->
-            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">About</h1>
-            <!--end::Title-->
-            <!--begin::Separator-->
-            <span class="h-20px border-gray-200 border-start mx-4"></span>
-            <!--end::Separator-->
-            <!--begin::Breadcrumb-->
-            <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
-                <!--begin::Item-->
-                <li class="breadcrumb-item text-muted">
-                    <a href="<?php echo site_url('');?>" class="text-muted text-hover-primary">Home</a>
-                </li>
-                <!--end::Item-->
-                <!--begin::Item-->
-                <li class="breadcrumb-item">
-                    <span class="bullet bg-gray-200 w-5px h-2px"></span>
-                </li>
-                <!--end::Item-->
-                <!--begin::Item-->
-                <li class="breadcrumb-item text-muted">FAQ</li>
-                <!--end::Item-->
-                <!--begin::Item-->
-                <li class="breadcrumb-item">
-                    <span class="bullet bg-gray-200 w-5px h-2px"></span>
-                </li>
-                <!--end::Item-->
-                <!--begin::Item-->
-                <li class="breadcrumb-item text-dark">FAQ List</li>
-                <!--end::Item-->
-            </ul>
-            <!--end::Breadcrumb-->
-        </div>
-        <!--end::Page title-->
-    </div>
-    <!--end::Container-->
+<?php
+$this->load->view('depan/_banner', array('judul' => t('hal_faq_judul'), 'sub' => t('hal_faq_sub'), 'remah' => array('FAQ' => NULL)));
+?>
+<div class="halaman dua-kolom">
+	<?php if ( ! $kategori): ?>
+		<div></div><div class="panel kosong"><div aria-hidden="true">❓</div><h3>Belum ada FAQ</h3></div>
+	<?php else: ?>
+	<aside class="tumpuk" style="gap:16px">
+		<div class="sisi">
+			<div class="sisi-kepala">FAQ</div>
+			<ul class="sisi-menu">
+				<?php foreach ($kategori as $k): ?>
+				<li><a href="<?php echo base_url('faq/'.$k->faq_id); ?>" data-tab="faq-<?php echo $k->faq_id; ?>" class="<?php echo $k->faq_id == $aktif ? 'aktif' : ''; ?>"><span><?php echo html_escape($k->faq_judul); ?></span><?php if ($k->items): ?><span class="hitung"><?php echo count($k->items); ?></span><?php endif; ?></a></li>
+				<?php endforeach; ?>
+			</ul>
+		</div>
+	</aside>
+	<div>
+		<?php foreach ($kategori as $k): ?>
+		<section class="panel tab-isi" id="faq-<?php echo $k->faq_id; ?>"<?php echo $k->faq_id == $aktif ? '' : ' hidden'; ?>>
+			<div class="judul-panel"><h2><?php echo html_escape($k->faq_judul); ?></h2></div>
+			<?php if ($k->faq_gambar): ?><div class="faq-gambar" style="margin-bottom:24px"><img src="<?php echo html_escape(gambar_url($k->faq_gambar)); ?>" alt="" loading="lazy"></div><?php endif; ?>
+			<?php if ($k->items): ?>
+			<div class="akordeon">
+				<?php foreach ($k->items as $i => $q): ?>
+				<div class="akor<?php echo $i === 0 ? ' buka' : ''; ?>">
+					<button type="button" aria-expanded="<?php echo $i === 0 ? 'true' : 'false'; ?>"><span><?php echo html_escape($q->pertanyaan); ?></span><i aria-hidden="true">+</i></button>
+					<div class="akor-isi konten"><?php echo $q->jawaban; ?></div>
+				</div>
+				<?php endforeach; ?>
+			</div>
+			<?php else: ?>
+			<div class="konten"><?php echo $k->faq_isi; ?></div>
+			<?php endif; ?>
+		</section>
+		<?php endforeach; ?>
+	</div>
+	<?php endif; ?>
 </div>
-<!--end::Toolbar-->
-<!--begin::Post-->
-<div class="post d-flex flex-column-fluid" id="kt_post">
-    <!--begin::Container-->
-    <div id="kt_content_container" class="container-xxl">
-        <!--begin::FAQ card-->
-        <div class="card">
-            <!--begin::Body-->
-            <div class="card-body p-lg-15">
-                <!--begin::Layout-->
-                <div class="d-flex flex-column flex-lg-row">
-                    <!--begin::Sidebar-->
-                    <div class="flex-column flex-lg-row-auto w-100 w-lg-275px mb-10 me-lg-20">
-                        <!--begin::Catigories-->
-                        <div class="mb-15">
-                            <h4 class="text-black mb-7">FAQ</h4>
-                            <!--begin::Menu-->
-                            <div class="menu menu-rounded menu-column menu-title-gray-700 menu-state-title-primary menu-active-bg-light-primary fw-bold">                                
-                                <?php foreach ($menufaq->result() as $row) :?>
-                                    <!--begin::Item-->
-                                    <div class="menu-item mb-1">
-                                        <!--begin::Link-->
-                                        <a href="<?php echo site_url('faq/'.$row->faq_id);?>" class="menu-link py-3 <?php if($idfaqurl==$row->faq_id)
-                              echo "active";?>"><?=$row->faq_judul;?></a>
-                                        <!--end::Link-->
-                                    </div>
-                                    <!--end::Item-->
-                                <?php endforeach;?>
-                            </div>
-                            <!--end::Menu-->
-                        </div>
-                        <!--end::Catigories-->
-                    </div>
-                    <!--end::Sidebar-->
-                    <!--begin::Content-->
-                    <div class="flex-lg-row-fluid">
-                        <!--begin::Extended content-->
-                        <div class="mb-13">
-                            <!--begin::Content-->
-                            <div class="mb-15">														
-                                <section class="welcome_about">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-md-12 mb-10">
-                                                <img src="<?php echo base_url().'assets/images/'.$faq_gambar;?>" class="img-fluid" alt="#">
-                                            </div>
-                                            <div class="col-md-12">
-                                                <h2><?php echo $title_faq;?></h2>
-                                                <p><?php echo $content_faq;?>
-                                                </p>
-                                            </div>
-                                            </div>
-                                        </div>
-                                </section>
-                            </div>
-                            <!--end::Content-->
-                        </div>
-                        <!--end::Extended content-->
-                    </div>
-                    <!--end::Content-->
-                </div>
-                <!--end::Layout-->
-            </div>
-            <!--end::Body-->
-        </div>
-        <!--end::FAQ card-->
-    </div>
-    <!--end::Container-->
-</div>
-<!--end::Post-->

@@ -396,6 +396,44 @@ License: For each use you must have a valid license purchased only from above li
 										</div>
 									</div>
 								</div>
+<?php
+	// Menu tambahan: pengaturan desain halaman publik & PPDB.
+	$jml_pendaftar_baru = $this->db->table_exists('tbl_pendaftar') ? $this->db->where('status', 'Baru')->count_all_results('tbl_pendaftar') : 0;
+	$menu_tambahan = array(
+		array('judul' => 'Tampilan Website', 'ikon' => '<path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm1 2v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4zm1-2.5a.5.5 0 1 0 0 1 .5.5 0 0 0 0-1m1.5 0a.5.5 0 1 0 0 1 .5.5 0 0 0 0-1m1.5 0a.5.5 0 1 0 0 1 .5.5 0 0 0 0-1"/>', 'sub' => array(
+			'admin/tampilan' => 'Pengaturan Tampilan',
+			'admin/konten/statistik' => 'Statistik Beranda',
+			'admin/konten/program' => 'Program Unggulan',
+			'admin/konten/fakta' => 'Fakta Sekolah',
+		)),
+		array('judul' => 'PPDB', 'ikon' => '<path d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917zM4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466z"/>', 'badge' => $jml_pendaftar_baru, 'sub' => array(
+			'admin/pendaftar' => 'Data Pendaftar',
+			'admin/alur_pendaftaran' => 'Alur Pendaftaran',
+			'admin/konten/syarat' => 'Syarat Pendaftaran',
+			'admin/konten/jadwal_ppdb' => 'Jadwal PPDB',
+			'admin/konten/info_ppdb' => 'Info Penting',
+		)),
+	);
+	foreach ($menu_tambahan as $mt):
+?>
+								<div data-kt-menu-trigger="click" class="menu-item menu-accordion mb-1">
+									<span class="menu-link">
+										<span class="menu-icon"><span class="svg-icon svg-icon-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><?php echo $mt['ikon']; ?></svg></span></span>
+										<span class="menu-title"><?php echo $mt['judul']; ?><?php if ( ! empty($mt['badge'])): ?> <span class="badge badge-warning ms-2"><?php echo (int) $mt['badge']; ?></span><?php endif; ?></span>
+										<span class="menu-arrow"></span>
+									</span>
+									<div class="menu-sub menu-sub-accordion">
+										<?php foreach ($mt['sub'] as $url => $label): ?>
+										<div class="menu-item">
+											<a class="menu-link" href="<?php echo base_url($url); ?>">
+												<span class="menu-bullet"><span class="bullet bullet-dot"></span></span>
+												<span class="menu-title"><?php echo $label; ?></span>
+											</a>
+										</div>
+										<?php endforeach; ?>
+									</div>
+								</div>
+<?php endforeach; ?>
 								<div class="menu-item">
 									<div class="menu-content">
 										<div class="separator mx-1 my-4"></div>
@@ -636,7 +674,7 @@ License: For each use you must have a valid license purchased only from above li
       autoclose: true,
       format: 'yyyy-mm-dd'
     });
-    $(".timepicker").timepicker({
+    if ($.fn.timepicker) $(".timepicker").timepicker({
       showInputs: true
     });
   });

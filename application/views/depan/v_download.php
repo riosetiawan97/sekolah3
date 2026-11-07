@@ -1,43 +1,14 @@
-<section class="contact" style="margin-bottom:50px;">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="contact-title">
-                    <h2>Download</h2>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-              <div class="table-responsive">
-                <table class="table table-striped" id="display">
-                  <thead>
-                    <tr>
-                      <th>No</th>
-                      <th>Files</th>
-                      <th>Tanggal</th>
-                      <th>Oleh</th>
-                      <th style="text-align:right;">Aksi</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php
-                      $no=1;
-                      foreach ($data->result() as $row):
-                    ?>
-                    <tr>
-                      <td><?php echo $no++;?></td>
-                      <td><?php echo $row->file_judul;?></td>
-                      <td><?php echo $row->tanggal;?></td>
-                      <td><?php echo $row->file_oleh;?></td>
-                      <td style="text-align:right;"><a href="<?php echo site_url('download/get_file/'.$row->file_id);?>" class="btn btn-info">Download</a></td>
-                    </tr>
-                  <?php endforeach;?>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-    </section>
-    <!--//END  ABOUT IMAGE -->
+<?php $this->load->view('depan/_banner', array('judul' => 'Download', 'sub' => 'Dokumen dan file sekolah', 'remah' => array('Download' => NULL))); ?>
+<div class="halaman" style="max-width:900px">
+	<?php if ($data->num_rows() == 0): ?><div class="panel kosong"><div aria-hidden="true">📁</div><h3>Belum ada file</h3></div><?php endif; ?>
+	<?php foreach ($data->result() as $f): ?>
+	<div class="kartu daftar-baris">
+		<div class="info-ikon" aria-hidden="true">📄</div>
+		<div style="min-width:0">
+			<h3><?php echo html_escape($f->file_judul); ?></h3>
+			<p><?php echo ringkas($f->file_deskripsi, 140); ?> <?php if ($f->file_oleh): ?>• <?php echo html_escape($f->file_oleh); ?><?php endif; ?></p>
+		</div>
+		<a class="btn btn-navy btn-kecil" href="<?php echo base_url('download/get_file/'.$f->file_id); ?>">Unduh</a>
+	</div>
+	<?php endforeach; ?>
+</div>

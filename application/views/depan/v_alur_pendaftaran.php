@@ -1,142 +1,46 @@
-
-<!--begin::Toolbar-->
-<div class="toolbar" id="kt_toolbar">
-    <!--begin::Container-->
-    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
-        <!--begin::Page title-->
-        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-            <!--begin::Title-->
-            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">PPDB</h1>
-            <!--end::Title-->
-            <!--begin::Separator-->
-            <span class="h-20px border-gray-200 border-start mx-4"></span>
-            <!--end::Separator-->
-            <!--begin::Breadcrumb-->
-            <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
-                <!--begin::Item-->
-                <li class="breadcrumb-item text-muted">
-                    <a href="<?php echo site_url('');?>" class="text-muted text-hover-primary">Home</a>
-                </li>
-                <!--end::Item-->
-                <!--begin::Item-->
-                <li class="breadcrumb-item">
-                    <span class="bullet bg-gray-200 w-5px h-2px"></span>
-                </li>
-                <!--end::Item-->
-                <!--begin::Item-->
-                <li class="breadcrumb-item text-muted">PPDB</li>
-                <!--end::Item-->
-                <!--begin::Item-->
-                <li class="breadcrumb-item">
-                    <span class="bullet bg-gray-200 w-5px h-2px"></span>
-                </li>
-                <!--end::Item-->
-                <!--begin::Item-->
-                <li class="breadcrumb-item text-dark">How To Apply</li>
-                <!--end::Item-->
-            </ul>
-            <!--end::Breadcrumb-->
-        </div>
-        <!--end::Page title-->
-    </div>
-    <!--end::Container-->
+<?php
+$this->load->view('depan/_banner', array('judul' => t('hal_alur_judul'), 'sub' => t('hal_alur_sub'), 'remah' => array('PPDB' => base_url('alur_pendaftaran'), t('hal_alur_judul') => NULL)));
+$jadwal = items('jadwal_ppdb');
+$syarat = items('syarat');
+?>
+<div class="halaman dua-kolom">
+	<div class="tumpuk" style="gap:16px">
+		<?php $this->load->view('depan/_sisi_ppdb', array('aktif' => 'alur')); ?>
+		<?php if ($jadwal): ?>
+		<div class="kotak-navy">
+			<h4>📅 Jadwal PPDB</h4>
+			<div class="jadwal"><?php foreach ($jadwal as $j): ?><div><small><?php echo html_escape($j->judul); ?></small><b><?php echo html_escape($j->nilai); ?></b></div><?php endforeach; ?></div>
+		</div>
+		<?php endif; ?>
+	</div>
+	<div class="tumpuk" style="gap:24px">
+		<?php if ($alur): ?>
+		<section class="panel" style="padding:36px">
+			<div class="judul-panel" style="margin-bottom:28px"><h2>Alur Pendaftaran</h2></div>
+			<div class="alur-grid">
+				<?php foreach ($alur as $s): ?>
+				<div class="alur" style="--c:<?php echo html_escape($s->warna_tampil); ?>">
+					<div class="alur-bulat" aria-hidden="true"><?php echo html_escape($s->ikon_tampil); ?></div>
+					<small>LANGKAH <?php echo sprintf('%02d', $s->langkah); ?></small>
+					<b><?php echo html_escape($s->judul); ?></b>
+					<p><?php echo html_escape(teks_polos($s->deskripsi)); ?></p>
+				</div>
+				<?php endforeach; ?>
+			</div>
+			<?php if ($setup->alurpendaftaran): ?>
+			<div class="gambar-alur"><img src="<?php echo html_escape(gambar_url($setup->alurpendaftaran)); ?>" alt="Bagan alur pendaftaran" loading="lazy"></div>
+			<?php endif; ?>
+		</section>
+		<?php endif; ?>
+		<?php if ($syarat): ?>
+		<section class="panel" style="padding:36px">
+			<div class="judul-panel" style="margin-bottom:20px"><h2>Syarat Pendaftaran</h2></div>
+			<ul class="syarat"><?php foreach ($syarat as $r): ?><li><?php echo html_escape($r->judul); ?></li><?php endforeach; ?></ul>
+		</section>
+		<?php endif; ?>
+		<div class="ajakan">
+			<div><small><?php echo te('ppdb_cta_label'); ?></small><b><?php echo te('ppdb_cta_judul'); ?></b><span><?php echo te('ppdb_cta_teks'); ?></span></div>
+			<a class="btn btn-emas" href="<?php echo base_url('pendaftaran'); ?>" style="flex-shrink:0;font-size:15px;padding:13px 28px">Daftar Sekarang →</a>
+		</div>
+	</div>
 </div>
-<!--end::Toolbar-->
-<!--begin::Post-->
-<div class="post d-flex flex-column-fluid" id="kt_post">
-    <!--begin::Container-->
-    <div id="kt_content_container" class="container-xxl">
-        <!--begin::FAQ card-->
-        <div class="card">
-            <!--begin::Body-->
-            <div class="card-body p-lg-15">
-                <!--begin::Layout-->
-                <div class="d-flex flex-column flex-lg-row">
-                    <!--begin::Sidebar-->
-                    <div class="flex-column flex-lg-row-auto w-100 w-lg-275px mb-10 me-lg-20">
-                        <!--begin::Catigories-->
-                        <div class="mb-15">
-                            <h4 class="text-black mb-7">PPDB</h4>
-                            <!--begin::Menu-->
-                            <div class="menu menu-rounded menu-column menu-title-gray-700 menu-state-title-primary menu-active-bg-light-primary fw-bold">
-                                <!--begin::Item-->
-                                <div class="menu-item mb-1">
-                                    <!--begin::Link-->
-                                    <a href="<?php echo site_url('alur_pendaftaran');?>" class="menu-link py-3 active">How To Apply</a>
-                                    <!--end::Link-->
-                                </div>
-                                <!--end::Item-->
-                                <!--begin::Item-->
-                                <div class="menu-item mb-1">
-                                    <!--begin::Link-->
-                                    <a href="<?php echo $setup->formpendaftaran;?>" class="menu-link py-3">Addmission</a>
-                                    <!--end::Link-->
-                                </div>
-                                <!--end::Item-->
-                            </div>
-                            <!--end::Menu-->
-                        </div>
-                        <!--end::Catigories-->
-                    </div>
-                    <!--end::Sidebar-->
-                    <!--begin::Content-->
-                    <div class="flex-lg-row-fluid">
-                        <!--begin::Extended content-->
-                        <div class="mb-13">
-                            <!--begin::Content-->
-                            <div class="mb-15">														
-                                <section class="welcome_about">
-                                    <div class="container">
-                                      <!--begin::Row-->
-                                      <div class="row g-10">
-                                        <!--begin::Col-->
-                                        <div class="col-lg-6">
-                                          <!--begin::Item-->
-                                          <a class="d-block card-rounded overlay" data-magnify="gallery" data-caption="<?php echo $brosur->type;?>" data-fslightbox="lightbox-projects" href="<?php echo base_url().'assets/images/'.$brosur->brosur_gambar;?>">
-                                            <!--begin::Image-->
-                                            <img src="<?php echo base_url().'assets/images/'.$brosur->brosur_gambar;?>" class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded mw-100" alt="" />                                            
-                                            <!--end::Image-->
-                                            <!--begin::Action-->
-                                            <div class="overlay-layer card-rounded bg-dark bg-opacity-25">
-                                              <i class="bi bi-eye-fill fs-3x text-white"></i>
-                                            </div>
-                                            <!--end::Action-->
-                                          </a>
-                                          <!--end::Item-->
-                                        </div>
-                                        <!--end::Col-->
-                                        <!--begin::Col-->
-                                        <div class="col-lg-6">
-                                          <!--begin::Item-->
-                                          <a class="d-block card-rounded overlay" data-magnify="gallery" data-caption="Alur Pendaftaran" data-fslightbox="lightbox-projects" href="<?php echo base_url().'assets/images/'.$setup->alurpendaftaran;?>">
-                                            <!--begin::Image-->
-                                            <img src="<?php echo base_url().'assets/images/'.$setup->alurpendaftaran;?>" class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded mw-100" alt="" />
-                                            <!--end::Image-->
-                                            <!--begin::Action-->
-                                            <div class="overlay-layer card-rounded bg-dark bg-opacity-25">
-                                              <i class="bi bi-eye-fill fs-3x text-white"></i>
-                                            </div>
-                                            <!--end::Action-->
-                                          </a>
-                                          <!--end::Item-->
-                                        </div>
-                                        <!--end::Col-->
-                                      </div>
-                                      <!--end::Row-->
-                                </section>
-                            </div>
-                            <!--end::Content-->
-                        </div>
-                        <!--end::Extended content-->
-                    </div>
-                    <!--end::Content-->
-                </div>
-                <!--end::Layout-->
-            </div>
-            <!--end::Body-->
-        </div>
-        <!--end::FAQ card-->
-    </div>
-    <!--end::Container-->
-</div>
-<!--end::Post-->

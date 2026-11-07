@@ -10,31 +10,20 @@ class Galeri extends CI_Controller{
 	}
 	function index(){
 		$x['setup']=$this->m_setup->get_setup()->row();
-		$judul_website=$x['setup']->judul_website;
-		$x['alb']=$this->m_album->get_all_album();
-		$x['all_galeri']=$this->m_galeri->get_all_galeri();
-		//$this->load->view('depan/v_galeri',$x);
-		$x['title']="$judul_website | Gallery";
+		$x['album']=$this->db->query("SELECT a.*, COUNT(g.galeri_id) AS jumlah, MAX(g.galeri_gambar) AS foto_lain FROM tbl_album a LEFT JOIN tbl_galeri g ON g.galeri_album_id = a.album_id GROUP BY a.album_id ORDER BY a.album_id DESC");
+		$x['title']=t('hal_galeri_judul').' | '.$x['setup']->judul_website;
+		$x['halaman']='galeri';
 		$this->template->load('template_depan', 'depan/v_galeri', $x);
 	}
-	function album(){
+	function album($idalbum = NULL){
+		$album = $this->db->get_where('tbl_album', array('album_id' => (int) $idalbum))->row();
+		if ( ! $album) redirect('galeri');
 		$x['setup']=$this->m_setup->get_setup()->row();
-		$judul_website=$x['setup']->judul_website;
-		$idalbum=$this->uri->segment(3);
-		$x['data']=$this->m_galeri->get_galeri_by_album_id($idalbum);
-		$dataalbum=$this->m_album->get_album_by_kode($idalbum);
-		$rowalbum=$dataalbum->row_array();
-		$x['album_id']=$rowalbum['album_id'];
-		$x['album_nama']=$rowalbum['album_nama'];
-		$x['tanggal']=$rowalbum['tanggal'];
-		$x['album_author']=$rowalbum['album_author'];
-		$x['album_cover']=$rowalbum['album_cover'];
-		$x['album_deskripsi']=$rowalbum['album_deskripsi'];
-		//$this->load->view('depan/v_galeri_per_album',$x);
-		//$x['title']="$judul_website | Album";
-		$x['title']=$rowalbum['album_nama'].' | '.$judul_website;
-		$x['gambar']=$rowalbum['album_cover'];
-		$x['blog']=$rowalbum['album_nama'];
+		$x['album']=$album;
+		$x['data']=$this->m_galeri->get_galeri_by_album_id((int) $idalbum);
+		$x['title']=$album->album_nama.' | '.$x['setup']->judul_website;
+		$x['gambar']=$album->album_cover;
+		$x['halaman']='galeri';
 		$this->template->load('template_depan', 'depan/v_galeri_per_album', $x);
 	}
 }
