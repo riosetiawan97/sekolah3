@@ -305,3 +305,18 @@ $config['tampilan_item']['footer_2'] = array(
 // Ikon & warna bawaan langkah pendaftaran (jika belum diisi di admin).
 $config['tampilan_langkah_ikon'] = array('💻', '📄', '✅', '✏️', '🤝', '📢', '🎓', '📋');
 $config['tampilan_palet'] = array('#e8a020', '#3b82f6', '#22c55e', '#8b5cf6', '#1a2e5a', '#e53e3e', '#0ea5e9', '#f97316');
+
+// Gambar slider cadangan untuk beranda. Dipakai kalau foto Galeri yang dicentang "Slider"
+// kurang dari 2, supaya gambar di halaman awal tetap bisa bergeser (carousel).
+// Isinya disamakan dengan slider di website sekolah2. Begitu ada minimal 2 foto yang
+// dicentang "Slider" di Admin > Galeri, daftar ini tidak dipakai lagi.
+$config['tampilan_slider_cadangan'] = array(
+	array('gambar' => '76a05d95e8275c7df4c052c9fd416d2f.jpg', 'judul' => '1'),
+	array('gambar' => '0d2cb3542ae2bfe93620e6d69738e946.jpeg', 'judul' => 'Ramadhan'),
+	array('gambar' => '9966095519889a101e34160d5e596af0.jpeg', 'judul' => 'UJIAN PRAKTEK KEWIRAUSAHAAN'),
+	array('gambar' => '70a227e3d787b8a95bc624caef03c9df.jpeg', 'judul' => 'Seni Tari'),
+	array('gambar' => '83fa2bd46adba608f5b0078085024099.jpeg', 'judul' => 'Hari Guru Nasional'),
+	array('gambar' => '7e056c3c1879546bded732074322d704.JPG', 'judul' => 'Kelas XII Asisten Keperawatan'),
+	array('gambar' => '30579323bb839d97012aa74febcc9716.jpg', 'judul' => 'UJI KOMPETENSI'),
+	array('gambar' => '898d46975500d2d2d21b3205ac9758fc.jpeg', 'judul' => 'PRAKERIN'),
+);

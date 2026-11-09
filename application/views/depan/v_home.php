@@ -1,5 +1,5 @@
 <?php
-/* Beranda. Data: $setup, $slider, $berita, $galeri, $alur. */
+/* Beranda. Data: $setup, $slider (array), $berita, $galeri, $alur. */
 $foto_kepsek = t('kepsek_foto') !== '' ? gambar_url(t('kepsek_foto')) : gambar_url($setup->gambarabout);
 $statistik = items('statistik');
 $program = items('program');
@@ -8,8 +8,8 @@ $program = items('program');
 <!-- Hero -->
 <section class="hero" id="beranda" aria-label="Sambutan">
 	<div class="hero-trek">
-	<?php if ($slider->num_rows() > 0): ?>
-		<?php foreach ($slider->result() as $i => $s): ?>
+	<?php if (count($slider) > 0): ?>
+		<?php foreach ($slider as $i => $s): ?>
 		<div class="hero-slide<?php echo $i === 0 ? ' aktif' : ''; ?>" style="background-image:url('<?php echo html_escape(gambar_url($s->galeri_gambar)); ?>')" role="img" aria-label="<?php echo html_escape($s->galeri_judul); ?>"></div>
 		<?php endforeach; ?>
 	<?php else: ?>
@@ -27,11 +27,11 @@ $program = items('program');
 			</div>
 		</div>
 	</div>
-	<?php if ($slider->num_rows() > 1): ?>
+	<?php if (count($slider) > 1): ?>
 	<button type="button" class="hero-panah kiri" aria-label="Gambar sebelumnya">&#8249;</button>
 	<button type="button" class="hero-panah kanan" aria-label="Gambar berikutnya">&#8250;</button>
 	<div class="hero-titik">
-		<?php foreach ($slider->result() as $i => $s): ?>
+		<?php foreach ($slider as $i => $s): ?>
 		<button type="button" class="<?php echo $i === 0 ? 'aktif' : ''; ?>" aria-label="Slide <?php echo $i + 1; ?>"></button>
 		<?php endforeach; ?>
 	</div>
