@@ -52,18 +52,36 @@
     pita.querySelector('button').addEventListener('click', function () { pita.remove(); });
   }
 
-  // Slider hero
+  // Slider hero (carousel geser: panah, titik, swipe, otomatis tiap 5 detik)
+  var hero = document.querySelector('.hero');
+  var trek = document.querySelector('.hero-trek');
   var slides = document.querySelectorAll('.hero-slide');
   var titik = document.querySelectorAll('.hero-titik button');
-  if (slides.length > 1) {
+  if (hero && trek && slides.length > 1) {
     var i = 0, jalan;
     var ke = function (n) {
       slides[i].classList.remove('aktif'); if (titik[i]) titik[i].classList.remove('aktif');
       i = (n + slides.length) % slides.length;
+      trek.style.transform = 'translateX(' + (-i * 100) + '%)';
       slides[i].classList.add('aktif'); if (titik[i]) titik[i].classList.add('aktif');
     };
     var mulai = function () { clearInterval(jalan); jalan = setInterval(function () { ke(i + 1); }, 5000); };
     titik.forEach(function (b, n) { b.addEventListener('click', function () { ke(n); mulai(); }); });
+    var kiri = hero.querySelector('.hero-panah.kiri'), kanan = hero.querySelector('.hero-panah.kanan');
+    if (kiri) kiri.addEventListener('click', function () { ke(i - 1); mulai(); });
+    if (kanan) kanan.addEventListener('click', function () { ke(i + 1); mulai(); });
+    // Geser dengan jari di HP/tablet
+    var xAwal = null, yAwal = null;
+    hero.addEventListener('touchstart', function (e) { xAwal = e.touches[0].clientX; yAwal = e.touches[0].clientY; }, { passive: true });
+    hero.addEventListener('touchend', function (e) {
+      if (xAwal === null) return;
+      var dx = e.changedTouches[0].clientX - xAwal, dy = e.changedTouches[0].clientY - yAwal;
+      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) { ke(dx < 0 ? i + 1 : i - 1); mulai(); }
+      xAwal = null;
+    });
+    // Berhenti sebentar saat kursor di atas gambar
+    hero.addEventListener('mouseenter', function () { clearInterval(jalan); });
+    hero.addEventListener('mouseleave', mulai);
     mulai();
   }
 

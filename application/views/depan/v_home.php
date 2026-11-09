@@ -7,6 +7,7 @@ $program = items('program');
 
 <!-- Hero -->
 <section class="hero" id="beranda" aria-label="Sambutan">
+	<div class="hero-trek">
 	<?php if ($slider->num_rows() > 0): ?>
 		<?php foreach ($slider->result() as $i => $s): ?>
 		<div class="hero-slide<?php echo $i === 0 ? ' aktif' : ''; ?>" style="background-image:url('<?php echo html_escape(gambar_url($s->galeri_gambar)); ?>')" role="img" aria-label="<?php echo html_escape($s->galeri_judul); ?>"></div>
@@ -14,6 +15,7 @@ $program = items('program');
 	<?php else: ?>
 		<div class="hero-slide polos aktif"></div>
 	<?php endif; ?>
+	</div>
 	<div class="hero-isi">
 		<div class="hero-teks">
 			<?php if (t('hero_badge') !== ''): ?><div class="hero-badge"><?php echo te('hero_badge'); ?></div><?php endif; ?>
@@ -26,6 +28,8 @@ $program = items('program');
 		</div>
 	</div>
 	<?php if ($slider->num_rows() > 1): ?>
+	<button type="button" class="hero-panah kiri" aria-label="Gambar sebelumnya">&#8249;</button>
+	<button type="button" class="hero-panah kanan" aria-label="Gambar berikutnya">&#8250;</button>
 	<div class="hero-titik">
 		<?php foreach ($slider->result() as $i => $s): ?>
 		<button type="button" class="<?php echo $i === 0 ? 'aktif' : ''; ?>" aria-label="Slide <?php echo $i + 1; ?>"></button>
@@ -34,7 +38,8 @@ $program = items('program');
 	<?php endif; ?>
 </section>
 
-<?php if (t_on('sec_statistik') && $statistik): ?>
+<?php /* Bar statistik (Siswa Aktif, Tenaga Pendidik, dst.) disembunyikan sementara. Hapus 'FALSE &&' untuk menampilkannya lagi. */ ?>
+<?php if (FALSE && t_on('sec_statistik') && $statistik): ?>
 <!-- Statistik -->
 <section class="statistik" aria-label="Statistik sekolah">
 	<div class="statistik-grid" style="--kolom:<?php echo min(count($statistik), 6); ?>">
