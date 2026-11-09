@@ -1,27 +1,25 @@
 <?php
-class Files extends CI_Controller{
+/* Admin > Files: dokumen yang tampil di halaman Download. */
+class Files extends Admin_crud{
 	function __construct(){
 		parent::__construct();
-		if($this->session->userdata('masuk') !=TRUE){
-            $url=base_url('administrator');
-            redirect($url);
-        };
 		$this->load->model('m_files');
-		$this->load->model('m_pengguna');
-		$this->load->library('upload');
 		$this->load->helper('download');
-		$this->load->model('m_setup');
 	}
-
-
-	function index(){
-		
-		$x['data']=$this->m_files->get_all_files();
-		$x['setup']=$this->m_setup->get_setup()->row();
-		$judul_website=$x['setup']->judul_website;
-		//$this->load->view('admin/v_files',$x);
-		$x['title']="Admin $judul_website | Files";
-		$this->template->load('template_admin', 'admin/v_files', $x);
+	protected function definisi(){
+		return array(
+			'judul' => 'File Download', 'satuan' => 'File', 'remah' => array('Data Sekolah', 'Files'),
+			'tabel' => 'tbl_files', 'pk' => 'file_id', 'url' => 'admin/files', 'urut' => 'file_id DESC',
+			'keterangan' => 'File di sini tampil di halaman Download website. Jenis file: PDF, Word, Excel, PowerPoint, ZIP (maks. 20 MB).',
+			'aksi' => '<a href="'.base_url('download').'" target="_blank" rel="noopener" class="btn btn-sm btn-light">Lihat halaman ↗</a>',
+			'kolom' => array(
+				'file_judul' => array('label' => 'Judul', 'tipe' => 'text', 'wajib' => TRUE, 'maks' => 120),
+				'file_deskripsi' => array('label' => 'Deskripsi', 'tipe' => 'textarea'),
+				'file_oleh' => array('label' => 'Oleh', 'tipe' => 'text', 'maks' => 60),
+				'file_data' => array('label' => 'File', 'tipe' => 'file', 'wajib' => TRUE),
+				'file_download' => array('label' => 'Diunduh', 'tipe' => 'text', 'hanya_tampil' => TRUE),
+			),
+		);
 	}
 
 	function download(){
@@ -36,85 +34,4 @@ class Files extends CI_Controller{
 		redirect('admin/files');
 	}
 	
-	function simpan_file(){
-				$config['upload_path'] = UPLOAD_FILES_PATH; //path folder
-	            $config['allowed_types'] = 'pdf|doc|docx|ppt|pptx|zip'; //type yang dapat diakses bisa anda sesuaikan
-	            $config['encrypt_name'] = TRUE; //nama yang terupload nantinya
-
-	            $this->upload->initialize($config);
-	            if(!empty($_FILES['filefoto']['name']))
-	            {
-	                if ($this->upload->do_upload('filefoto'))
-	                {
-	                        $gbr = $this->upload->data();
-	                        $file=$gbr['file_name'];
-							$judul=strip_tags($this->input->post('xjudul'));
-							$deskripsi=$this->input->post('xdeskripsi');
-							$oleh=strip_tags($this->input->post('xoleh'));
-	
-							$this->m_files->simpan_file($judul,$deskripsi,$oleh,$file);
-							echo $this->session->set_flashdata('msg','success');
-							redirect('admin/files');
-					}else{
-	                    echo $this->session->set_flashdata('msg','warning');
-	                    redirect('admin/files');
-	                }
-	                 
-	            }else{
-					redirect('admin/files');
-				}
-				
-	}
-	
-	function update_file(){
-				
-	            $config['upload_path'] = UPLOAD_FILES_PATH; //path folder
-	            $config['allowed_types'] = 'pdf|doc|docx|ppt|pptx|zip'; //type yang dapat diakses bisa anda sesuaikan
-	            $config['encrypt_name'] = TRUE; //nama yang terupload nantinya
-
-	            $this->upload->initialize($config);
-	            if(!empty($_FILES['filefoto']['name']))
-	            {
-	                if ($this->upload->do_upload('filefoto'))
-	                {
-	                        $gbr = $this->upload->data();
-	                        $file=$gbr['file_name'];
-	                        $kode=$this->input->post('kode');
-	                        $judul=strip_tags($this->input->post('xjudul'));
-							$deskripsi=$this->input->post('xdeskripsi');
-							$oleh=strip_tags($this->input->post('xoleh'));
-							$data=$this->input->post('file');
-							$path=UPLOAD_FILES_PATH.$data;
-							upload_delete($path);
-							$this->m_files->update_file($kode,$judul,$deskripsi,$oleh,$file);
-							echo $this->session->set_flashdata('msg','info');
-							redirect('admin/files');
-	                    
-	                }else{
-	                    echo $this->session->set_flashdata('msg','warning');
-	                    redirect('admin/files');
-	                }
-	                
-	            }else{
-						$kode=$this->input->post('kode');
-	                    $judul=strip_tags($this->input->post('xjudul'));
-						$deskripsi=$this->input->post('xdeskripsi');
-						$oleh=strip_tags($this->input->post('xoleh'));
-						$this->m_files->update_file_tanpa_file($kode,$judul,$deskripsi,$oleh);
-						echo $this->session->set_flashdata('msg','info');
-						redirect('admin/files');
-	            } 
-
-	}
-
-	function hapus_file(){
-		$kode=$this->input->post('kode');
-		$data=$this->input->post('file');
-		$path=UPLOAD_FILES_PATH.$data;
-		upload_delete($path);
-		$this->m_files->hapus_file($kode);
-		echo $this->session->set_flashdata('msg','success-hapus');
-		redirect('admin/files');
-	}
-
 }

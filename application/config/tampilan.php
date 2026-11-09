@@ -145,6 +145,7 @@ $config['tampilan_grup'] = array(
 			'ppdb_form_aktif' => array('label' => 'Formulir pendaftaran dibuka', 'tipe' => 'checkbox', 'default' => '1'),
 			'ppdb_pesan_tutup' => array('label' => 'Pesan saat formulir ditutup', 'tipe' => 'textarea', 'default' => 'Pendaftaran saat ini belum dibuka. Silakan hubungi kami untuk informasi lebih lanjut.'),
 			'ppdb_pesan_sukses' => array('label' => 'Pesan setelah berhasil mendaftar', 'tipe' => 'textarea', 'default' => 'Tim kami akan menghubungi Anda dalam 1-2 hari kerja.'),
+			'ppdb_email_notif' => array('label' => 'Kirim email pemberitahuan ke', 'tipe' => 'text', 'default' => '', 'bantuan' => 'Email yang menerima pemberitahuan setiap ada pendaftar baru. Pisahkan dengan koma untuk lebih dari satu. Butuh pengaturan SMTP di server (lihat README).'),
 			'_h1' => array('label' => 'Kotak ajakan di halaman How To Apply', 'tipe' => 'judul'),
 			'ppdb_cta_label' => array('label' => 'Label kecil', 'tipe' => 'text', 'default' => 'Siap mendaftar?'),
 			'ppdb_cta_judul' => array('label' => 'Judul', 'tipe' => 'text', 'default' => 'Daftarkan Putra-Putri Anda Sekarang'),
@@ -163,6 +164,9 @@ $config['tampilan_grup'] = array(
 			'tombol_mengambang' => array('label' => 'Tampilkan tombol Brosur, WhatsApp, Instagram', 'tipe' => 'checkbox', 'default' => '1'),
 			'brosur_file' => array('label' => 'File brosur (PDF/gambar)', 'tipe' => 'file', 'default' => '', 'bantuan' => 'Jika kosong, tombol brosur membuka gambar brosur pertama dari menu Brochure.'),
 			'_h2' => array('label' => 'Footer', 'tipe' => 'judul'),
+			'footer_judul1' => array('label' => 'Judul kolom link 1', 'tipe' => 'text', 'default' => 'Main Menu', 'bantuan' => 'Isi link-nya di menu Tampilan Website > Link Footer.'),
+			'footer_judul2' => array('label' => 'Judul kolom link 2', 'tipe' => 'text', 'default' => 'PPDB & Info'),
+			'footer_judul3' => array('label' => 'Judul kolom kontak', 'tipe' => 'text', 'default' => 'Stay Connected'),
 			'footer_deskripsi' => array('label' => 'Deskripsi singkat', 'tipe' => 'textarea', 'default' => 'Lembaga pendidikan Islam terpadu yang berkomitmen mencetak generasi unggul, berakhlak, dan berprestasi.'),
 			'footer_copyright' => array('label' => 'Teks hak cipta', 'tipe' => 'text', 'default' => '© {tahun} SMP Islam Al-Hadiriyah. Hak cipta dilindungi.', 'bantuan' => '{tahun} diganti tahun berjalan.'),
 			'footer_tagline' => array('label' => 'Teks kanan bawah', 'tipe' => 'text', 'default' => 'Dibuat dengan ❤️ untuk pendidikan Indonesia'),
@@ -247,6 +251,54 @@ $config['tampilan_item'] = array(
 			array('judul' => 'Pengumuman: 14 Jul 2026'),
 			array('judul' => 'Biaya pendaftaran: Gratis'),
 		),
+	),
+);
+
+$config['tampilan_item']['menu'] = array(
+	'label' => 'Menu Navigasi',
+	'keterangan' => 'Menu di bagian atas website. Isi "Dropdown" dengan nama yang sama (mis. Tentang) untuk mengelompokkan beberapa menu menjadi satu dropdown. Link: alamat halaman (mis. artikel, contact) atau URL lengkap.',
+	'kolom' => array('judul' => 'Label', 'nilai' => 'Link', 'deskripsi' => 'Dropdown (opsional)', 'ikon' => 'Ikon di dropdown (emoji)'),
+	'tipe' => array('deskripsi' => 'text'),
+	'awal' => array(
+		array('judul' => 'Beranda', 'nilai' => '/'),
+		array('judul' => 'About Us', 'nilai' => 'about', 'deskripsi' => 'Tentang', 'ikon' => '🏫'),
+		array('judul' => 'Visi & Misi', 'nilai' => 'visi_misi', 'deskripsi' => 'Tentang', 'ikon' => '🎯'),
+		array('judul' => 'Blog', 'nilai' => 'artikel'),
+		array('judul' => 'FAQ', 'nilai' => 'faq'),
+		array('judul' => 'Event', 'nilai' => 'agenda'),
+		array('judul' => 'Galeri', 'nilai' => 'galeri'),
+		array('judul' => 'Kontak', 'nilai' => 'contact'),
+		array('judul' => 'Absensi Siswa', 'nilai' => 'siswa'),
+		array('judul' => 'How To Apply', 'nilai' => 'alur_pendaftaran', 'deskripsi' => 'PPDB', 'ikon' => '📋'),
+		array('judul' => 'Admission', 'nilai' => 'pendaftaran', 'deskripsi' => 'PPDB', 'ikon' => '🎓'),
+	),
+);
+
+$config['tampilan_item']['footer_1'] = array(
+	'label' => 'Link Footer Kolom 1',
+	'keterangan' => 'Daftar link di kolom kedua footer. Judul kolom diatur di Pengaturan Tampilan > Kontak & Footer.',
+	'kolom' => array('judul' => 'Label', 'nilai' => 'Link'),
+	'awal' => array(
+		array('judul' => 'Beranda', 'nilai' => '/'),
+		array('judul' => 'About Us', 'nilai' => 'about'),
+		array('judul' => 'Visi & Misi', 'nilai' => 'visi_misi'),
+		array('judul' => 'Blog', 'nilai' => 'artikel'),
+		array('judul' => 'FAQ', 'nilai' => 'faq'),
+		array('judul' => 'Event', 'nilai' => 'agenda'),
+	),
+);
+
+$config['tampilan_item']['footer_2'] = array(
+	'label' => 'Link Footer Kolom 2',
+	'keterangan' => 'Daftar link di kolom ketiga footer. Judul kolom diatur di Pengaturan Tampilan > Kontak & Footer.',
+	'kolom' => array('judul' => 'Label', 'nilai' => 'Link'),
+	'awal' => array(
+		array('judul' => 'Galeri', 'nilai' => 'galeri'),
+		array('judul' => 'Kontak', 'nilai' => 'contact'),
+		array('judul' => 'How To Apply', 'nilai' => 'alur_pendaftaran'),
+		array('judul' => 'Admission', 'nilai' => 'pendaftaran'),
+		array('judul' => 'Pengumuman', 'nilai' => 'pengumuman'),
+		array('judul' => 'Download', 'nilai' => 'download'),
 	),
 );
 

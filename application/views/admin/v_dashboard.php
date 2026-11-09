@@ -38,6 +38,39 @@
     <div class="post d-flex flex-column-fluid" id="kt_post">
 
         <div id="kt_content_container" class="container-xxl">
+            <?php if (isset($pendaftar)): ?>
+            <!-- Ringkasan PPDB -->
+            <div class="card mb-8">
+                <div class="card-header align-items-center">
+                    <h3 class="card-title fw-bolder">PPDB: Pendaftar Terbaru</h3>
+                    <div class="d-flex gap-2">
+                        <span class="badge badge-light-warning fs-7"><?php echo (int) $pendaftar_baru; ?> baru</span>
+                        <span class="badge badge-light-primary fs-7"><?php echo (int) $pendaftar_total; ?> total</span>
+                        <a href="<?php echo base_url('admin/pendaftar'); ?>" class="btn btn-sm btn-light-primary ms-2">Lihat semua</a>
+                    </div>
+                </div>
+                <div class="card-body py-4">
+                    <?php if ( ! $pendaftar): ?>
+                        <p class="text-muted mb-0">Belum ada pendaftar dari formulir website.</p>
+                    <?php else: ?>
+                    <div class="table-responsive"><table class="table table-row-bordered align-middle gy-3 mb-0" style="font-size:13px">
+                        <thead><tr class="fw-bolder text-muted"><th>Tanggal</th><th>Nama</th><th>Asal Sekolah</th><th>No. HP</th><th>Status</th></tr></thead>
+                        <tbody>
+                        <?php foreach ($pendaftar as $p): ?>
+                        <tr>
+                            <td class="text-nowrap"><?php echo date('d/m/Y H:i', strtotime($p->tanggal)); ?></td>
+                            <td class="fw-bold"><?php echo html_escape($p->nama); ?></td>
+                            <td><?php echo html_escape($p->asal_sekolah); ?></td>
+                            <td><a href="<?php echo html_escape(wa_url($p->no_hp)); ?>" target="_blank" rel="noopener"><?php echo html_escape($p->no_hp); ?></a></td>
+                            <td><span class="badge badge-light-<?php echo $p->status === 'Baru' ? 'warning' : 'primary'; ?>"><?php echo html_escape($p->status); ?></span></td>
+                        </tr>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table></div>
+                    <?php endif; ?>
+                </div>
+            </div>
+            <?php endif; ?>
             <div class="row g-5 g-xxl-8">
                 <div class="col-xxl-12">
             <!-- Main content -->

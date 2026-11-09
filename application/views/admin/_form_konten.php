@@ -2,12 +2,12 @@
 <?php foreach ($def['kolom'] as $k => $label): $v = $item ? $item->$k : ''; ?>
 <div class="mb-5">
 	<label class="form-label fw-bold" for="<?php echo $idp.$k; ?>"><?php echo html_escape($label); ?></label>
-	<?php if ($k === 'deskripsi'): ?>
+	<?php if ($k === 'deskripsi' && (empty($def['tipe'][$k]) || $def['tipe'][$k] === 'textarea')): ?>
 		<textarea class="form-control form-control-solid" id="<?php echo $idp.$k; ?>" name="<?php echo $k; ?>" rows="3"><?php echo html_escape($v); ?></textarea>
 	<?php elseif ($k === 'warna'): ?>
 		<input type="color" class="form-control form-control-solid form-control-color" id="<?php echo $idp.$k; ?>" name="<?php echo $k; ?>" value="<?php echo html_escape($v ?: '#1a2e5a'); ?>" style="width:70px;height:44px">
 	<?php else: ?>
-		<input type="text" class="form-control form-control-solid" id="<?php echo $idp.$k; ?>" name="<?php echo $k; ?>" value="<?php echo html_escape($v); ?>"<?php echo $k === 'judul' ? ' required' : ''; ?><?php echo $k === 'ikon' ? ' maxlength="20" placeholder="Contoh: 📖"' : ''; ?>>
+		<input type="text" class="form-control form-control-solid" id="<?php echo $idp.$k; ?>" name="<?php echo $k; ?>" value="<?php echo html_escape($v); ?>"<?php echo $k === 'judul' ? ' required' : ''; ?><?php echo $k === 'deskripsi' ? ' list="daftar-dropdown"' : ''; ?><?php echo $k === 'ikon' ? ' maxlength="20" placeholder="Contoh: 📖"' : ''; ?>>
 		<?php if ($k === 'ikon'): ?><div class="form-text">Tempel satu emoji. Di Windows tekan tombol Windows + titik (.) untuk memilih emoji.</div><?php endif; ?>
 	<?php endif; ?>
 </div>

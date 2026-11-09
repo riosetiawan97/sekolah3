@@ -16,6 +16,9 @@ class Dashboard extends CI_Controller{
 			$judul_website=$x['setup']->judul_website;
 			//$this->load->view('admin/v_dashboard',$x);
 			$x['title']="Admin $judul_website | Dashboard";
+			$x['pendaftar']=$this->db->order_by('id', 'DESC')->limit(5)->get('tbl_pendaftar')->result();
+			$x['pendaftar_baru']=$this->db->where('status', 'Baru')->count_all_results('tbl_pendaftar');
+			$x['pendaftar_total']=$this->db->count_all('tbl_pendaftar');
 			$this->template->load('template_admin', 'admin/v_dashboard', $x);
 		}else{
 			redirect('administrator');

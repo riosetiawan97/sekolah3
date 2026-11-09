@@ -2,7 +2,7 @@
 class M_kontak extends CI_Model{
 
 	function kirim_pesan($nama,$email,$kontak,$pesan){
-		$hsl=$this->db->query("INSERT INTO tbl_inbox(inbox_nama,inbox_email,inbox_kontak,inbox_pesan) VALUES ('$nama','$email','$kontak','$pesan')");
+		$hsl=$this->db->query("INSERT INTO tbl_inbox(inbox_nama,inbox_email,inbox_kontak,inbox_pesan) VALUES (?,?,?,?)", array($nama, $email, $kontak, $pesan));
 		return $hsl;
 	}
 
@@ -12,7 +12,7 @@ class M_kontak extends CI_Model{
 	}
 
 	function hapus_kontak($kode){
-		$hsl=$this->db->query("DELETE FROM tbl_inbox WHERE inbox_id='$kode'");
+		$hsl=$this->db->query("DELETE FROM tbl_inbox WHERE inbox_id=?", array($kode));
 		return $hsl;
 	}
 

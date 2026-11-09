@@ -54,7 +54,7 @@
 										<div class="d-flex align-items-center ms-1 ms-lg-3" id="kt_header_user_menu_toggle">
                     <?php
                         $id_admin=$this->session->userdata('idadmin');
-                        $q=$this->db->query("SELECT * FROM tbl_pengguna WHERE pengguna_id='$id_admin'");
+                        $q=$this->db->query("SELECT * FROM tbl_pengguna WHERE pengguna_id=?", array($id_admin));
                         $c=$q->row_array();
                     ?>
 											<!--begin::Menu wrapper-->

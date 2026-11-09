@@ -43,7 +43,7 @@
                   <td><?php echo date_format(date_create($waktu),"H:i:s");?></td>
                   <td><?php echo $nama;?></td>
                   <td style="text-align:right;">
-                        <a class="btn" data-toggle="modal" data-target="#ModalHapus<?php echo $id;?>"><span class="fa fa-trash"></span></a>
+                        <a class="btn" data-bs-toggle="modal" data-bs-target="#ModalHapus<?php echo $id;?>"><span class="fa fa-trash"></span></a>
                   </td>
                 </tr>
 				<?php endforeach;?>
@@ -70,7 +70,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><span class="fa fa-close"></span></span></button>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true"><span class="fa fa-close"></span></span></button>
                 <h4 class="modal-title" id="myModalLabel">Hapus Absen Guru</h4>
             </div>
             <form class="form-horizontal" action="<?php echo base_url().'admin/guru/hapus_absen_guru'?>" method="post" enctype="multipart/form-data">
@@ -80,7 +80,7 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary btn-flat" id="simpan">Hapus</button>
             </div>
             </form>

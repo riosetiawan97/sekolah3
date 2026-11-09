@@ -1,141 +1,26 @@
 <?php
-class Siswa extends CI_Controller{
+/* Admin > Siswa (data siswa) dan absensi siswa. */
+class Siswa extends Admin_crud{
 	function __construct(){
 		parent::__construct();
-		if($this->session->userdata('masuk') !=TRUE){
-            $url=base_url('administrator');
-            redirect($url);
-        };
 		$this->load->model('m_siswa');
-		$this->load->model('m_pengguna');
-		$this->load->model('m_kelas');
-		$this->load->library('upload');
-		$this->load->model('m_setup');
 	}
-
-	function index(){
-		$x['kelas']=$this->m_kelas->get_all_kelas();
-		$x['data']=$this->m_siswa->get_all_siswa();
-		$x['setup']=$this->m_setup->get_setup()->row();
-		$judul_website=$x['setup']->judul_website;
-		//$this->load->view('admin/v_siswa',$x);
-		$x['title']="Admin $judul_website | Siswa";
-		$this->template->load('template_admin', 'admin/v_siswa', $x);
-	}
-	
-	function simpan_siswa(){
-				$config['upload_path'] = UPLOAD_IMAGES_PATH; //path folder
-	            $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
-	            $config['encrypt_name'] = TRUE; //nama yang terupload nantinya
-
-	            $this->upload->initialize($config);
-	            if(!empty($_FILES['filefoto']['name']))
-	            {
-	                if ($this->upload->do_upload('filefoto'))
-	                {
-	                        $gbr = $this->upload->data();
-	                        //Compress Image
-	                        $config['image_library']='gd2';
-	                        $config['source_image']=UPLOAD_IMAGES_PATH.$gbr['file_name'];
-	                        $config['create_thumb']= FALSE;
-	                        $config['maintain_ratio']= FALSE;
-	                        $config['quality']= '60%';
-	                        $config['width']= 300;
-	                        $config['height']= 300;
-	                        $config['new_image']= UPLOAD_IMAGES_PATH.$gbr['file_name'];
-	                        $this->load->library('image_lib', $config);
-	                        $this->image_lib->resize();
-
-	                        $photo=$gbr['file_name'];
-							$nis=strip_tags($this->input->post('xnis'));
-							$nama=strip_tags($this->input->post('xnama'));
-							$jenkel=strip_tags($this->input->post('xjenkel'));
-							$kelas=strip_tags($this->input->post('xkelas'));
-
-							$this->m_siswa->simpan_siswa($nis,$nama,$jenkel,$kelas,$photo);
-							echo $this->session->set_flashdata('msg','success');
-							redirect('admin/siswa');
-					}else{
-	                    echo $this->session->set_flashdata('msg','warning');
-	                    redirect('admin/siswa');
-	                }
-	                 
-	            }else{
-	            	$nis=strip_tags($this->input->post('xnis'));
-					$nama=strip_tags($this->input->post('xnama'));
-					$jenkel=strip_tags($this->input->post('xjenkel'));
-					$kelas=strip_tags($this->input->post('xkelas'));
-
-					$this->m_siswa->simpan_siswa_tanpa_img($nis,$nama,$jenkel,$kelas);
-					echo $this->session->set_flashdata('msg','success');
-					redirect('admin/siswa');
-				}
-				
-	}
-	
-	function update_siswa(){
-				
-		$config['upload_path'] = UPLOAD_IMAGES_PATH; //path folder
-		$config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
-		$config['encrypt_name'] = TRUE; //nama yang terupload nantinya
-
-		$this->upload->initialize($config);
-		if(!empty($_FILES['filefoto']['name']))
-		{
-			if ($this->upload->do_upload('filefoto'))
-			{
-					$gbr = $this->upload->data();
-					//Compress Image
-					$config['image_library']='gd2';
-					$config['source_image']=UPLOAD_IMAGES_PATH.$gbr['file_name'];
-					$config['create_thumb']= FALSE;
-					$config['maintain_ratio']= FALSE;
-					$config['quality']= '60%';
-					$config['width']= 300;
-					$config['height']= 300;
-					$config['new_image']= UPLOAD_IMAGES_PATH.$gbr['file_name'];
-					$this->load->library('image_lib', $config);
-					$this->image_lib->resize();
-					$gambar=$this->input->post('gambar');
-					$path=UPLOAD_IMAGES_PATH.$gambar;
-					upload_delete($path);
-
-					$photo=$gbr['file_name'];
-					$kode=$this->input->post('kode');
-					$nis=strip_tags($this->input->post('xnis'));
-					$nama=strip_tags($this->input->post('xnama'));
-					$jenkel=strip_tags($this->input->post('xjenkel'));
-					$kelas=strip_tags($this->input->post('xkelas'));
-
-					$this->m_siswa->update_siswa($kode,$nis,$nama,$jenkel,$kelas,$photo);
-					echo $this->session->set_flashdata('msg','info');
-					redirect('admin/siswa');
-				
-			}else{
-				echo $this->session->set_flashdata('msg','warning');
-				redirect('admin/siswa');
-			}			
-		}else{
-					$kode=$this->input->post('kode');
-					$nis=strip_tags($this->input->post('xnis'));
-					$nama=strip_tags($this->input->post('xnama'));
-					$jenkel=strip_tags($this->input->post('xjenkel'));
-					$kelas=strip_tags($this->input->post('xkelas'));
-
-					$this->m_siswa->update_siswa_tanpa_img($kode,$nis,$nama,$jenkel,$kelas);
-					echo $this->session->set_flashdata('msg','info');
-					redirect('admin/siswa');
-		} 
-	}
-
-	function hapus_siswa(){
-		$kode=$this->input->post('kode');
-		$gambar=$this->input->post('gambar');
-		$path=UPLOAD_IMAGES_PATH.$gambar;
-		upload_delete($path);
-		$this->m_siswa->hapus_siswa($kode);
-		echo $this->session->set_flashdata('msg','success-hapus');
-		redirect('admin/siswa');
+	protected function definisi(){
+		$kelas = array('' => '- Pilih kelas -');
+		foreach ($this->db->order_by('kelas_nama')->get('tbl_kelas')->result() as $k) $kelas[$k->kelas_id] = $k->kelas_nama;
+		return array(
+			'judul' => 'Data Siswa', 'satuan' => 'Siswa', 'remah' => array('Data Sekolah', 'Siswa'),
+			'tabel' => 'tbl_siswa', 'pk' => 'siswa_id', 'url' => 'admin/siswa', 'urut' => 'siswa_nama ASC',
+			'keterangan' => 'Jumlah siswa bisa ditampilkan otomatis di Statistik Beranda dengan angka {jumlah_siswa}.',
+			'aksi' => '<a href="'.base_url('admin/siswa/absen').'" class="btn btn-sm btn-light">Absensi Siswa</a>',
+			'kolom' => array(
+				'siswa_photo' => array('label' => 'Foto', 'tipe' => 'image'),
+				'siswa_nis' => array('label' => 'NIS', 'tipe' => 'text', 'maks' => 20),
+				'siswa_nama' => array('label' => 'Nama', 'tipe' => 'text', 'wajib' => TRUE, 'maks' => 70),
+				'siswa_jenkel' => array('label' => 'Jenis Kelamin', 'tipe' => 'select', 'opsi' => array('L' => 'Laki-laki', 'P' => 'Perempuan'), 'bawaan' => 'L'),
+				'siswa_kelas_id' => array('label' => 'Kelas', 'tipe' => 'select', 'opsi' => $kelas, 'wajib' => TRUE),
+			),
+		);
 	}
 
 	function absen(){

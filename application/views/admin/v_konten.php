@@ -1,5 +1,5 @@
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
-<?php $this->load->view('admin/_kepala', array('judul' => $def['label'], 'remah' => array(in_array($grup, array('syarat', 'jadwal_ppdb', 'info_ppdb')) ? 'PPDB' : 'Tampilan Website', $def['label']),
+<?php $this->load->view('admin/_kepala', array('judul' => $def['label'], 'remah' => array(in_array($grup, array('syarat', 'jadwal_ppdb', 'info_ppdb'), TRUE) ? 'PPDB' : 'Tampilan Website', $def['label']),
 	'aksi' => '<button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modalTambah">+ Tambah</button>')); ?>
 <div class="post d-flex flex-column-fluid" id="kt_post">
 <div id="kt_content_container" class="container-xxl">
@@ -61,3 +61,6 @@
 	</div></div>
 </div>
 <?php endforeach; ?>
+<?php if (isset($def['kolom']['deskripsi']) && ! empty($def['tipe']['deskripsi'])): ?>
+<datalist id="daftar-dropdown"><?php foreach (array_unique(array_filter(array_map(function ($d) { return trim($d->deskripsi); }, $data))) as $g): ?><option value="<?php echo html_escape($g); ?>"><?php endforeach; ?></datalist>
+<?php endif; ?>

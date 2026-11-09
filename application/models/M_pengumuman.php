@@ -7,16 +7,16 @@ class M_pengumuman extends CI_Model{
 	}
 	function simpan_pengumuman($judul,$deskripsi){
 		$author=$this->session->userdata('nama');
-		$hsl=$this->db->query("INSERT INTO tbl_pengumuman(pengumuman_judul,pengumuman_deskripsi,pengumuman_author) VALUES ('$judul','$deskripsi','$author')");
+		$hsl=$this->db->query("INSERT INTO tbl_pengumuman(pengumuman_judul,pengumuman_deskripsi,pengumuman_author) VALUES (?,?,?)", array($judul, $deskripsi, $author));
 		return $hsl;
 	}
 	function update_pengumuman($kode,$judul,$deskripsi){
 		$author=$this->session->userdata('nama');
-		$hsl=$this->db->query("UPDATE tbl_pengumuman SET pengumuman_judul='$judul',pengumuman_deskripsi='$deskripsi',pengumuman_author='$author' where pengumuman_id='$kode'");
+		$hsl=$this->db->query("UPDATE tbl_pengumuman SET pengumuman_judul=?,pengumuman_deskripsi=?,pengumuman_author=? where pengumuman_id=?", array($judul, $deskripsi, $author, $kode));
 		return $hsl;
 	}
 	function hapus_pengumuman($kode){
-		$hsl=$this->db->query("DELETE FROM tbl_pengumuman WHERE pengumuman_id='$kode'");
+		$hsl=$this->db->query("DELETE FROM tbl_pengumuman WHERE pengumuman_id=?", array($kode));
 		return $hsl;
 	}
 
@@ -31,7 +31,7 @@ class M_pengumuman extends CI_Model{
 		return $hsl;
 	}
 	function pengumuman_perpage($offset,$limit){
-		$hsl=$this->db->query("SELECT pengumuman_id,pengumuman_judul,pengumuman_deskripsi,pengumuman_tanggal,DATE_FORMAT(pengumuman_tanggal,'%d/%m/%Y') AS tanggal,pengumuman_author FROM tbl_pengumuman ORDER BY pengumuman_id DESC limit $offset,$limit");
+		$hsl=$this->db->query("SELECT pengumuman_id,pengumuman_judul,pengumuman_deskripsi,pengumuman_tanggal,DATE_FORMAT(pengumuman_tanggal,'%d/%m/%Y') AS tanggal,pengumuman_author FROM tbl_pengumuman ORDER BY pengumuman_id DESC limit ?,?", array((int) $offset, (int) $limit));
 		return $hsl;
 	}
 

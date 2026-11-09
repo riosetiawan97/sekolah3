@@ -10,7 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 class M_tampilan extends CI_Model{
 
-	const SKEMA_VERSI = '1';
+	const SKEMA_VERSI = '2';
 
 	private $cache_pengaturan = NULL;
 	private $cache_item = array();
@@ -163,17 +163,24 @@ class M_tampilan extends CI_Model{
 		$this->tambah_kolom('tbl_alur_pendaftaran', 'warna', "varchar(10) DEFAULT NULL");
 		$this->tambah_kolom('tbl_agenda', 'agenda_kategori', "varchar(50) $utf DEFAULT NULL");
 
-		// Isi awal dari desain, hanya saat tabel baru dibuat.
-		if ($baru_item) {
-			foreach ($this->grup_item() as $grup => $def) {
-				$urut = 1;
-				foreach ($def['awal'] as $row) {
-					$row['grup'] = $grup;
-					$row['urutan'] = $urut++;
-					$this->db->insert('tbl_konten_item', $row);
-				}
-			}
+		// Isi awal dari desain, sekali untuk setiap grup (grup baru di versi berikutnya ikut terisi).
+		$sudah = $this->db->get_where('tbl_pengaturan', array('kunci' => '_grup_terisi'))->row();
+		$sudah = $sudah ? explode(',', $sudah->nilai) : array();
+		if ( ! $baru_item && ! $sudah) {
+			// Database versi 1: grup lama sudah terisi saat tabel dibuat.
+			$sudah = array('statistik', 'program', 'fakta', 'syarat', 'jadwal_ppdb', 'info_ppdb');
 		}
+		foreach ($this->grup_item() as $grup => $def) {
+			if (in_array($grup, $sudah, TRUE)) continue;
+			$urut = 1;
+			foreach ($def['awal'] as $row) {
+				$row['grup'] = $grup;
+				$row['urutan'] = $urut++;
+				$this->db->insert('tbl_konten_item', $row);
+			}
+			$sudah[] = $grup;
+		}
+		$this->db->query('INSERT INTO tbl_pengaturan (kunci, nilai) VALUES (?, ?) ON DUPLICATE KEY UPDATE nilai = VALUES(nilai)', array('_grup_terisi', implode(',', $sudah)));
 
 		$this->db->query('INSERT INTO tbl_pengaturan (kunci, nilai) VALUES (?, ?) ON DUPLICATE KEY UPDATE nilai = VALUES(nilai)', array('_skema_versi', self::SKEMA_VERSI));
 	}

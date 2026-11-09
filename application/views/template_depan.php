@@ -23,23 +23,25 @@ if ($brosur === '') {
 	if ($b) $brosur = gambar_url($b->brosur_gambar);
 }
 
-$menu = array(
-	array('label' => 'Beranda', 'url' => base_url(), 'kunci' => 'beranda'),
-	array('label' => 'Tentang', 'kunci' => array('about', 'visimisi'), 'sub' => array(
-		array('label' => 'About Us', 'url' => base_url('about'), 'ikon' => '🏫', 'kunci' => 'about'),
-		array('label' => 'Visi & Misi', 'url' => base_url('visi_misi'), 'ikon' => '🎯', 'kunci' => 'visimisi'),
-	)),
-	array('label' => 'Blog', 'url' => base_url('artikel'), 'kunci' => 'blog'),
-	array('label' => 'FAQ', 'url' => base_url('faq'), 'kunci' => 'faq'),
-	array('label' => 'Event', 'url' => base_url('agenda'), 'kunci' => 'agenda'),
-	array('label' => 'Galeri', 'url' => base_url('galeri'), 'kunci' => 'galeri'),
-	array('label' => 'Kontak', 'url' => base_url('contact'), 'kunci' => 'kontak'),
-	array('label' => 'Absensi Siswa', 'url' => base_url('siswa'), 'kunci' => 'absen'),
-	array('label' => 'PPDB', 'kunci' => array('alur', 'daftar'), 'sub' => array(
-		array('label' => 'How To Apply', 'url' => base_url('alur_pendaftaran'), 'ikon' => '📋', 'kunci' => 'alur'),
-		array('label' => 'Admission', 'url' => base_url('pendaftaran'), 'ikon' => '🎓', 'kunci' => 'daftar'),
-	)),
-);
+// Menu dari Admin > Tampilan Website > Menu Navigasi. Item dengan "Dropdown" sama dikelompokkan.
+$peta_aktif = array('beranda' => '', 'about' => 'about', 'visimisi' => 'visi_misi', 'blog' => 'artikel', 'faq' => 'faq',
+	'agenda' => 'agenda', 'galeri' => 'galeri', 'kontak' => 'contact', 'absen' => 'siswa', 'alur' => 'alur_pendaftaran',
+	'daftar' => 'pendaftaran', 'pengumuman' => 'pengumuman', 'download' => 'download', 'guru' => 'guru');
+$jalur_aktif = isset($peta_aktif[$halaman]) ? $peta_aktif[$halaman] : trim(uri_string(), '/');
+$cek_link = function ($nilai) use ($jalur_aktif) {
+	return ! preg_match('#^(https?:|mailto:|tel:|\#)#i', (string) $nilai) && trim((string) $nilai, '/') === $jalur_aktif;
+};
+$menu = array();
+$posisi = array();
+foreach (items('menu') as $m) {
+	$link = array('label' => $m->judul, 'url' => tautan($m->nilai), 'ikon' => $m->ikon, 'aktif' => $cek_link($m->nilai),
+		'luar' => (bool) preg_match('#^https?://#i', (string) $m->nilai) && strpos((string) $m->nilai, base_url()) !== 0);
+	$grup = trim((string) $m->deskripsi);
+	if ($grup === '') { $menu[] = $link; continue; }
+	if ( ! isset($posisi[$grup])) { $posisi[$grup] = count($menu); $menu[] = array('label' => $grup, 'sub' => array(), 'aktif' => FALSE); }
+	$menu[$posisi[$grup]]['sub'][] = $link;
+	if ($link['aktif']) $menu[$posisi[$grup]]['aktif'] = TRUE;
+}
 ?><!DOCTYPE html>
 <html lang="id">
 <head>
@@ -94,15 +96,15 @@ $menu = array(
 				<?php foreach ($menu as $m): ?>
 					<?php if (isset($m['sub'])): ?>
 					<li class="punya-sub">
-						<button type="button" class="menu-link<?php echo cek_aktif($m['kunci'], $halaman); ?>" aria-expanded="false" aria-haspopup="true"><?php echo $m['label']; ?> <?php echo ikon('panah'); ?></button>
+						<button type="button" class="menu-link<?php echo $m['aktif'] ? ' aktif' : ''; ?>" aria-expanded="false" aria-haspopup="true"><?php echo html_escape($m['label']); ?> <?php echo ikon('panah'); ?></button>
 						<ul class="dropdown">
 							<?php foreach ($m['sub'] as $s): ?>
-							<li><a href="<?php echo $s['url']; ?>" class="<?php echo trim(cek_aktif($s['kunci'], $halaman)); ?>"<?php echo $s['kunci'] === $halaman ? ' aria-current="page"' : ''; ?>><span aria-hidden="true"><?php echo $s['ikon']; ?></span><?php echo $s['label']; ?></a></li>
+							<li><a href="<?php echo html_escape($s['url']); ?>" class="<?php echo $s['aktif'] ? 'aktif' : ''; ?>"<?php echo $s['aktif'] ? ' aria-current="page"' : ''; ?><?php echo $s['luar'] ? ' target="_blank" rel="noopener"' : ''; ?>><?php if ($s['ikon']): ?><span aria-hidden="true"><?php echo html_escape($s['ikon']); ?></span><?php endif; ?><?php echo html_escape($s['label']); ?></a></li>
 							<?php endforeach; ?>
 						</ul>
 					</li>
 					<?php else: ?>
-					<li><a class="menu-link<?php echo cek_aktif($m['kunci'], $halaman); ?>" href="<?php echo $m['url']; ?>"<?php echo $m['kunci'] === $halaman ? ' aria-current="page"' : ''; ?>><?php echo $m['label']; ?></a></li>
+					<li><a class="menu-link<?php echo $m['aktif'] ? ' aktif' : ''; ?>" href="<?php echo html_escape($m['url']); ?>"<?php echo $m['aktif'] ? ' aria-current="page"' : ''; ?><?php echo $m['luar'] ? ' target="_blank" rel="noopener"' : ''; ?>><?php echo html_escape($m['label']); ?></a></li>
 					<?php endif; ?>
 				<?php endforeach; ?>
 			</ul>
@@ -134,30 +136,16 @@ $menu = array(
 					<?php if ($wa): ?><a href="<?php echo html_escape($wa); ?>" target="_blank" rel="noopener" aria-label="WhatsApp"><?php echo ikon('whatsapp'); ?></a><?php endif; ?>
 				</div>
 			</div>
+			<?php foreach (array(1, 2) as $kol): $daftar = items('footer_'.$kol); if ( ! $daftar) continue; ?>
 			<div>
-				<h4>Main Menu</h4>
+				<h4><?php echo te('footer_judul'.$kol); ?></h4>
 				<ul>
-					<li><a href="<?php echo base_url(); ?>">Beranda</a></li>
-					<li><a href="<?php echo base_url('about'); ?>">About Us</a></li>
-					<li><a href="<?php echo base_url('visi_misi'); ?>">Visi & Misi</a></li>
-					<li><a href="<?php echo base_url('artikel'); ?>">Blog</a></li>
-					<li><a href="<?php echo base_url('faq'); ?>">FAQ</a></li>
-					<li><a href="<?php echo base_url('agenda'); ?>">Event</a></li>
+					<?php foreach ($daftar as $l): ?><li><a href="<?php echo html_escape(tautan($l->nilai)); ?>"><?php echo html_escape($l->judul); ?></a></li><?php endforeach; ?>
 				</ul>
 			</div>
+			<?php endforeach; ?>
 			<div>
-				<h4>PPDB & Info</h4>
-				<ul>
-					<li><a href="<?php echo base_url('galeri'); ?>">Galeri</a></li>
-					<li><a href="<?php echo base_url('contact'); ?>">Kontak</a></li>
-					<li><a href="<?php echo base_url('alur_pendaftaran'); ?>">How To Apply</a></li>
-					<li><a href="<?php echo base_url('pendaftaran'); ?>">Admission</a></li>
-					<li><a href="<?php echo base_url('pengumuman'); ?>">Pengumuman</a></li>
-					<li><a href="<?php echo base_url('download'); ?>">Download</a></li>
-				</ul>
-			</div>
-			<div>
-				<h4>Stay Connected</h4>
+				<h4><?php echo te('footer_judul3'); ?></h4>
 				<ul class="terhubung">
 					<li><a href="<?php echo base_url('pendaftaran'); ?>"><i style="background:#e53e3e"><?php echo ikon('dokumen'); ?></i>Admission</a></li>
 					<?php if ($wa): ?><li><a href="<?php echo html_escape($wa); ?>" target="_blank" rel="noopener"><i style="background:#25d366"><?php echo ikon('whatsapp'); ?></i>WhatsApp</a></li><?php endif; ?>

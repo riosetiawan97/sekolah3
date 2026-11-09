@@ -59,12 +59,12 @@ class M_pengunjung extends CI_Model{
     }
 
     function simpan_user_agent($user_ip,$agent){
-    	$hsl=$this->db->query("INSERT INTO tbl_pengunjung (pengunjung_ip,pengunjung_perangkat) VALUES('$user_ip','$agent')");
+    	$hsl=$this->db->query("INSERT INTO tbl_pengunjung (pengunjung_ip,pengunjung_perangkat) VALUES(?,?)", array($user_ip, $agent));
     	return $hsl;
     }
 
     function cek_ip($user_ip){
-    	$hsl=$this->db->query("SELECT * FROM tbl_pengunjung WHERE pengunjung_ip='$user_ip' AND DATE(pengunjung_tanggal)=CURDATE()");
+    	$hsl=$this->db->query("SELECT * FROM tbl_pengunjung WHERE pengunjung_ip=? AND DATE(pengunjung_tanggal)=CURDATE()", array($user_ip));
     	return $hsl;
     }
 
@@ -79,9 +79,9 @@ class M_pengunjung extends CI_Model{
         }else{
             $agent='Other';
         }
-        $cek_ip=$this->db->query("SELECT * FROM tbl_pengunjung WHERE pengunjung_ip='$user_ip' AND DATE(pengunjung_tanggal)=CURDATE()");
+        $cek_ip=$this->db->query("SELECT * FROM tbl_pengunjung WHERE pengunjung_ip=? AND DATE(pengunjung_tanggal)=CURDATE()", array($user_ip));
         if($cek_ip->num_rows() <= 0){
-            $hsl=$this->db->query("INSERT INTO tbl_pengunjung (pengunjung_ip,pengunjung_perangkat) VALUES('$user_ip','$agent')");
+            $hsl=$this->db->query("INSERT INTO tbl_pengunjung (pengunjung_ip,pengunjung_perangkat) VALUES(?,?)", array($user_ip, $agent));
             return $hsl;
         }
     }
