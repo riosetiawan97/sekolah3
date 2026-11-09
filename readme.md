@@ -13,16 +13,39 @@ Website profil sekolah dan sistem informasi sederhana untuk SMP Islam Al-Hadiriy
 - Agenda/event, pengumuman, FAQ
 - Galeri foto per album
 - Download file/dokumen sekolah
-- PPDB: alur pendaftaran dan link formulir pendaftaran
+- PPDB: alur pendaftaran, syarat, jadwal, dan formulir pendaftaran online (data masuk ke admin)
 - Absensi guru (`/guru`) dan absensi siswa (`/siswa`)
 - Kontak: formulir pesan, peta lokasi, WhatsApp, Instagram
 
+**Tampilan baru** mengikuti desain "SMP Al Hadiriyah" dari Claude Design (font Plus Jakarta Sans, warna navy & emas). Hampir semua teks, warna, gambar, dan daftar di halaman publik bisa diubah dari admin:
+
+| Bagian di website | Diatur di admin |
+| --- | --- |
+| Warna, nama di logo, pita pengumuman, bar info atas, tombol "Daftar Sekarang" | Tampilan Website > Pengaturan Tampilan (tab Umum, Header) |
+| Hero beranda (label, judul, deskripsi, 2 tombol) | Pengaturan Tampilan > Hero Beranda; foto latar = foto galeri bertanda Slider |
+| Statistik, Program Unggulan, Fakta Sekolah | Tampilan Website > Statistik / Program / Fakta |
+| Kepala sekolah (foto, nama, sambutan singkat) | Pengaturan Tampilan > Kepala Sekolah |
+| Tampil/sembunyi & judul setiap bagian beranda | Pengaturan Tampilan > Bagian Beranda |
+| Judul & subjudul banner setiap halaman | Pengaturan Tampilan > Judul Halaman |
+| Visi, misi, About, data kontak, logo | Setup (menu lama) |
+| Langkah pendaftaran (ikon & warna), syarat, jadwal, info penting | PPDB > Alur / Syarat / Jadwal / Info Penting |
+| Formulir pendaftaran PPDB (buka/tutup, pesan) & data pendaftar | PPDB > Data Pendaftar; Pengaturan Tampilan > PPDB |
+| Tanya-jawab FAQ per kategori | FAQ > tombol "Pertanyaan & Jawaban" |
+| Kategori event (label berwarna) | Agenda > isian Kategori |
+| Menu navigasi (termasuk dropdown) dan link footer | Tampilan Website > Menu Navigasi / Link Footer |
+| Guru, siswa, kelas (pilihan di Absensi), file download | Data Sekolah |
+| Email pemberitahuan pendaftar baru | Pengaturan Tampilan > PPDB (alamat tujuan) + env `SMTP_*` |
+| Peta Google Maps, YouTube, TikTok, brosur PDF, footer | Pengaturan Tampilan > Kontak & Footer |
+
+Tabel baru (`tbl_pengaturan`, `tbl_konten_item`, `tbl_faq_item`, `tbl_pendaftar`) dan kolom baru dibuat otomatis saat website pertama kali dibuka (`application/hooks/Skema_tampilan.php`), jadi database yang sudah ada tidak perlu diimport ulang. Daftar semua pengaturan beserta nilai bawaannya ada di `application/config/tampilan.php`.
+
 **Panel admin** (`/administrator`)
-- Dashboard ringkasan dan statistik pengunjung
+- Dashboard ringkasan, pendaftar PPDB terbaru, dan statistik pengunjung
 - Kelola berita/tulisan, kategori, komentar, dan inbox pesan
-- Kelola agenda, pengumuman, FAQ, brosur, alur pendaftaran
+- Kelola agenda, pengumuman, FAQ (tanya-jawab), brosur, alur pendaftaran
+- Kelola tampilan website dan data pendaftar PPDB
 - Kelola galeri, album, video YouTube, dan file download
-- Kelola data guru, siswa, kelas, dan kuis
+- Kelola data guru, siswa, kelas, file download, dan kuis (menu Data Sekolah)
 - Kelola pengguna admin (level admin / user)
 - Pengaturan website: nama sekolah, logo, alamat, kontak, halaman About, Visi Misi, Pendaftaran
 
@@ -33,7 +56,7 @@ Website profil sekolah dan sistem informasi sederhana untuk SMP Islam Al-Hadiriy
 | Bagian | Teknologi |
 | --- | --- |
 | Framework | CodeIgniter 3.1.13 (PHP 8.3) |
-| Tampilan | Metronic 8 (Bootstrap 5), jQuery |
+| Tampilan | Publik: HTML/CSS/JS sendiri (`assets/depan/`); admin: Metronic 8 (Bootstrap 5), jQuery |
 | Database | MySQL 8 (Aiven), koneksi SSL |
 | Session | Disimpan di database (tabel `ci_sessions`) |
 | Upload file | Vercel Blob (store `sekolah3-uploads`) |
@@ -51,6 +74,8 @@ Website profil sekolah dan sistem informasi sederhana untuk SMP Islam Al-Hadiriy
 | `CI_ENV` | `production` (error tidak ditampilkan ke pengunjung) |
 | `BLOB_READ_WRITE_TOKEN` | Otomatis terisi saat store Blob dihubungkan ke project |
 | `APP_URL` | Opsional, paksa base URL (default: dideteksi dari domain) |
+| `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS` | Opsional. Server email untuk pemberitahuan pendaftar PPDB baru (mis. Gmail: `smtp.gmail.com`, port `587`, pakai App Password) |
+| `SMTP_CRYPTO`, `SMTP_FROM` | Opsional. Enkripsi (`tls` bawaan, `ssl` untuk port 465) dan alamat pengirim (bawaan: `SMTP_USER`) |
 
 Semua variabel di atas opsional untuk development lokal. Tanpa variabel tersebut aplikasi memakai `localhost`, user `root`, dan menyimpan upload di folder `assets/`.
 

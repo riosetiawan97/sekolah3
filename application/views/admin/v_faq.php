@@ -68,7 +68,7 @@
                                 <thead>
                                 <tr>
                                     <th style="width:100px;">#</th>
-                                    <th>FAQ</th>
+                                    <th>Kategori FAQ</th>
                                     <th>Is Active</th>
                                     <th style="text-align:right;">Aksi</th>
                                 </tr>
@@ -88,6 +88,7 @@
                                 <td><?php echo $faq_aktif;?></td>
 
                                 <td style="text-align:right;">
+                                        <a class="btn btn-sm btn-light-primary me-1" href="<?php echo base_url('admin/faq/item/'.$faq_id); ?>">Pertanyaan &amp; Jawaban<?php $jml_q = $this->db->where('faq_id', $faq_id)->count_all_results('tbl_faq_item'); echo $jml_q ? ' ('.$jml_q.')' : ''; ?></a>
                                         <a class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#ModalEdit<?php echo $faq_id;?>">
                                             <!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
                                             <span class="svg-icon svg-icon-3">
@@ -153,13 +154,13 @@
                         <div class="form-group mb-4">
                             <label for="inputUserName" class="col-sm-4 control-label">FAQ Picture</label>
                             <div class="col-sm-12">
-                                <input type="file" name="filefoto" required/>
+                                <input type="file" name="filefoto"/>
                             </div>
                         </div>
                         <div class="form-group mb-4">
                             <label for="inputDeskripsi" class="col-sm-4 control-label">Description</label>
                             <div class="col-sm-12">
-                                <textarea class="ckeditor" name="xfaq_isi" required></textarea>
+                                <textarea class="ckeditor" name="xfaq_isi"></textarea>
                             </div>
                         </div>
                         <div class="form-group mb-4">
@@ -218,13 +219,13 @@
                         <div class="form-group mb-4">
                             <label for="inputUserName" class="col-sm-4 control-label">FAQ Picture</label>
                             <div class="col-sm-12">
-                                <input type="file" name="filefoto" required/>
+                                <input type="file" name="filefoto"/>
                             </div>
                         </div>
                         <div class="form-group mb-4">
                             <label for="EditDeskripsi" class="col-sm-4 control-label">Description</label>
                             <div class="col-sm-12">
-                                <textarea class="ckeditor" name="xfaq_isi" required><?php echo $faq_isi;?></textarea>
+                                <textarea class="ckeditor" name="xfaq_isi"><?php echo $faq_isi;?></textarea>
                             </div>
                         </div>
                         <div class="form-group mb-4">

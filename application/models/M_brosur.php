@@ -14,11 +14,11 @@ class M_brosur extends CI_Model{
 		return $hsl;
 	}
 	function simpan_brosur($brosur_gambar,$type,$brosur_author){
-		$hsl=$this->db->query("insert into tbl_brosur(brosur_gambar,type,brosur_author) values ('$brosur_gambar','$type','$brosur_author')");
+		$hsl=$this->db->query("insert into tbl_brosur(brosur_gambar,type,brosur_author) values (?,?,?)", array($brosur_gambar, $type, $brosur_author));
 		return $hsl;
 	}
 	function update_brosur($brosur_id,$brosur_gambar,$type,$brosur_author){
-		$hsl=$this->db->query("update tbl_brosur set brosur_gambar='$brosur_gambar',type='$type',brosur_author='$brosur_author' where brosur_id='$brosur_id'");
+		$hsl=$this->db->query("update tbl_brosur set brosur_gambar=?,type=?,brosur_author=? where brosur_id=?", array($brosur_gambar, $type, $brosur_author, $brosur_id));
 		return $hsl;
 	}
 }

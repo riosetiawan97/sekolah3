@@ -10,23 +10,33 @@ class Quiz extends CI_Controller{
 		$this->load->model('m_guru');
 		$this->load->model('m_kelas');
 		$this->load->library('upload');
+		$this->load->model('m_setup');
+	}
+
+	// Tampilkan view lama di dalam layout admin.
+	private function tampil($view, $x, $judul){
+		$setup = $this->m_setup->get_setup()->row();
+		$this->template->load('template_admin', 'admin/_bungkus', array(
+			'setup' => $setup, 'title' => 'Admin '.$setup->judul_website.' | '.$judul,
+			'isi' => $view, 'data_isi' => $x,
+		));
 	}
 
 	function index(){
 		$x['data']=$this->m_quiz->get_all_quiz();
-		$this->load->view('admin/v_quiz',$x);
+		$this->tampil('admin/v_quiz', $x, 'Quiz');
 	}
 
 	function add_quiz(){
 		$x['guru'] = $this->m_guru->get_all_guru();
 		$x['kelas'] = $this->m_kelas->get_all_kelas();
-		$this->load->view('admin/v_add_quiz', $x);
+		$this->tampil('admin/v_add_quiz', $x, 'Tambah Quiz');
 	}
 
 	function edit_quiz($id){
 		$x['quiz'] = $this->m_quiz->get_quiz_by_id($id);
 		$x['kelas'] = $this->m_kelas->get_all_kelas();
-		$this->load->view('admin/v_edit_quiz', $x);
+		$this->tampil('admin/v_edit_quiz', $x, 'Ubah Quiz');
 	}
 
 	function get_soal(){

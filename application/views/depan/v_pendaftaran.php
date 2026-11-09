@@ -1,40 +1,19 @@
-<!--============================= Gallery =============================-->
-<section>
-<div class="gallery-wrap">
-  <div class="container">
-  <!-- Style 2 -->
-    <!-- <div class="row">
-      <div class="col-md-12">
-        <h3 class="gallery-style">Alur Pendaftaran</h3>
-      </div>
-    </div><br> -->
-   <div class="row">
-    <!-- SELECT2 EXAMPLE -->
-      <div class="box box-primary">
-        <div class="box-header with-border">
-          <h3 class="box-title">Pendaftaran</h3>
-          <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-          </div>
-        </div>
-        <!-- /.box-header -->
-        <div class="box-body">
-          <p>Jika Form Pendaftaran tidak muncul Klik Link berikut ini : 
-            <a href="<?php echo $setup->formpendaftaran;?>" target="_blank" class="btn btn-primary btn-blogsearch">Pendaftaran
-            </a>
-          </p>
-          <iframe src="<?php echo $setup->formpendaftaran;?>" width="100%" height="3700px" frameborder="0"></iframe>
-        </div>
-        <!-- /.box-body -->
-        <!-- <div class="box-footer">
-          Visit <a href="https://select2.github.io/">Select2 documentation</a> for more examples and information about
-          the plugin.
-        </div> -->
-      </div>
-      <!-- /.box -->
-    </div>
-    <!--//End Style 2 -->
-  </div>
+<?php
+$this->load->view('depan/_banner', array('judul' => t('hal_daftar_judul'), 'sub' => t('hal_daftar_sub'), 'remah' => array('PPDB' => base_url('alur_pendaftaran'), t('hal_daftar_judul') => NULL)));
+$info = items('info_ppdb');
+?>
+<div class="halaman dua-kolom">
+	<div class="tumpuk" style="gap:16px">
+		<?php $this->load->view('depan/_sisi_ppdb', array('aktif' => 'daftar')); ?>
+		<?php if ($info): ?>
+		<div class="kotak-abu">
+			<h4>📌 Info Penting</h4>
+			<ul><?php foreach ($info as $i): ?><li><?php echo html_escape($i->judul); ?></li><?php endforeach; ?></ul>
+		</div>
+		<?php endif; ?>
+	</div>
+	<section class="panel">
+		<div class="judul-panel"><h2>Formulir Pendaftaran</h2></div>
+		<?php $this->load->view('depan/_form_daftar', array('gelap' => FALSE, 'kembali' => 'pendaftaran')); ?>
+	</section>
 </div>
-<!--//End Gallery -->
-</section>

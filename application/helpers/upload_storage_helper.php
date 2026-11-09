@@ -88,6 +88,11 @@ if ( ! function_exists('upload_delete'))
 	// Pengganti unlink() untuk file upload: hapus file lokal dan/atau di Blob.
 	function upload_delete($path)
 	{
+		// Hanya nama file yang dipakai, jadi tidak bisa keluar dari folder upload (mis. "../../index.php").
+		$is_files = strpos((string) $path, UPLOAD_FILES_PATH) === 0;
+		$name = basename((string) $path);
+		if ($name === '' OR $name === '.' OR $name === '..') { return; }
+		$path = ($is_files ? UPLOAD_FILES_PATH : UPLOAD_IMAGES_PATH).$name;
 		if (is_file($path)) { @unlink($path); }
 		if ( ! UPLOAD_ON_BLOB) { return; }
 

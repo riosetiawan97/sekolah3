@@ -7,33 +7,18 @@ class Faq extends CI_Controller{
 		$this->load->model('m_setup');
 		$this->m_pengunjung->count_visitor();
 	}
-	function index(){
-        $config['base_url'] = base_url() . 'faq/index/';
-			$x['menufaq']=$this->m_faq->get_all_faq();
-			$data=$this->db->query("select * from tbl_faq ORDER BY faq_id");
-			$row=$data->row_array();
-			$x['id']=$row['faq_id'];
-			$x['idfaqurl']=$row['faq_id'];
-			$x['faq_gambar']=$row['faq_gambar'];
-			$x['title_faq']=$row['faq_judul'];
-			$x['content_faq']=$row['faq_isi'];
-			$x['setup']=$this->m_setup->get_setup()->row();
-			$judul_website=$x['setup']->judul_website;
-			$x['title']="$judul_website | FAQ";
-			$this->template->load('template_depan', 'depan/v_faq', $x);
+	function index($idfaq = NULL){
+		$x['setup']=$this->m_setup->get_setup()->row();
+		$kategori = $this->db->order_by('faq_id')->get_where('tbl_faq', array('faq_aktif' => 1))->result();
+		if ( ! $kategori) $kategori = $this->db->order_by('faq_id')->get('tbl_faq')->result();
+		foreach ($kategori as $k) $k->items = $this->m_faq->get_items($k->faq_id);
+		$x['kategori']=$kategori;
+		$x['aktif']=$idfaq ? (int) $idfaq : ($kategori ? (int) $kategori[0]->faq_id : 0);
+		$x['title']=t('hal_faq_judul').' | '.$x['setup']->judul_website;
+		$x['halaman']='faq';
+		$this->template->load('template_depan', 'depan/v_faq', $x);
 	}
 	function detail($idfaq){
-			$x['menufaq']=$this->m_faq->get_all_faq();
-			$data=$this->m_faq->get_faq_byid($idfaq);
-			$row=$data->row_array();
-			$x['id']=$row['faq_id'];
-			$x['idfaqurl']=$idfaq;
-			$x['faq_gambar']=$row['faq_gambar'];
-			$x['title_faq']=$row['faq_judul'];
-			$x['content_faq']=$row['faq_isi'];
-			$x['setup']=$this->m_setup->get_setup()->row();
-			$judul_website=$x['setup']->judul_website;
-			$x['title']="$judul_website | FAQ";
-			$this->template->load('template_depan', 'depan/v_faq', $x);
+		$this->index($idfaq);
 	}
 }

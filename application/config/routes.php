@@ -58,3 +58,4 @@ $route['faq/(:any)']='faq/detail/$1';
 $route['agenda/(:any)']='agenda/detail/$1';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+$route['admin/konten/(:any)'] = 'admin/konten/index/$1';

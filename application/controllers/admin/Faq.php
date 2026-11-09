@@ -115,4 +115,46 @@ class Faq extends CI_Controller{
 		redirect('admin/faq');
 	}
 
+
+	// ── Pertanyaan & jawaban per kategori ─────────────────────────────
+	function item($faq_id = 0){
+		$faq = $this->m_faq->get_faq_byid($faq_id)->row();
+		if ( ! $faq) redirect('admin/faq');
+		$x['setup']=$this->m_setup->get_setup()->row();
+		$x['faq']=$faq;
+		$x['data']=$this->m_faq->get_items($faq->faq_id);
+		$x['title']='Admin '.$x['setup']->judul_website.' | Pertanyaan FAQ';
+		$this->template->load('template_admin', 'admin/v_faq_item', $x);
+	}
+
+	function simpan_item(){
+		$faq_id = (int) $this->input->post('faq_id');
+		$pertanyaan = trim((string) $this->input->post('pertanyaan'));
+		if ($pertanyaan !== '' && $this->m_faq->get_faq_byid($faq_id)->row()) {
+			$urutan = $this->input->post('urutan');
+			if ($urutan === '' || $urutan === NULL) $urutan = count($this->m_faq->get_items($faq_id)) + 1;
+			$this->m_faq->simpan_item($faq_id, $pertanyaan, $this->input->post('jawaban'), $urutan);
+			$this->session->set_flashdata('pesan', array('ok', 'Pertanyaan ditambahkan.'));
+		}
+		redirect('admin/faq/item/'.$faq_id);
+	}
+
+	function update_item(){
+		$item = $this->m_faq->get_item($this->input->post('id'));
+		if ( ! $item) redirect('admin/faq');
+		$pertanyaan = trim((string) $this->input->post('pertanyaan'));
+		if ($pertanyaan !== '') {
+			$this->m_faq->update_item($item->id, $pertanyaan, $this->input->post('jawaban'), $this->input->post('urutan'));
+			$this->session->set_flashdata('pesan', array('ok', 'Pertanyaan diubah.'));
+		}
+		redirect('admin/faq/item/'.$item->faq_id);
+	}
+
+	function hapus_item(){
+		$item = $this->m_faq->get_item($this->input->post('id'));
+		if ( ! $item) redirect('admin/faq');
+		$this->m_faq->hapus_item($item->id);
+		$this->session->set_flashdata('pesan', array('ok', 'Pertanyaan dihapus.'));
+		redirect('admin/faq/item/'.$item->faq_id);
+	}
 }

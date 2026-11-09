@@ -42,7 +42,7 @@
                                     <td><?php echo $i['waktu_pengerjaan']; ?> menit</td>
                                     <td style="text-align:right;">
                                         <a class="btn" href="<?php echo base_url() . 'admin/quiz/edit_quiz/' . $i['id']; ?>"><span class="fa fa-pencil"></span></a>
-                                        <a class="btn" data-toggle="modal" data-target="#ModalHapus<?php echo $i['id']; ?>"><span class="fa fa-trash"></span></a>
+                                        <a class="btn" data-bs-toggle="modal" data-bs-target="#ModalHapus<?php echo $i['id']; ?>"><span class="fa fa-trash"></span></a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -60,7 +60,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><span class="fa fa-close"></span></span></button>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true"><span class="fa fa-close"></span></span></button>
                     <h4 class="modal-title" id="myModalLabel">Hapus Quiz</h4>
                 </div>
                 <form class="form-horizontal" action="<?php echo base_url() . 'admin/quiz/hapus_quiz' ?>" method="post">
@@ -69,7 +69,7 @@
                         <p>Apakah Anda yakin mau menghapus quiz <b><?php echo $i['judul']; ?></b> ?</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary btn-flat" id="simpan">Hapus</button>
                     </div>
                 </form>

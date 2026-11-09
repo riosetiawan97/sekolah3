@@ -7,8 +7,8 @@ class M_galeri extends CI_Model{
 	}
 	function simpan_galeri($judul,$album,$user_id,$user_nama,$gambar,$slider){
 		$this->db->trans_start();
-            $this->db->query("insert into tbl_galeri(galeri_judul,galeri_album_id,galeri_pengguna_id,galeri_author,galeri_gambar,slider) values ('$judul','$album','$user_id','$user_nama','$gambar','$slider')");
-            $this->db->query("update tbl_album set album_count=album_count+1 where album_id='$album'");
+            $this->db->query("insert into tbl_galeri(galeri_judul,galeri_album_id,galeri_pengguna_id,galeri_author,galeri_gambar,slider) values (?,?,?,?,?,?)", array($judul, $album, $user_id, $user_nama, $gambar, $slider));
+            $this->db->query("update tbl_album set album_count=album_count+1 where album_id=?", array($album));
         $this->db->trans_complete();
         if($this->db->trans_status()==true)
         return true;
@@ -17,17 +17,17 @@ class M_galeri extends CI_Model{
 	}
 	
 	function update_galeri($galeri_id,$judul,$album,$user_id,$user_nama,$gambar,$slider){
-		$hsl=$this->db->query("update tbl_galeri set galeri_judul='$judul',galeri_album_id='$album',galeri_pengguna_id='$user_id',galeri_author='$user_nama',galeri_gambar='$gambar',slider='$slider' where galeri_id='$galeri_id'");
+		$hsl=$this->db->query("update tbl_galeri set galeri_judul=?,galeri_album_id=?,galeri_pengguna_id=?,galeri_author=?,galeri_gambar=?,slider=? where galeri_id=?", array($judul, $album, $user_id, $user_nama, $gambar, $slider, $galeri_id));
 		return $hsl;
 	}
 	function update_galeri_tanpa_img($galeri_id,$judul,$album,$user_id,$user_nama,$slider){
-		$hsl=$this->db->query("update tbl_galeri set galeri_judul='$judul',galeri_album_id='$album',galeri_pengguna_id='$user_id',galeri_author='$user_nama',slider='$slider' where galeri_id='$galeri_id'");
+		$hsl=$this->db->query("update tbl_galeri set galeri_judul=?,galeri_album_id=?,galeri_pengguna_id=?,galeri_author=?,slider=? where galeri_id=?", array($judul, $album, $user_id, $user_nama, $slider, $galeri_id));
 		return $hsl;
 	}
 	function hapus_galeri($kode,$album){
 		$this->db->trans_start();
-            $this->db->query("delete from tbl_galeri where galeri_id='$kode'");
-            $this->db->query("update tbl_album set album_count=album_count-1 where album_id='$album'");
+            $this->db->query("delete from tbl_galeri where galeri_id=?", array($kode));
+            $this->db->query("update tbl_album set album_count=album_count-1 where album_id=?", array($album));
         $this->db->trans_complete();
         if($this->db->trans_status()==true)
         return true;
@@ -47,7 +47,7 @@ class M_galeri extends CI_Model{
 	}
 
 	function get_galeri_by_album_id($idalbum){
-		$hsl=$this->db->query("SELECT tbl_galeri.*,DATE_FORMAT(galeri_tanggal,'%d/%m/%Y') AS tanggal,album_nama FROM tbl_galeri join tbl_album on galeri_album_id=album_id where galeri_album_id='$idalbum' ORDER BY galeri_id DESC");
+		$hsl=$this->db->query("SELECT tbl_galeri.*,DATE_FORMAT(galeri_tanggal,'%d/%m/%Y') AS tanggal,album_nama FROM tbl_galeri join tbl_album on galeri_album_id=album_id where galeri_album_id=? ORDER BY galeri_id DESC", array($idalbum));
 		return $hsl;
 	}
 	

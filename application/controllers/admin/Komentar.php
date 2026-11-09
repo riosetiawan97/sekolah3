@@ -21,7 +21,7 @@ class Komentar extends CI_Controller{
 
     function publish(){
         $kode = htmlspecialchars($this->uri->segment(4),ENT_QUOTES);
-        $this->db->query("UPDATE tbl_komentar SET komentar_status='1' WHERE komentar_id='$kode'");
+        $this->db->query("UPDATE tbl_komentar SET komentar_status='1' WHERE komentar_id=?", array($kode));
         echo $this->session->set_flashdata('msg','success');
         redirect('admin/komentar');
     }

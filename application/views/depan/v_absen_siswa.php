@@ -1,97 +1,42 @@
-
-<!--begin::Toolbar-->
-<div class="toolbar" id="kt_toolbar">
-    <!--begin::Container-->
-    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
-        <!--begin::Page title-->
-        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-            <!--begin::Title-->
-            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Student Attendance</h1>
-            <!--end::Title-->
-            <!--begin::Separator-->
-            <span class="h-20px border-gray-200 border-start mx-4"></span>
-            <!--end::Separator-->
-            <!--begin::Breadcrumb-->
-            <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
-                <!--begin::Item-->
-                <li class="breadcrumb-item text-muted">
-                    <a href="<?php echo site_url('');?>" class="text-muted text-hover-primary">Home</a>
-                </li>
-                <!--end::Item-->
-                <!--begin::Item-->
-                <li class="breadcrumb-item">
-                    <span class="bullet bg-gray-200 w-5px h-2px"></span>
-                </li>
-                <!--end::Item-->
-                <!--begin::Item-->
-                <li class="breadcrumb-item text-dark">Student Attendance</li>
-                <!--end::Item-->
-            </ul>
-            <!--end::Breadcrumb-->
-        </div>
-        <!--end::Page title-->
-    </div>
-    <!--end::Container-->
+<?php
+$this->load->view('depan/_banner', array('judul' => t('hal_absen_judul'), 'sub' => t('hal_absen_sub'), 'remah' => array(t('hal_absen_judul') => NULL)));
+$hasil = $this->session->flashdata('absen');
+$hari = array('Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu');
+$hari_ini = $hari[(int) date('w')].', '.tgl_indo(date('Y-m-d'));
+?>
+<div class="halaman" style="max-width:700px">
+	<div class="panel" style="padding:48px">
+		<?php if ($hasil && empty($hasil['error'])): ?>
+			<div class="sukses" style="padding:16px">
+				<div class="sukses-ikon" aria-hidden="true">✅</div>
+				<h3>Absensi Tercatat!</h3>
+				<p style="margin-bottom:6px">Nama: <strong style="color:var(--navy)"><?php echo html_escape($hasil['nama']); ?></strong></p>
+				<p style="margin-bottom:6px">Kelas: <strong style="color:var(--navy)"><?php echo html_escape($hasil['kelas']); ?></strong></p>
+				<p style="font-size:13px">Kehadiran Anda pada <?php echo $hari_ini; ?> pukul <?php echo date('H:i'); ?> telah berhasil dicatat.</p>
+				<a class="btn btn-navy btn-kecil" href="<?php echo base_url('siswa'); ?>">Absen Lagi</a>
+			</div>
+		<?php else: ?>
+			<div class="absen-kepala">
+				<div class="absen-ikon" aria-hidden="true">📋</div>
+				<h2>Student Attendance</h2>
+				<p><?php echo $hari_ini; ?></p>
+			</div>
+			<form class="tumpuk-form" action="<?php echo base_url('siswa/simpan_absen_siswa'); ?>" method="post" data-kirim>
+				<?php if ($hasil): ?><div class="pesan pesan-error" role="alert">Nama dan kelas wajib diisi.</div><?php endif; ?>
+				<div class="field"><label for="a-nama" style="font-size:14px;font-weight:700">Nama Lengkap <span class="wajib">*</span></label><input class="input" id="a-nama" name="nama" maxlength="100" placeholder="Masukkan nama lengkap" required style="padding:13px 16px;font-size:15px"></div>
+				<div class="field">
+					<label for="a-kelas" style="font-size:14px;font-weight:700">Kelas <span class="wajib">*</span></label>
+					<?php if ($kelas->num_rows()): ?>
+					<select class="input" id="a-kelas" name="kelas" required style="padding:13px 16px;font-size:15px">
+						<option value="">-- Pilih Kelas --</option>
+						<?php foreach ($kelas->result() as $k): ?><option value="<?php echo html_escape($k->kelas_nama); ?>"><?php echo html_escape($k->kelas_nama); ?></option><?php endforeach; ?>
+					</select>
+					<?php else: ?>
+					<input class="input" id="a-kelas" name="kelas" maxlength="10" placeholder="Contoh: VII-A" required style="padding:13px 16px;font-size:15px">
+					<?php endif; ?>
+				</div>
+				<button type="submit" class="btn btn-navy btn-blok" style="font-size:16px;box-shadow:0 4px 14px rgba(26,46,90,.3)">Kirim Absensi ✓</button>
+			</form>
+		<?php endif; ?>
+	</div>
 </div>
-<!--end::Toolbar-->
-<!--begin::Post-->
-<div class="post d-flex flex-column-fluid" id="kt_post">
-    <!--begin::Container-->
-    <div id="kt_content_container" class="container-xxl">
-								<!--begin::Contact-->
-								<div class="card">
-									<!--begin::Body-->
-									<div class="card-body p-lg-17">
-										<!--begin::Row-->
-										<div class="row mb-3">
-											<!--begin::Col-->
-											<div class="col-md-12 pe-lg-10">
-												<!--begin::Form-->
-                                                    <form action="<?php echo site_url('siswa/simpan_absen_siswa');?>" class="form mb-15" method="post" id="kt_contact_form">
-                                                        <h1 class="fw-bolder text-dark mb-9">Student Attendance</h1>
-                                                        <!--begin::Input group-->
-                                                        <div class="d-flex flex-column mb-5 fv-row">
-                                                            <!--begin::Label-->
-                                                            <label class="fs-5 fw-bold mb-2">Name</label>
-                                                            <!--end::Label-->
-                                                            <!--begin::Input-->
-                                                            <input class="form-control form-control-solid" placeholder="Name" name="nama" required/>
-                                                            <!--end::Input-->
-                                                        </div>
-                                                        <!--end::Input group-->
-                                                        <!--begin::Input group-->
-                                                        <div class="d-flex flex-column mb-5 fv-row">
-                                                            <!--begin::Label-->
-                                                            <label class="fs-5 fw-bold mb-2">Class</label>
-                                                            <!--end::Label-->
-                                                            <!--begin::Input-->
-                                                            <input class="form-control form-control-solid" placeholder="Class" name="kelas" required/>
-                                                            <!--end::Input-->
-                                                        </div>
-                                                        <!--end::Input group-->                                                        
-                                                        <!--begin::Submit-->
-                                                        <button type="submit" class="btn btn-primary" id="kt_contact_submit_button">
-                                                            <!--begin::Indicator-->
-                                                            <span class="indicator-label">Submit</span>
-                                                            <span class="indicator-progress">Please wait...
-                                                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                                                            <!--end::Indicator-->
-                                                        </button>
-                                                        <!--end::Submit-->
-                                                        <br>
-                                                        <div><?php echo $this->session->flashdata('msg');?></div>
-                                                        <!-- // end #js-contact-result -->
-                                                    </form>
-                                                <!--end::Form-->
-											</div>
-											<!--end::Col-->
-										</div>
-										<!--end::Row-->
-									</div>
-									<!--end::Body-->
-								</div>
-								<!--end::Contact-->
-    </div>
-    <!--end::Container-->
-</div>
-<!--end::Post-->
