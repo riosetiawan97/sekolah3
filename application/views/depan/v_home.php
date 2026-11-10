@@ -1,5 +1,5 @@
 <?php
-/* Beranda. Data: $setup, $slider (array), $berita, $galeri, $agenda, $faq (array), $youtube (array). */
+/* Beranda. Data: $setup, $slider (array), $berita, $galeri, $agenda (array), $faq (array), $youtube (array). */
 $foto_kepsek = t('kepsek_foto') !== '' ? gambar_url(t('kepsek_foto')) : gambar_url($setup->gambarabout);
 $statistik = items('statistik');
 $program = items('program');
@@ -149,11 +149,11 @@ $program = items('program');
 			<h2 class="judul"><?php echo te('event_judul'); ?></h2>
 			<?php if (t('event_deskripsi') !== ''): ?><p class="sub"><?php echo te('event_deskripsi'); ?></p><?php endif; ?>
 		</div>
-		<?php if ($agenda->num_rows() == 0): ?>
+		<?php if ( ! $agenda): ?>
 			<div class="panel kosong"><div aria-hidden="true">📅</div><h3>Belum ada event terbaru</h3></div>
 		<?php endif; ?>
-		<?php foreach ($agenda->result() as $ev): $kat = ! empty($ev->agenda_kategori) ? $ev->agenda_kategori : 'Agenda'; $c = warna_teks($kat); ?>
-		<a class="kartu event" href="<?php echo base_url('agenda/'.$ev->agenda_id); ?>">
+		<?php foreach ($agenda as $ev): $kat = ! empty($ev->agenda_kategori) ? $ev->agenda_kategori : 'Agenda'; $c = warna_teks($kat); ?>
+		<a class="kartu event" href="<?php echo html_escape($ev->link); ?>">
 			<div class="event-ikon" style="--c:<?php echo $c; ?>"><?php if ($ev->agenda_gambar): ?><img src="<?php echo html_escape(gambar_url($ev->agenda_gambar)); ?>" alt="" loading="lazy"><?php else: ?><span aria-hidden="true">📅</span><?php endif; ?></div>
 			<div style="flex:1;min-width:0">
 				<div class="meta">

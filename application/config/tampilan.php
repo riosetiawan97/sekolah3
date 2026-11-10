@@ -324,3 +324,16 @@ $config['tampilan_slider_cadangan'] = array(
 	array('gambar' => '30579323bb839d97012aa74febcc9716.jpg', 'judul' => 'UJI KOMPETENSI'),
 	array('gambar' => '898d46975500d2d2d21b3205ac9758fc.jpeg', 'judul' => 'PRAKERIN'),
 );
+
+// Event contoh untuk beranda (khusus testing). Dipakai hanya kalau tabel agenda masih kosong,
+// supaya bagian Event bisa dibandingkan dengan beranda sekolah2. Isinya disamakan dengan
+// 3 event terbaru di sekolah2. Begitu ada agenda di Admin > Agenda, daftar ini tidak dipakai.
+// Untuk mematikannya, kosongkan array ini.
+$config['tampilan_event_cadangan'] = array(
+	array('nama' => 'UJIAN SEKOLAH', 'mulai' => '2022-03-16', 'gambar' => 'e3bf0bfd856fa17b2a6bab70ce8aae1e.jpeg',
+		'deskripsi' => 'Ujian Sekolah Kelas XII SMK Kesehatan Al-Hadiriyah dilaksanakan untuk mengukur pengetahuan yang didapatkan oleh siswa selama belajar di SMK Kesehatan Al-Hadiriyah'),
+	array('nama' => 'UJI KOMPETENSI', 'mulai' => '2022-02-02', 'gambar' => 'f4080ce3fbaaafae75de5ffdd20f9c31.jpg',
+		'deskripsi' => 'Uji kompetensi merupakan proses penilaian secara teknis dan non teknis melalui sistem penilaian otentik yang relevan untuk menentukan kompetensi perserta didik pada skema setifikasi tertentu.'),
+	array('nama' => 'Penerimaan Raport Semester Ganjil Tahun Ajaran 2021-2022', 'mulai' => '2022-01-17', 'gambar' => '83250e1aae86db7a6731e63474dc27f2.jpg',
+		'deskripsi' => 'Berakhirnya semester ganjil tahun pelajaran 2021-20227, ditandai dengan pembagian laporan hasil belajar.'),
+);

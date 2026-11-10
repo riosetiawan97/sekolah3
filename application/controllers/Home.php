@@ -15,13 +15,38 @@ class Home extends CI_Controller{
 		$x['slider']=$this->_slider();
 		$x['berita']=$this->m_tulisan->get_berita_home();
 		$x['galeri']=$this->db->query("SELECT * FROM tbl_galeri ORDER BY galeri_id DESC LIMIT 6");
-		$x['agenda']=$this->m_agenda->get_agenda_home();
+		$x['agenda']=$this->_agenda();
 		$x['faq']=$this->_faq();
 		$x['youtube']=$this->db->order_by('youtube_id', 'ASC')->get('tbl_youtube')->result();
 		$x['title']=$x['setup']->judul_website;
 		$x['beranda']=TRUE;
 		$x['halaman']='beranda';
 		$this->template->load('template_depan', 'depan/v_home', $x);
+	}
+
+	// 3 agenda terbaru. Kalau tabel agenda masih kosong, pakai event contoh dari config/tampilan.php (untuk testing).
+	private function _agenda(){
+		$agenda = $this->m_agenda->get_agenda_home()->result();
+		foreach ($agenda as $a) {
+			$a->link = base_url('agenda/'.$a->agenda_id);
+		}
+		if ($agenda) {
+			return $agenda;
+		}
+		$this->config->load('tampilan', TRUE);
+		foreach ((array) $this->config->item('tampilan_event_cadangan', 'tampilan') as $c) {
+			$agenda[] = (object) array(
+				'link' => base_url('agenda'),
+				'agenda_nama' => $c['nama'],
+				'agenda_deskripsi' => $c['deskripsi'],
+				'agenda_gambar' => $c['gambar'],
+				'agenda_mulai' => $c['mulai'],
+				'agenda_selesai' => '',
+				'agenda_tempat' => '',
+				'agenda_kategori' => '',
+			);
+		}
+		return $agenda;
 	}
 
 	// 3 FAQ aktif terbaru, beserta daftar pertanyaannya (untuk ringkasan di kartu).
