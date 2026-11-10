@@ -173,7 +173,7 @@ $config['tampilan_grup'] = array(
 			'footer_judul3' => array('label' => 'Judul kolom kontak', 'tipe' => 'text', 'default' => 'Stay Connected'),
 			'footer_deskripsi' => array('label' => 'Deskripsi singkat', 'tipe' => 'textarea', 'default' => 'Lembaga pendidikan Islam terpadu yang berkomitmen mencetak generasi unggul, berakhlak, dan berprestasi.'),
 			'footer_copyright' => array('label' => 'Teks hak cipta', 'tipe' => 'text', 'default' => '© {tahun} SMP Islam Al-Hadiriyah. Hak cipta dilindungi.', 'bantuan' => '{tahun} diganti tahun berjalan.'),
-			'footer_tagline' => array('label' => 'Teks kanan bawah', 'tipe' => 'text', 'default' => 'Dibuat dengan ❤️ untuk pendidikan Indonesia'),
+			'footer_tagline' => array('label' => 'Teks kanan bawah', 'tipe' => 'text', 'default' => 'Dibuat untuk pendidikan Indonesia'),
 		),
 	),
 );
