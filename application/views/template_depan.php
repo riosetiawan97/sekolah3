@@ -60,7 +60,7 @@ foreach (items('menu') as $m) {
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="<?php echo base_url('assets/depan/depan.css?v=1'); ?>">
+	<link rel="stylesheet" href="<?php echo base_url('assets/depan/depan.css?v=3'); ?>">
 	<style>:root{--navy:<?php echo te('warna_utama'); ?>;--gold:<?php echo te('warna_aksen'); ?>}</style>
 </head>
 <body>
@@ -178,6 +178,6 @@ foreach (items('menu') as $m) {
 	<button type="button" class="lb-kanan" aria-label="Foto berikutnya">›</button>
 </div>
 
-<script src="<?php echo base_url('assets/depan/depan.js?v=1'); ?>"></script>
+<script src="<?php echo base_url('assets/depan/depan.js?v=3'); ?>"></script>
 </body>
 </html>

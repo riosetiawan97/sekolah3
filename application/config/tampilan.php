@@ -90,16 +90,20 @@ $config['tampilan_grup'] = array(
 			'program_label' => array('label' => 'Label kecil', 'tipe' => 'text', 'default' => 'Program Unggulan'),
 			'program_judul' => array('label' => 'Judul', 'tipe' => 'text', 'default' => 'Keunggulan Kami'),
 			'program_deskripsi' => array('label' => 'Deskripsi', 'tipe' => 'text', 'default' => 'Program-program dirancang untuk mengembangkan potensi terbaik setiap siswa.'),
-			'_h3' => array('label' => 'Cara mendaftar', 'tipe' => 'judul'),
-			'sec_langkah' => array('label' => 'Tampilkan', 'tipe' => 'checkbox', 'default' => '1'),
-			'langkah_label' => array('label' => 'Label kecil', 'tipe' => 'text', 'default' => 'PPDB 2026/2027'),
-			'langkah_judul' => array('label' => 'Judul', 'tipe' => 'text', 'default' => 'Cara Mendaftar'),
-			'langkah_deskripsi' => array('label' => 'Deskripsi', 'tipe' => 'text', 'default' => 'Proses pendaftaran yang mudah dan transparan untuk semua calon siswa baru.'),
-			'_h4' => array('label' => 'Formulir pendaftaran', 'tipe' => 'judul'),
-			'sec_formulir' => array('label' => 'Tampilkan', 'tipe' => 'checkbox', 'default' => '1'),
-			'formulir_label' => array('label' => 'Label kecil', 'tipe' => 'text', 'default' => 'Penerimaan Siswa Baru'),
-			'formulir_judul' => array('label' => 'Judul', 'tipe' => 'text', 'default' => 'Formulir Pendaftaran'),
-			'formulir_deskripsi' => array('label' => 'Deskripsi', 'tipe' => 'text', 'default' => 'Isi formulir berikut untuk memulai proses pendaftaran Anda.'),
+			'_h3' => array('label' => 'Event', 'tipe' => 'judul'),
+			'sec_event' => array('label' => 'Tampilkan', 'tipe' => 'checkbox', 'default' => '1'),
+			'event_label' => array('label' => 'Label kecil', 'tipe' => 'text', 'default' => 'Event'),
+			'event_judul' => array('label' => 'Judul', 'tipe' => 'text', 'default' => 'Agenda & Kegiatan Sekolah'),
+			'event_deskripsi' => array('label' => 'Deskripsi', 'tipe' => 'text', 'default' => 'Kegiatan terbaru dan yang akan datang di sekolah kami.'),
+			'_h4' => array('label' => 'FAQ', 'tipe' => 'judul'),
+			'sec_faq' => array('label' => 'Tampilkan', 'tipe' => 'checkbox', 'default' => '1'),
+			'faq_label' => array('label' => 'Label kecil', 'tipe' => 'text', 'default' => 'FAQ'),
+			'faq_judul' => array('label' => 'Judul', 'tipe' => 'text', 'default' => 'Pertanyaan yang Sering Diajukan'),
+			'faq_deskripsi' => array('label' => 'Deskripsi', 'tipe' => 'text', 'default' => 'Temukan jawaban seputar fasilitas, kurikulum, dan pendaftaran.'),
+			'_h7' => array('label' => 'YouTube', 'tipe' => 'judul'),
+			'sec_youtube' => array('label' => 'Tampilkan', 'tipe' => 'checkbox', 'default' => '1'),
+			'youtube_label' => array('label' => 'Label kecil', 'tipe' => 'text', 'default' => 'Video'),
+			'youtube_judul' => array('label' => 'Judul (kosongkan = "Youtube" + nama sekolah)', 'tipe' => 'text', 'default' => ''),
 			'_h5' => array('label' => 'Berita', 'tipe' => 'judul'),
 			'sec_berita' => array('label' => 'Tampilkan', 'tipe' => 'checkbox', 'default' => '1'),
 			'berita_label' => array('label' => 'Label kecil', 'tipe' => 'text', 'default' => 'Berita & Kegiatan'),
@@ -169,7 +173,7 @@ $config['tampilan_grup'] = array(
 			'footer_judul3' => array('label' => 'Judul kolom kontak', 'tipe' => 'text', 'default' => 'Stay Connected'),
 			'footer_deskripsi' => array('label' => 'Deskripsi singkat', 'tipe' => 'textarea', 'default' => 'Lembaga pendidikan Islam terpadu yang berkomitmen mencetak generasi unggul, berakhlak, dan berprestasi.'),
 			'footer_copyright' => array('label' => 'Teks hak cipta', 'tipe' => 'text', 'default' => '© {tahun} SMP Islam Al-Hadiriyah. Hak cipta dilindungi.', 'bantuan' => '{tahun} diganti tahun berjalan.'),
-			'footer_tagline' => array('label' => 'Teks kanan bawah', 'tipe' => 'text', 'default' => 'Dibuat dengan ❤️ untuk pendidikan Indonesia'),
+			'footer_tagline' => array('label' => 'Teks kanan bawah', 'tipe' => 'text', 'default' => 'Dibuat untuk pendidikan Indonesia'),
 		),
 	),
 );
@@ -305,3 +309,31 @@ $config['tampilan_item']['footer_2'] = array(
 // Ikon & warna bawaan langkah pendaftaran (jika belum diisi di admin).
 $config['tampilan_langkah_ikon'] = array('💻', '📄', '✅', '✏️', '🤝', '📢', '🎓', '📋');
 $config['tampilan_palet'] = array('#e8a020', '#3b82f6', '#22c55e', '#8b5cf6', '#1a2e5a', '#e53e3e', '#0ea5e9', '#f97316');
+
+// Gambar slider cadangan untuk beranda. Dipakai kalau foto Galeri yang dicentang "Slider"
+// kurang dari 2, supaya gambar di halaman awal tetap bisa bergeser (carousel).
+// Isinya disamakan dengan slider di website sekolah2. Begitu ada minimal 2 foto yang
+// dicentang "Slider" di Admin > Galeri, daftar ini tidak dipakai lagi.
+$config['tampilan_slider_cadangan'] = array(
+	array('gambar' => '76a05d95e8275c7df4c052c9fd416d2f.jpg', 'judul' => '1'),
+	array('gambar' => '0d2cb3542ae2bfe93620e6d69738e946.jpeg', 'judul' => 'Ramadhan'),
+	array('gambar' => '9966095519889a101e34160d5e596af0.jpeg', 'judul' => 'UJIAN PRAKTEK KEWIRAUSAHAAN'),
+	array('gambar' => '70a227e3d787b8a95bc624caef03c9df.jpeg', 'judul' => 'Seni Tari'),
+	array('gambar' => '83fa2bd46adba608f5b0078085024099.jpeg', 'judul' => 'Hari Guru Nasional'),
+	array('gambar' => '7e056c3c1879546bded732074322d704.JPG', 'judul' => 'Kelas XII Asisten Keperawatan'),
+	array('gambar' => '30579323bb839d97012aa74febcc9716.jpg', 'judul' => 'UJI KOMPETENSI'),
+	array('gambar' => '898d46975500d2d2d21b3205ac9758fc.jpeg', 'judul' => 'PRAKERIN'),
+);
+
+// Event contoh untuk beranda (khusus testing). Dipakai hanya kalau tabel agenda masih kosong,
+// supaya bagian Event bisa dibandingkan dengan beranda sekolah2. Isinya disamakan dengan
+// 3 event terbaru di sekolah2. Begitu ada agenda di Admin > Agenda, daftar ini tidak dipakai.
+// Untuk mematikannya, kosongkan array ini.
+$config['tampilan_event_cadangan'] = array(
+	array('nama' => 'UJIAN SEKOLAH', 'mulai' => '2022-03-16', 'gambar' => 'e3bf0bfd856fa17b2a6bab70ce8aae1e.jpeg',
+		'deskripsi' => 'Ujian Sekolah Kelas XII SMK Kesehatan Al-Hadiriyah dilaksanakan untuk mengukur pengetahuan yang didapatkan oleh siswa selama belajar di SMK Kesehatan Al-Hadiriyah'),
+	array('nama' => 'UJI KOMPETENSI', 'mulai' => '2022-02-02', 'gambar' => 'f4080ce3fbaaafae75de5ffdd20f9c31.jpg',
+		'deskripsi' => 'Uji kompetensi merupakan proses penilaian secara teknis dan non teknis melalui sistem penilaian otentik yang relevan untuk menentukan kompetensi perserta didik pada skema setifikasi tertentu.'),
+	array('nama' => 'Penerimaan Raport Semester Ganjil Tahun Ajaran 2021-2022', 'mulai' => '2022-01-17', 'gambar' => '83250e1aae86db7a6731e63474dc27f2.jpg',
+		'deskripsi' => 'Berakhirnya semester ganjil tahun pelajaran 2021-20227, ditandai dengan pembagian laporan hasil belajar.'),
+);

@@ -272,3 +272,15 @@ if ( ! function_exists('ikon'))
 		return '<svg viewBox="'.$vb.'"'.$ukuran.$isi.' aria-hidden="true" focusable="false">'.$p[$nama].'</svg>';
 	}
 }
+
+if ( ! function_exists('youtube_id'))
+{
+	// Ambil ID video dari link YouTube (watch?v=, youtu.be/, shorts/, embed/). Kosong jika tidak dikenali.
+	function youtube_id($link)
+	{
+		$link = trim((string) $link);
+		if (preg_match('#(?:v=|youtu\.be/|/shorts/|/embed/|/live/)([A-Za-z0-9_-]{11})#', $link, $m)) return $m[1];
+		if (preg_match('#^[A-Za-z0-9_-]{11}$#', $link)) return $link;
+		return '';
+	}
+}

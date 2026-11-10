@@ -99,8 +99,9 @@ button, input, select, textarea { font-family: inherit; font-size: inherit; }
 
 /* ── Hero ────────────────────────────────────────────────────── */
 .hero { position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden; background: linear-gradient(135deg, var(--navy-deep), var(--navy), var(--navy-deep)); }
-.hero-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1.2s ease; background-size: cover; background-position: center; }
-.hero-slide.aktif { opacity: 1; animation: kenburns 8s ease forwards; }
+.hero-trek { position: absolute; inset: 0; display: flex; transition: transform .8s ease; }
+.hero-slide { position: relative; flex: 0 0 100%; height: 100%; overflow: hidden; background-size: cover; background-position: center; }
+.hero-slide.aktif { animation: kenburns 8s ease forwards; }
 .hero-slide.polos::after { content: ""; position: absolute; inset: 0; opacity: .08; background-image: repeating-linear-gradient(45deg, rgba(255,255,255,.5) 0, rgba(255,255,255,.5) 1px, transparent 1px, transparent 12px); }
 .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to right, rgba(10,20,50,.88) 0%, rgba(10,20,50,.5) 60%, rgba(10,20,50,.1) 100%); }
 .hero-isi { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; padding: 150px 40px 90px; width: 100%; }
@@ -113,6 +114,10 @@ button, input, select, textarea { font-family: inherit; font-size: inherit; }
 .hero-titik { position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 3; }
 .hero-titik button { width: 8px; height: 8px; border-radius: 4px; border: 0; cursor: pointer; background: rgba(255,255,255,.45); transition: all .3s; }
 .hero-titik button.aktif { width: 28px; background: var(--gold); }
+.hero-panah { position: absolute; bottom: 24px; z-index: 3; width: 48px; height: 48px; border-radius: 50%; border: 1px solid rgba(255,255,255,.35); background: rgba(10,20,50,.35); color: #fff; font-size: 30px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; padding-bottom: 4px; transition: background .2s; }
+.hero-panah:hover, .hero-panah:focus-visible { background: var(--gold); border-color: var(--gold); }
+.hero-panah.kiri { right: 80px; }
+.hero-panah.kanan { right: 24px; }
 
 /* ── Statistik ───────────────────────────────────────────────── */
 .statistik { background: var(--navy); }
@@ -418,6 +423,34 @@ a.event:hover { transform: translateX(4px); box-shadow: 0 8px 28px rgba(26,46,90
 .event h3 { font-size: 17px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
 .event p { color: var(--gray); font-size: 13.5px; line-height: 1.6; }
 .kosong { text-align: center; padding: 64px 24px; }
+
+/* FAQ di beranda */
+.faq-kartu { display: flex; flex-direction: column; }
+.faq-kartu .berita-isi { flex: 1; display: flex; flex-direction: column; }
+.faq-kartu .baca { margin-top: auto; padding-top: 14px; }
+.faq-daftar { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.faq-daftar li { position: relative; padding-left: 16px; color: var(--gray); font-size: 13px; line-height: 1.5; }
+.faq-daftar li::before { content: ""; position: absolute; left: 0; top: 7px; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+
+/* YouTube di beranda (carousel) */
+.yt-carousel { position: relative; }
+.yt-jendela { overflow: hidden; margin: 0 -12px; }
+.yt-trek { display: flex; transition: transform .6s ease; }
+.yt-item { flex: 0 0 33.3333%; padding: 0 12px; min-width: 0; }
+.yt-video { position: relative; display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; padding: 0; border-radius: 16px; overflow: hidden; cursor: pointer; background: #0b1530; }
+.yt-video img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+.yt-video:hover img { transform: scale(1.04); }
+.yt-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.yt-play { position: absolute; left: 50%; top: 50%; width: 64px; height: 44px; transform: translate(-50%, -50%); border-radius: 12px; background: #e62117; box-shadow: 0 6px 20px rgba(0,0,0,.3); transition: transform .2s; }
+.yt-play::after { content: ""; position: absolute; left: 50%; top: 50%; transform: translate(-35%, -50%); border-style: solid; border-width: 10px 0 10px 17px; border-color: transparent transparent transparent #fff; }
+.yt-video:hover .yt-play { transform: translate(-50%, -50%) scale(1.08); }
+.yt-judul { display: block; margin-top: 14px; color: var(--navy); font-weight: 700; font-size: 15px; line-height: 1.4; text-decoration: none; }
+.yt-judul:hover { color: var(--gold); }
+.yt-panah { position: absolute; top: calc(50% - 40px); transform: translateY(-50%); z-index: 2; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--border); background: #fff; color: var(--navy); font-size: 28px; line-height: 1; padding-bottom: 4px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(26,46,90,.15); transition: background .2s, color .2s; }
+.yt-panah:hover, .yt-panah:focus-visible { background: var(--gold); color: #fff; border-color: var(--gold); }
+.yt-panah.kiri { left: -22px; }
+.yt-panah.kanan { right: -22px; }
+.yt-panah[hidden] { display: none; }
 .kosong div { font-size: 48px; margin-bottom: 16px; }
 .kosong h3 { color: var(--navy); font-weight: 700; }
 .kosong p { color: var(--gray); margin-top: 8px; }
@@ -477,6 +510,7 @@ a.event:hover { transform: translateX(4px); box-shadow: 0 8px 28px rgba(26,46,90
   .tombol-daftar { display: block; margin: 10px 24px 0; text-align: center; padding: 13px; border-radius: 12px; font-size: 15px; }
   .grid-4 { grid-template-columns: 1fr 1fr; }
   .grid-3 { grid-template-columns: 1fr 1fr; }
+  .yt-item { flex-basis: 50%; }
   .tentang-grid { grid-template-columns: 1fr; gap: 48px; }
   .foto-kepsek { max-width: 420px; }
   .dua-kolom-kanan { grid-template-columns: 1fr; }
@@ -495,6 +529,9 @@ a.event:hover { transform: translateX(4px); box-shadow: 0 8px 28px rgba(26,46,90
   .hero-isi { padding: 110px 20px 80px; }
   .hero h1 { font-size: 30px; }
   .hero p { font-size: 15px; }
+  .hero-panah { width: 38px; height: 38px; font-size: 24px; bottom: 18px; }
+  .hero-panah.kiri { right: 62px; }
+  .hero-panah.kanan { right: 16px; }
   .btn { padding: 12px 24px; font-size: 14px; }
   .statistik-grid { grid-template-columns: 1fr 1fr; }
   .stat { padding: 24px 12px; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.1); }
@@ -509,6 +546,9 @@ a.event:hover { transform: translateX(4px); box-shadow: 0 8px 28px rgba(26,46,90
   .program h3 { font-size: 14px; }
   .program p { font-size: 12px; }
   .grid-3 { grid-template-columns: 1fr; gap: 18px; }
+  .yt-item { flex-basis: 100%; }
+  .yt-panah.kiri { left: 4px; }
+  .yt-panah.kanan { right: 4px; }
   .langkah-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
   .langkah-grid::before { display: none; }
   .langkah { padding: 0 8px; }
