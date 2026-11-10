@@ -6,7 +6,8 @@ class Home extends CI_Controller{
 		$this->load->model('m_galeri');
 		$this->load->model('m_pengunjung');
 		$this->load->model('m_setup');
-		$this->load->model('m_alur_pendaftaran');
+		$this->load->model('m_agenda');
+		$this->load->model('m_faq');
 		$this->m_pengunjung->count_visitor();
 	}
 	function index(){
@@ -14,11 +15,22 @@ class Home extends CI_Controller{
 		$x['slider']=$this->_slider();
 		$x['berita']=$this->m_tulisan->get_berita_home();
 		$x['galeri']=$this->db->query("SELECT * FROM tbl_galeri ORDER BY galeri_id DESC LIMIT 6");
-		$x['alur']=$this->m_alur_pendaftaran->get_alur_tampil();
+		$x['agenda']=$this->m_agenda->get_agenda_home();
+		$x['faq']=$this->_faq();
+		$x['youtube']=$this->db->order_by('youtube_id', 'ASC')->get('tbl_youtube')->result();
 		$x['title']=$x['setup']->judul_website;
 		$x['beranda']=TRUE;
 		$x['halaman']='beranda';
 		$this->template->load('template_depan', 'depan/v_home', $x);
+	}
+
+	// 3 FAQ aktif terbaru, beserta daftar pertanyaannya (untuk ringkasan di kartu).
+	private function _faq(){
+		$faq = $this->m_faq->get_faq_home()->result();
+		foreach ($faq as $f) {
+			$f->items = $this->m_faq->get_items($f->faq_id);
+		}
+		return $faq;
 	}
 
 	// Foto slider beranda: foto Galeri yang dicentang "Slider".

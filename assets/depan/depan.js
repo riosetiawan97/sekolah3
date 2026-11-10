@@ -85,6 +85,48 @@
     mulai();
   }
 
+  // YouTube di beranda: carousel + video baru dimuat saat diklik (halaman tetap ringan)
+  document.querySelectorAll('.yt-video').forEach(function (b) {
+    b.addEventListener('click', function () {
+      if (b.querySelector('iframe')) return;
+      var f = document.createElement('iframe');
+      f.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(b.getAttribute('data-yt')) + '?autoplay=1&rel=0';
+      f.title = b.getAttribute('aria-label') || 'Video YouTube';
+      f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      f.allowFullscreen = true;
+      b.appendChild(f);
+      ytBerhenti = true; clearInterval(ytJalan);
+    });
+  });
+  var ytTrek = document.querySelector('.yt-trek');
+  var ytJalan, ytBerhenti = false;
+  if (ytTrek) {
+    var ytItem = ytTrek.querySelectorAll('.yt-item');
+    var ytKiri = document.querySelector('.yt-panah.kiri'), ytKanan = document.querySelector('.yt-panah.kanan');
+    var ytPos = 0;
+    var ytTampak = function () { return Math.max(1, Math.round(ytTrek.parentNode.offsetWidth / ytItem[0].offsetWidth)); };
+    var ytKe = function (n) {
+      var maks = Math.max(0, ytItem.length - ytTampak());
+      ytPos = n > maks ? 0 : (n < 0 ? maks : n);
+      ytTrek.style.transform = 'translateX(' + (-ytItem[0].offsetWidth * ytPos) + 'px)';
+      var geser = maks > 0;
+      ytKiri.hidden = !geser; ytKanan.hidden = !geser;
+    };
+    var ytMulai = function () { clearInterval(ytJalan); if (!ytBerhenti) ytJalan = setInterval(function () { ytKe(ytPos + 1); }, 5000); };
+    ytKiri.addEventListener('click', function () { ytKe(ytPos - 1); ytMulai(); });
+    ytKanan.addEventListener('click', function () { ytKe(ytPos + 1); ytMulai(); });
+    var ytX = null;
+    ytTrek.addEventListener('touchstart', function (e) { ytX = e.touches[0].clientX; }, { passive: true });
+    ytTrek.addEventListener('touchend', function (e) {
+      if (ytX === null) return;
+      var dx = e.changedTouches[0].clientX - ytX;
+      if (Math.abs(dx) > 50) { ytKe(ytPos + (dx < 0 ? 1 : -1)); ytMulai(); }
+      ytX = null;
+    });
+    window.addEventListener('resize', function () { ytKe(ytPos); });
+    ytKe(0); ytMulai();
+  }
+
   // Lightbox galeri
   var lb = document.querySelector('.lightbox');
   if (lb) {
