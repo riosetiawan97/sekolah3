@@ -51,7 +51,7 @@ function simpan_galeri(){
 					$gambar=$gbr['file_name'];
 					$judul=strip_tags($this->input->post('xjudul'));
 					$album=strip_tags($this->input->post('xalbum'));
-					$slider=$this->input->post('slider');
+					$slider=$this->input->post('slider') ? 1 : 0; // kotak Slider tidak dicentang = 0 (bukan NULL)
 					$kode=$this->session->userdata('idadmin');
 					$user=$this->m_pengguna->get_pengguna_login($kode);
 					$p=$user->row_array();
@@ -97,7 +97,7 @@ function simpan_galeri(){
 	                        $galeri_id=$this->input->post('kode');
 	                        $judul=strip_tags($this->input->post('xjudul'));
 							$album=strip_tags($this->input->post('xalbum'));
-							$slider=$this->input->post('slider');
+							$slider=$this->input->post('slider') ? 1 : 0; // kotak Slider tidak dicentang = 0 (bukan NULL)
 							$images=$this->input->post('gambar');
 							$path=UPLOAD_IMAGES_PATH.$images;
 							upload_delete($path);
@@ -119,7 +119,7 @@ function simpan_galeri(){
 							$galeri_id=$this->input->post('kode');
 	                        $judul=strip_tags($this->input->post('xjudul'));
 							$album=strip_tags($this->input->post('xalbum'));
-							$slider=$this->input->post('slider');
+							$slider=$this->input->post('slider') ? 1 : 0; // kotak Slider tidak dicentang = 0 (bukan NULL)
 							$kode=$this->session->userdata('idadmin');
 							$user=$this->m_pengguna->get_pengguna_login($kode);
 							$p=$user->row_array();

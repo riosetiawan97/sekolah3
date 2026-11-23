@@ -116,6 +116,7 @@
                             </span>
                             <!--end::Svg Icon-->
                         </a>
+                        <a class="btn btn-sm btn-light-warning me-1" href="<?php echo base_url('admin/pengguna/reset_password/'.$pengguna_id); ?>" onclick="return confirm('Buat password baru acak untuk pengguna ini?')" title="Reset password">Reset</a>
                         <a class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm" data-bs-toggle="modal" data-bs-target="#ModalHapus<?php echo $pengguna_id;?>">
                             <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
                             <span class="svg-icon svg-icon-3">
@@ -511,7 +512,7 @@
         </script>
     <?php elseif($this->session->flashdata('msg')=='show-modal'):?>
         <script type="text/javascript">
-                $('#ModalResetPassword').modal('show');
+                $(function () { bootstrap.Modal.getOrCreateInstance(document.getElementById('ModalResetPassword')).show(); });
         </script>
     <?php else:?>
 

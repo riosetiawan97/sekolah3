@@ -106,6 +106,7 @@
                         <!--end::Svg Icon-->
                     </a>
                     <?php else:?>
+                    <a class="btn btn-sm btn-light-primary me-1" href="<?php echo base_url('admin/komentar/publish/'.$row->komentar_id); ?>" title="Setujui agar tampil di website">Setujui</a>
                     <a class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm" data-bs-toggle="modal" data-bs-target="#ModalHapus<?php echo $row->komentar_id;?>">
                         <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
                         <span class="svg-icon svg-icon-3">
@@ -155,7 +156,7 @@
                     </div>
                     <form class="form-horizontal" action="<?php echo base_url().'admin/komentar/hapus'?>" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
-							       <input type="hidden" name="kode" value=""/>
+							       <input type="hidden" name="kode" value="<?php echo $id; ?>"/>
                             <p>Yakin ingin menghapus data ini?</p>
 
                     </div>
@@ -189,8 +190,8 @@
                     </div>
                     <form class="form-horizontal" action="<?php echo base_url().'admin/komentar/reply'?>" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
-							       <input type="hidden" name="komenid" value=""/>
-                     <input type="hidden" name="postid" value=""/>
+							       <input type="hidden" name="komenid" value="<?php echo $id; ?>"/>
+                     <input type="hidden" name="postid" value="<?php echo $i['komentar_tulisan_id']; ?>"/>
                         <textarea name="komentar" class="form-control" rows="8" cols="80" required></textarea>
                     </div>
                     <div class="modal-footer">

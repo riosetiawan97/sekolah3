@@ -155,7 +155,7 @@
               <!--end::Close-->
               <h4 class="modal-title" id="myModalLabel">Hapus Absensi Siswa</h4>
             </div>
-            <form class="form-horizontal" action="<?php echo base_url().'admin/siswa/hapus_absen'?>" method="post" enctype="multipart/form-data">
+            <form class="form-horizontal" action="<?php echo base_url().'admin/siswa/hapus_absen_siswa'?>" method="post" enctype="multipart/form-data">
             <div class="modal-body">
               <input type="hidden" name="id" value="<?php echo $id;?>"/>
                     <p>Yakin ingin menghapus data ini?</p>
