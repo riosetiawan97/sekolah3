@@ -74,7 +74,7 @@ class Tulisan extends CI_Controller{
 					$q=$data->row_array();
 					$kategori_nama=$q['kategori_nama'];
 					//$imgslider=$this->input->post('ximgslider');
-					$imgslider=$this->input->post('slider');
+					$imgslider=$this->input->post('slider') ? 1 : 0; // kotak Slider tidak dicentang = 0 (bukan NULL)
 					$kode=$this->session->userdata('idadmin');
 					$user=$this->m_pengguna->get_pengguna_login($kode);
 					$p=$user->row_array();
@@ -128,7 +128,7 @@ class Tulisan extends CI_Controller{
 					$q=$data->row_array();
 					$kategori_nama=$q['kategori_nama'];
 					//$imgslider=$this->input->post('ximgslider');
-					$imgslider=$this->input->post('slider');
+					$imgslider=$this->input->post('slider') ? 1 : 0; // kotak Slider tidak dicentang = 0 (bukan NULL)
 					$kode=$this->session->userdata('idadmin');
 					$user=$this->m_pengguna->get_pengguna_login($kode);
 					$p=$user->row_array();
@@ -153,7 +153,7 @@ class Tulisan extends CI_Controller{
 			$q=$data->row_array();
 			$kategori_nama=$q['kategori_nama'];
 			//$imgslider=$this->input->post('ximgslider');			
-			$imgslider=$this->input->post('slider');
+			$imgslider=$this->input->post('slider') ? 1 : 0; // kotak Slider tidak dicentang = 0 (bukan NULL)
 			$kode=$this->session->userdata('idadmin');
 			$user=$this->m_pengguna->get_pengguna_login($kode);
 			$p=$user->row_array();

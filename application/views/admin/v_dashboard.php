@@ -97,8 +97,8 @@
 												$query=$this->db->query("SELECT * FROM tbl_pengunjung WHERE DATE_FORMAT(pengunjung_tanggal,'%m%y')=DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH),'%m%y')");
 												$jml=$query->num_rows();
 											?>
-											<div class="text-white fw-bolder fs-2 mb-2 mt-5"><?php echo number_format($jml);?> Visitors</div>
-											<div class="fw-bold text-white">Visitor Last Month</div>
+											<div class="text-white fw-bolder fs-2 mb-2 mt-5"><?php echo number_format($jml);?> Pengunjung</div>
+											<div class="fw-bold text-white">Pengunjung Bulan Lalu</div>
 										</div>
 										<!--end::Body-->
 									</a>
@@ -120,8 +120,8 @@
 												$query=$this->db->query("SELECT * FROM tbl_pengunjung WHERE DATE_FORMAT(pengunjung_tanggal,'%m%y')=DATE_FORMAT(CURDATE(),'%m%y')");
 												$jml=$query->num_rows();
 											?>
-											<div class="text-white fw-bolder fs-2 mb-2 mt-5"><?php echo number_format($jml);?> Visitors</div>
-											<div class="fw-bold text-white">Visitor This Month</div>
+											<div class="text-white fw-bolder fs-2 mb-2 mt-5"><?php echo number_format($jml);?> Pengunjung</div>
+											<div class="fw-bold text-white">Pengunjung Bulan Ini</div>
 										</div>
 										<!--end::Body-->
 									</a>

@@ -4,7 +4,7 @@
 						<!--begin::Container-->
 						<div class="container-fluid d-flex align-items-stretch justify-content-between">
 							<!--begin::Aside mobile toggle-->
-							<div class="d-flex align-items-center d-lg-none ms-n3 me-1" title="Show aside menu">
+							<div class="d-flex align-items-center d-lg-none ms-n3 me-1" title="Tampilkan menu samping">
 								<div class="btn btn-icon btn-active-light-primary w-30px h-30px w-md-40px h-md-40px" id="kt_aside_mobile_toggle">
 									<!--begin::Svg Icon | path: icons/duotune/abstract/abs015.svg-->
 									<span class="svg-icon svg-icon-2x mt-1">
@@ -20,7 +20,7 @@
 							<!--begin::Mobile logo-->
 							<div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
 								<a href="../../demo1/dist/index.html" class="d-lg-none">
-									<img alt="Logo" src="<?php echo base_url().'assets/metronicmedia/logos/logo-2.svg'?>" class="h-30px" />
+									<img alt="Logo" src="<?php echo gambar_url($setup->logo); ?>" class="h-30px" />
 								</a>
 							</div>
 							<!--end::Mobile logo-->
@@ -79,7 +79,7 @@
                               <?php if($c['pengguna_level']=='1'):?>
                                 <a href="#" class="fw-bold text-muted text-hover-primary fs-7">Administrator</a>
                               <?php else:?>
-                                <a href="#" class="fw-bold text-muted text-hover-primary fs-7">Author</a>
+                                <a href="#" class="fw-bold text-muted text-hover-primary fs-7">Penulis</a>
                               <?php endif;?>
 														</div>
 														<!--end::Username-->
@@ -92,7 +92,7 @@
 												
 												<!--begin::Menu item-->
 												<div class="menu-item px-5">
-													<a href="<?php echo base_url().'admin/login/logout'?>" class="menu-link px-5">Sign Out</a>
+													<a href="<?php echo base_url().'admin/login/logout'?>" class="menu-link px-5">Keluar</a>
 												</div>
 												<!--end::Menu item-->
 											</div>
@@ -116,7 +116,7 @@
 										</div>
 										<!--end::Activities-->
 										<!--begin::Heaeder menu toggle-->
-										<div class="d-flex align-items-center d-lg-none ms-2 me-n3" title="Show header menu">
+										<div class="d-flex align-items-center d-lg-none ms-2 me-n3" title="Tampilkan menu atas">
 											<div class="btn btn-icon btn-active-light-primary w-30px h-30px w-md-40px h-md-40px" id="kt_header_menu_mobile_toggle">
 												<!--begin::Svg Icon | path: icons/duotune/text/txt001.svg-->
 												<span class="svg-icon svg-icon-1">

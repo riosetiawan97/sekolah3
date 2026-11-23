@@ -6,7 +6,7 @@
 			<!--begin::Page title-->
 			<div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
 				<!--begin::Title-->
-				<h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Youtube</h1>
+				<h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">YouTube</h1>
 				<!--end::Title-->
                 <!--begin::Separator-->
                 <span class="h-20px border-gray-200 border-start mx-4"></span>
@@ -32,7 +32,7 @@
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
-                    <li class="breadcrumb-item text-dark">List Youtube</li>
+                    <li class="breadcrumb-item text-dark">Daftar YouTube</li>
                     <!--end::Item-->
                 </ul>
                 <!--end::Breadcrumb-->
@@ -45,7 +45,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
                 </svg>
-                Add Youtube</a>
+                Tambah YouTube</a>
 				<!--end::Button-->
 			</div>
 			<!--end::Actions-->
@@ -67,11 +67,11 @@
           <table id="example1" class="table table-striped" style="font-size:13px;">
             <thead>
             <tr>
-                <th>Youtube Id</th>
-                <th>Youtube Link</th>
-                <th>Author</th>
-                <th>Date</th>
-                <th style="text-align:right;">Action</th>
+                <th>ID YouTube</th>
+                <th>Link YouTube</th>
+                <th>Penulis</th>
+                <th>Tanggal</th>
+                <th style="text-align:right;">Aksi</th>
             </tr>
             </thead>
             <tbody>
@@ -144,26 +144,26 @@
                     <!--end::Svg Icon-->
                 </div>
                 <!--end::Close-->
-                <h4 class="modal-title" id="myModalLabel">Add Youtube</h4>
+                <h4 class="modal-title" id="myModalLabel">Tambah YouTube</h4>
             </div>
             <form class="form-horizontal" action="<?php echo base_url().'admin/youtube/simpan_youtube'?>" method="post" enctype="multipart/form-data">
             <div class="modal-body">
                 <div class="form-group mb-4">
-                    <label for="inpuyoutubelink" class="col-sm-4 control-label">Link Youtube</label>
+                    <label for="inpuyoutubelink" class="col-sm-4 control-label">Link YouTube</label>
                     <div class="col-sm-12">
-                        <input type="text" name="youtube_link" class="form-control" id="inputyoutubelink" placeholder="Link Youtube" required>
+                        <input type="text" name="youtube_link" class="form-control" id="inputyoutubelink" placeholder="Link YouTube" required>
                     </div>
                 </div>
                 <div class="form-group mb-4">
-                    <label for="inputUserName" class="col-sm-4 control-label">Description Youtube</label>
+                    <label for="inputUserName" class="col-sm-4 control-label">Deskripsi YouTube</label>
                     <div class="col-sm-12">
-                        <input type="text" name="youtube_description" class="form-control" id="inputDescription" placeholder="Description Youtube" required>
+                        <input type="text" name="youtube_description" class="form-control" id="inputDescription" placeholder="Deskripsi YouTube" required>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary btn-flat" id="simpan">Save</button>
+                <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Tutup</button>
+                <button type="submit" class="btn btn-primary btn-flat" id="simpan">Simpan</button>
             </div>
             </form>
         </div>
@@ -196,27 +196,27 @@
                         <!--end::Svg Icon-->
                     </div>
                     <!--end::Close-->
-                    <h4 class="modal-title" id="myModalLabel">Edit Youtube</h4>
+                    <h4 class="modal-title" id="myModalLabel">Ubah YouTube</h4>
                 </div>
                 <form class="form-horizontal" action="<?php echo base_url().'admin/youtube/update_youtube'?>" method="post" enctype="multipart/form-data">
                 <div class="modal-body">
                     <input type="hidden" name="kode" value="<?php echo $youtube_id;?>"/>
                         <div class="form-group mb-4">
-                            <label for="inpuyoutubelink" class="col-sm-4 control-label">Link Youtube</label>
+                            <label for="inpuyoutubelink" class="col-sm-4 control-label">Link YouTube</label>
                             <div class="col-sm-12">
-                                <input type="text" name="youtube_link" class="form-control" value="<?php echo $youtube_link;?>" id="inpuyoutubelink" placeholder="Link Youtube" required>
+                                <input type="text" name="youtube_link" class="form-control" value="<?php echo $youtube_link;?>" id="inpuyoutubelink" placeholder="Link YouTube" required>
                             </div>
                         </div>
                         <div class="form-group mb-4">
-                            <label for="inputUserName" class="col-sm-4 control-label">Description Youtube</label>
+                            <label for="inputUserName" class="col-sm-4 control-label">Deskripsi YouTube</label>
                             <div class="col-sm-12">
-                                <input type="text" name="youtube_description" class="form-control" value="<?php echo $youtube_description;?>" id="inputDescription" placeholder="Description Youtube" required>
+                                <input type="text" name="youtube_description" class="form-control" value="<?php echo $youtube_description;?>" id="inputDescription" placeholder="Deskripsi YouTube" required>
                             </div>
                         </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary btn-flat" id="simpan">Update</button>
+                    <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary btn-flat" id="simpan">Simpan Perubahan</button>
                 </div>
                 </form>
             </div>
@@ -249,17 +249,17 @@
                         <!--end::Svg Icon-->
                     </div>
                     <!--end::Close-->
-                    <h4 class="modal-title" id="myModalLabel">Delete Youtube</h4>
+                    <h4 class="modal-title" id="myModalLabel">Hapus YouTube</h4>
                 </div>
                 <form class="form-horizontal" action="<?php echo base_url().'admin/youtube/hapus_youtube'?>" method="post" enctype="multipart/form-data">
                 <div class="modal-body">
                   <input type="hidden" name="kode" value="<?php echo $youtube_id;?>"/>
-                        <p>Are you sure want to delete Youtube Link : <b><?php echo $youtube_link;?></b> ?</p>
+                        <p>Yakin ingin menghapus link YouTube: <b><?php echo $youtube_link;?></b> ?</p>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary btn-flat" id="simpan">Delete</button>
+                    <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary btn-flat" id="simpan">Hapus</button>
                 </div>
                 </form>
             </div>
@@ -271,7 +271,7 @@
 <?php if($this->session->flashdata('msg')=='error'):?>
     <script type="text/javascript">
             $.toast({
-                heading: 'Error',
+                heading: 'Gagal',
                 text: "Password dan Ulangi Password yang Anda masukan tidak sama.",
                 showHideTransition: 'slide',
                 icon: 'error',
@@ -284,7 +284,7 @@
 <?php elseif($this->session->flashdata('msg')=='success'):?>
     <script type="text/javascript">
             $.toast({
-                heading: 'Success',
+                heading: 'Berhasil',
                 text: "Youtube Berhasil disimpan ke database.",
                 showHideTransition: 'slide',
                 icon: 'success',
@@ -308,7 +308,7 @@
 <?php elseif($this->session->flashdata('msg')=='success-hapus'):?>
     <script type="text/javascript">
             $.toast({
-                heading: 'Success',
+                heading: 'Berhasil',
                 text: "Youtube Berhasil dihapus.",
                 showHideTransition: 'slide',
                 icon: 'success',

@@ -32,7 +32,7 @@
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
-                    <li class="breadcrumb-item text-dark">Edit About Us</li>
+                    <li class="breadcrumb-item text-dark">Ubah About Us</li>
                     <!--end::Item-->
                 </ul>
                 <!--end::Breadcrumb-->
@@ -59,7 +59,7 @@
   <!-- SELECT2 EXAMPLE -->
   <div class="box box-default">
     <div class="box-header with-border mb-4">
-      <h3 class="box-title">Update About Us</h3>
+      <h3 class="box-title">Ubah About Us</h3>
     </div>
 <?php
     $b=$data->row_array();
@@ -69,7 +69,7 @@
     <div class="box-body">
       <input type="hidden" name="id" value="<?php echo $b['id'];?>">
       <div class="form-group mb-4">
-        <label>About Us Picture</label>
+        <label>Gambar About Us</label>
         <input type="file" name="gambarabout" style="width: 100%;">
       </div>
       <div class="form-group mb-4">
@@ -79,7 +79,7 @@
     </div>
     <div class="modal-footer">
       <div class="form-group mb-4">
-        <button type="submit" class="btn btn-primary btn-flat pull-right"><span class="fa fa-pencil"></span> Update</button>
+        <button type="submit" class="btn btn-primary btn-flat pull-right"><span class="fa fa-pencil"></span> Simpan Perubahan</button>
       <!-- /.form-group mb-4 -->
       </div>
     </div>

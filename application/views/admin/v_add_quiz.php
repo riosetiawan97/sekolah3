@@ -1,12 +1,12 @@
 <section class="content-header">
     <h1>
-        Add Quiz
+        Tambah Quiz
         <small></small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="<?php echo base_url() . 'admin/quiz' ?>">Quiz</a></li>
-        <li class="active">Add Quiz</li>
+        <li class="active">Tambah Quiz</li>
     </ol>
 </section>
 

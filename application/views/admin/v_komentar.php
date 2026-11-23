@@ -6,7 +6,7 @@
 			<!--begin::Page title-->
 			<div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
 				<!--begin::Title-->
-				<h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Comment</h1>
+				<h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Komentar</h1>
 				<!--end::Title-->
                 <!--begin::Separator-->
                 <span class="h-20px border-gray-200 border-start mx-4"></span>
@@ -24,7 +24,7 @@
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
-                    <li class="breadcrumb-item text-muted">Comment</li>
+                    <li class="breadcrumb-item text-muted">Komentar</li>
                     <!--end::Item-->
                     <!--begin::Item-->
                     <li class="breadcrumb-item">
@@ -32,7 +32,7 @@
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
-                    <li class="breadcrumb-item text-dark">List Comment</li>
+                    <li class="breadcrumb-item text-dark">Daftar Komentar</li>
                     <!--end::Item-->
                 </ul>
                 <!--end::Breadcrumb-->
@@ -56,10 +56,10 @@
               <table id="example1" class="table table-striped" style="font-size:12px;">
                 <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Comment</th>
-                    <th>News</th>
-                    <th>Date</th>
+                    <th>Nama</th>
+                    <th>Komentar</th>
+                    <th>Berita</th>
+                    <th>Tanggal</th>
                     <th style="text-align:right;">Aksi</th>
                 </tr>
                 </thead>
@@ -106,6 +106,7 @@
                         <!--end::Svg Icon-->
                     </a>
                     <?php else:?>
+                    <a class="btn btn-sm btn-light-primary me-1" href="<?php echo base_url('admin/komentar/publish/'.$row->komentar_id); ?>" title="Setujui agar tampil di website">Setujui</a>
                     <a class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm" data-bs-toggle="modal" data-bs-target="#ModalHapus<?php echo $row->komentar_id;?>">
                         <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
                         <span class="svg-icon svg-icon-3">
@@ -151,16 +152,16 @@
                         <!--end::Svg Icon-->
                       </div>
                       <!--end::Close-->
-                      <h4 class="modal-title" id="myModalLabel">Delete Comment</h4>
+                      <h4 class="modal-title" id="myModalLabel">Hapus Komentar</h4>
                     </div>
                     <form class="form-horizontal" action="<?php echo base_url().'admin/komentar/hapus'?>" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
-							       <input type="hidden" name="kode" value=""/>
-                            <p>Are you sure want to delete ?</p>
+							       <input type="hidden" name="kode" value="<?php echo $id; ?>"/>
+                            <p>Yakin ingin menghapus data ini?</p>
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Tutup</button>
                         <button type="submit" class="btn btn-primary btn-flat" id="simpan">Hapus</button>
                     </div>
                     </form>
@@ -185,16 +186,16 @@
                         <!--end::Svg Icon-->
                       </div>
                       <!--end::Close-->
-                      <h4 class="modal-title" id="myModalLabel">Reply</h4>
+                      <h4 class="modal-title" id="myModalLabel">Balas</h4>
                     </div>
                     <form class="form-horizontal" action="<?php echo base_url().'admin/komentar/reply'?>" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
-							       <input type="hidden" name="komenid" value=""/>
-                     <input type="hidden" name="postid" value=""/>
+							       <input type="hidden" name="komenid" value="<?php echo $id; ?>"/>
+                     <input type="hidden" name="postid" value="<?php echo $i['komentar_tulisan_id']; ?>"/>
                         <textarea name="komentar" class="form-control" rows="8" cols="80" required></textarea>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Tutup</button>
                         <button type="submit" class="btn btn-primary btn-flat" id="simpan">Relpy</button>
                     </div>
                     </form>
@@ -255,7 +256,7 @@
 <?php if($this->session->flashdata('msg')=='error'):?>
         <script type="text/javascript">
                 $.toast({
-                    heading: 'Error',
+                    heading: 'Gagal',
                     text: "Password dan Ulangi Password yang Anda masukan tidak sama.",
                     showHideTransition: 'slide',
                     icon: 'error',
@@ -280,7 +281,7 @@
       <?php elseif($this->session->flashdata('msg')=='success'):?>
           <script type="text/javascript">
                   $.toast({
-                      heading: 'Success',
+                      heading: 'Berhasil',
                       text: "Komentar Berhasil Publish.",
                       showHideTransition: 'slide',
                       icon: 'success',
@@ -292,7 +293,7 @@
     <?php elseif($this->session->flashdata('msg')=='success-hapus'):?>
         <script type="text/javascript">
                 $.toast({
-                    heading: 'Success',
+                    heading: 'Berhasil',
                     text: "Komentar Berhasil dihapus.",
                     showHideTransition: 'slide',
                     icon: 'success',

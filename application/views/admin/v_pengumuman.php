@@ -6,7 +6,7 @@
 			<!--begin::Page title-->
 			<div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
 				<!--begin::Title-->
-				<h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Announcement</h1>
+				<h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Pengumuman</h1>
 				<!--end::Title-->
                 <!--begin::Separator-->
                 <span class="h-20px border-gray-200 border-start mx-4"></span>
@@ -24,7 +24,7 @@
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
-                    <li class="breadcrumb-item text-muted">Announcement</li>
+                    <li class="breadcrumb-item text-muted">Pengumuman</li>
                     <!--end::Item-->
                     <!--begin::Item-->
                     <li class="breadcrumb-item">
@@ -32,7 +32,7 @@
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
-                    <li class="breadcrumb-item text-dark">List Announcement</li>
+                    <li class="breadcrumb-item text-dark">Daftar Pengumuman</li>
                     <!--end::Item-->
                 </ul>
                 <!--end::Breadcrumb-->
@@ -45,7 +45,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
                 </svg>
-                Add Announcement</a>
+                Tambah Pengumuman</a>
 				<!--end::Button-->
 			</div>
 			<!--end::Actions-->
@@ -68,11 +68,11 @@
                 <thead>
                 <tr>
 					          <th style="width:70px;">#</th>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Date Post</th>
-                    <th>Author</th>
-                    <th style="text-align:right;">Action</th>
+                    <th>Judul</th>
+                    <th>Deskripsi</th>
+                    <th>Tanggal Terbit</th>
+                    <th>Penulis</th>
+                    <th style="text-align:right;">Aksi</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -146,28 +146,28 @@
 							<!--end::Svg Icon-->
 						</div>
 						<!--end::Close-->
-                        <h4 class="modal-title" id="myModalLabel">Add Announcement</h4>
+                        <h4 class="modal-title" id="myModalLabel">Tambah Pengumuman</h4>
                     </div>
                     <form class="form-horizontal" action="<?php echo base_url().'admin/pengumuman/simpan_pengumuman'?>" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
 
                             <div class="form-group mb-4">
-                                <label for="inputUserName" class="col-sm-4 control-label">Title</label>
+                                <label for="inputUserName" class="col-sm-4 control-label">Judul</label>
                                 <div class="col-sm-7">
-                                  <input type="text" name="xjudul" class="form-control" id="inputUserName" placeholder="Title" required>
+                                  <input type="text" name="xjudul" class="form-control" id="inputUserName" placeholder="Judul" required>
                                 </div>
                             </div>
                             <div class="form-group mb-4">
-                                <label for="inputUserName" class="col-sm-4 control-label">Description</label>
+                                <label for="inputUserName" class="col-sm-4 control-label">Deskripsi</label>
                                 <div class="col-sm-7">
-                                  <textarea class="form-control" rows="3" name="xdeskripsi" placeholder="Description ..." required></textarea>
+                                  <textarea class="form-control" rows="3" name="xdeskripsi" placeholder="Deskripsi ..." required></textarea>
                                 </div>
                             </div>
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary btn-flat" id="simpan">Save</button>
+                        <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary btn-flat" id="simpan">Simpan</button>
                     </div>
                     </form>
                 </div>
@@ -199,29 +199,29 @@
 							<!--end::Svg Icon-->
 						</div>
 						<!--end::Close-->
-                        <h4 class="modal-title" id="myModalLabel">Edit Announcement</h4>
+                        <h4 class="modal-title" id="myModalLabel">Ubah Pengumuman</h4>
                     </div>
                     <form class="form-horizontal" action="<?php echo base_url().'admin/pengumuman/update_pengumuman'?>" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
 
                             <div class="form-group mb-4">
-                                <label for="inputUserName" class="col-sm-4 control-label">Title</label>
+                                <label for="inputUserName" class="col-sm-4 control-label">Judul</label>
                                 <div class="col-sm-7">
                                   <input type="hidden" name="kode" value="<?php echo $id;?>">
-                                  <input type="text" name="xjudul" class="form-control" value="<?php echo $judul;?>" id="inputUserName" placeholder="Title" required>
+                                  <input type="text" name="xjudul" class="form-control" value="<?php echo $judul;?>" id="inputUserName" placeholder="Judul" required>
                                 </div>
                             </div>
                             <div class="form-group mb-4">
-                                <label for="inputUserName" class="col-sm-4 control-label">Description</label>
+                                <label for="inputUserName" class="col-sm-4 control-label">Deskripsi</label>
                                 <div class="col-sm-7">
-                                  <textarea class="form-control" rows="3" name="xdeskripsi" placeholder="Description ..." required><?php echo $deskripsi;?></textarea>
+                                  <textarea class="form-control" rows="3" name="xdeskripsi" placeholder="Deskripsi ..." required><?php echo $deskripsi;?></textarea>
                                 </div>
                             </div>
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary btn-flat" id="simpan">Update</button>
+                        <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary btn-flat" id="simpan">Simpan Perubahan</button>
                     </div>
                     </form>
                 </div>
@@ -253,17 +253,17 @@
 							<!--end::Svg Icon-->
 						</div>
 						<!--end::Close-->
-                        <h4 class="modal-title" id="myModalLabel">Delete Announcement</h4>
+                        <h4 class="modal-title" id="myModalLabel">Hapus Pengumuman</h4>
                     </div>
                     <form class="form-horizontal" action="<?php echo base_url().'admin/pengumuman/hapus_pengumuman'?>" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
 							<input type="hidden" name="kode" value="<?php echo $id;?>"/>
-                            <p>Are you sure want to delete Announcement <b><?php echo $judul;?></b> ?</p>
+                            <p>Yakin ingin menghapus pengumuman <b><?php echo $judul;?></b> ?</p>
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary btn-flat" id="simpan">Delete</button>
+                        <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary btn-flat" id="simpan">Hapus</button>
                     </div>
                     </form>
                 </div>
@@ -274,7 +274,7 @@
 <?php if($this->session->flashdata('msg')=='error'):?>
         <script type="text/javascript">
                 $.toast({
-                    heading: 'Error',
+                    heading: 'Gagal',
                     text: "Password dan Ulangi Password yang Anda masukan tidak sama.",
                     showHideTransition: 'slide',
                     icon: 'error',
@@ -287,7 +287,7 @@
     <?php elseif($this->session->flashdata('msg')=='success'):?>
         <script type="text/javascript">
                 $.toast({
-                    heading: 'Success',
+                    heading: 'Berhasil',
                     text: "Pengumuman Berhasil disimpan ke database.",
                     showHideTransition: 'slide',
                     icon: 'success',
@@ -311,7 +311,7 @@
     <?php elseif($this->session->flashdata('msg')=='success-hapus'):?>
         <script type="text/javascript">
                 $.toast({
-                    heading: 'Success',
+                    heading: 'Berhasil',
                     text: "Pengumuman Berhasil dihapus.",
                     showHideTransition: 'slide',
                     icon: 'success',

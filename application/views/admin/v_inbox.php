@@ -6,7 +6,7 @@
 			<!--begin::Page title-->
 			<div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
 				<!--begin::Title-->
-				<h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Inbox</h1>
+				<h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Kotak Masuk</h1>
 				<!--end::Title-->
                 <!--begin::Separator-->
                 <span class="h-20px border-gray-200 border-start mx-4"></span>
@@ -24,7 +24,7 @@
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
-                    <li class="breadcrumb-item text-muted">Inbox</li>
+                    <li class="breadcrumb-item text-muted">Kotak Masuk</li>
                     <!--end::Item-->
                     <!--begin::Item-->
                     <li class="breadcrumb-item">
@@ -32,7 +32,7 @@
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
-                    <li class="breadcrumb-item text-dark">List Inbox</li>
+                    <li class="breadcrumb-item text-dark">Kotak Masuk</li>
                     <!--end::Item-->
                 </ul>
                 <!--end::Breadcrumb-->
@@ -56,11 +56,11 @@
               <table id="example1" class="table table-striped" style="font-size:12px;">
                 <thead>
                 <tr>
-					          <th style="width:70px;">#Date</th>
-                    <th>Name</th>
+					          <th style="width:70px;">Tanggal</th>
+                    <th>Nama</th>
                     <th>Email</th>
-                    <th>Messege</th>
-                    <th style="text-align:right;">Action</th>
+                    <th>Pesan</th>
+                    <th style="text-align:right;">Aksi</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -130,17 +130,17 @@
                 <!--end::Svg Icon-->
               </div>
               <!--end::Close-->
-                <h4 class="modal-title" id="myModalLabel">Delete Inbox</h4>
+                <h4 class="modal-title" id="myModalLabel">Hapus Pesan</h4>
             </div>
             <form class="form-horizontal" action="<?php echo base_url().'admin/inbox/hapus_inbox'?>" method="post" enctype="multipart/form-data">
             <div class="modal-body">
               <input type="hidden" name="kode" value="<?php echo $inbox_id;?>"/>
-                    <p>Are you sure want to delete ?</p>
+                    <p>Yakin ingin menghapus data ini?</p>
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary btn-flat" id="simpan">Delete</button>
+                <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Tutup</button>
+                <button type="submit" class="btn btn-primary btn-flat" id="simpan">Hapus</button>
             </div>
             </form>
         </div>
@@ -187,7 +187,7 @@
 <?php if($this->session->flashdata('msg')=='error'):?>
         <script type="text/javascript">
                 $.toast({
-                    heading: 'Error',
+                    heading: 'Gagal',
                     text: "Password dan Ulangi Password yang Anda masukan tidak sama.",
                     showHideTransition: 'slide',
                     icon: 'error',
@@ -212,7 +212,7 @@
     <?php elseif($this->session->flashdata('msg')=='success-hapus'):?>
         <script type="text/javascript">
                 $.toast({
-                    heading: 'Success',
+                    heading: 'Berhasil',
                     text: "Pesan Berhasil dihapus.",
                     showHideTransition: 'slide',
                     icon: 'success',

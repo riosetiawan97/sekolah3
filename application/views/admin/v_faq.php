@@ -6,7 +6,7 @@
 			<!--begin::Page title-->
 			<div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
 				<!--begin::Title-->
-				<h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">FAQ News</h1>
+				<h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">FAQ</h1>
 				<!--end::Title-->
                 <!--begin::Separator-->
                 <span class="h-20px border-gray-200 border-start mx-4"></span>
@@ -32,7 +32,7 @@
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
-                    <li class="breadcrumb-item text-dark">List FAQ</li>
+                    <li class="breadcrumb-item text-dark">Daftar FAQ</li>
                     <!--end::Item-->
                 </ul>
                 <!--end::Breadcrumb-->
@@ -45,7 +45,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
                 </svg>
-                Add FAQ</a>
+                Tambah FAQ</a>
 				<!--end::Button-->
 			</div>
 			<!--end::Actions-->
@@ -69,7 +69,7 @@
                                 <tr>
                                     <th style="width:100px;">#</th>
                                     <th>Kategori FAQ</th>
-                                    <th>Is Active</th>
+                                    <th>Aktif</th>
                                     <th style="text-align:right;">Aksi</th>
                                 </tr>
                                 </thead>
@@ -141,38 +141,38 @@
 							<!--end::Svg Icon-->
 						</div>
 						<!--end::Close-->
-                        <h4 class="modal-title" id="myModalLabel">Add FAQ</h4>
+                        <h4 class="modal-title" id="myModalLabel">Tambah FAQ</h4>
                     </div>
                     <form class="form-horizontal" action="<?php echo base_url().'admin/faq/simpan_faq'?>" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
                         <div class="form-group mb-4">
                             <label for="inputUserName" class="col-sm-4 control-label">FAQ</label>
                             <div class="col-sm-12">
-                                <input type="text" name="xfaq_judul" class="form-control" id="inputUserName" placeholder="FAQ Title" required>
+                                <input type="text" name="xfaq_judul" class="form-control" id="inputUserName" placeholder="Judul FAQ" required>
                             </div>
                         </div>
                         <div class="form-group mb-4">
-                            <label for="inputUserName" class="col-sm-4 control-label">FAQ Picture</label>
+                            <label for="inputUserName" class="col-sm-4 control-label">Gambar FAQ</label>
                             <div class="col-sm-12">
                                 <input type="file" name="filefoto"/>
                             </div>
                         </div>
                         <div class="form-group mb-4">
-                            <label for="inputDeskripsi" class="col-sm-4 control-label">Description</label>
+                            <label for="inputDeskripsi" class="col-sm-4 control-label">Deskripsi</label>
                             <div class="col-sm-12">
                                 <textarea class="ckeditor" name="xfaq_isi"></textarea>
                             </div>
                         </div>
                         <div class="form-group mb-4">
-                            <label class="col-sm-4 control-label">Active ?</label>
+                            <label class="col-sm-4 control-label">Aktif?</label>
                             <div class="col-sm-12">
                                 <input type="checkbox" name="xfaq_aktif" value="1">
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary btn-flat" id="simpan">Save</button>
+                        <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary btn-flat" id="simpan">Simpan</button>
                     </div>
                     </form>
                 </div>
@@ -204,7 +204,7 @@
 							<!--end::Svg Icon-->
 						</div>
 						<!--end::Close-->
-                        <h4 class="modal-title" id="myModalLabel">Edit FAQ</h4>
+                        <h4 class="modal-title" id="myModalLabel">Ubah FAQ</h4>
                     </div>
                     <form class="form-horizontal" action="<?php echo base_url().'admin/faq/update_faq'?>" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
@@ -213,23 +213,23 @@
                             <div class="col-sm-12">
                                 <input type="hidden" name="kode" value="<?php echo $faq_id;?>"/>
                                 <input type="hidden" value="<?php echo $faq_gambar;?>" name="gambar">
-                                <input type="text" name="xfaq_judul" class="form-control" id="inputUserName" value="<?php echo $faq_judul;?>" placeholder="FAQ Title" required>
+                                <input type="text" name="xfaq_judul" class="form-control" id="inputUserName" value="<?php echo $faq_judul;?>" placeholder="Judul FAQ" required>
                             </div>
                         </div>
                         <div class="form-group mb-4">
-                            <label for="inputUserName" class="col-sm-4 control-label">FAQ Picture</label>
+                            <label for="inputUserName" class="col-sm-4 control-label">Gambar FAQ</label>
                             <div class="col-sm-12">
                                 <input type="file" name="filefoto"/>
                             </div>
                         </div>
                         <div class="form-group mb-4">
-                            <label for="EditDeskripsi" class="col-sm-4 control-label">Description</label>
+                            <label for="EditDeskripsi" class="col-sm-4 control-label">Deskripsi</label>
                             <div class="col-sm-12">
                                 <textarea class="ckeditor" name="xfaq_isi"><?php echo $faq_isi;?></textarea>
                             </div>
                         </div>
                         <div class="form-group mb-4">
-                          <label class="col-sm-4 control-label">Active ?</label>
+                          <label class="col-sm-4 control-label">Aktif?</label>
                             <div class="col-sm-12">
                               <input type="checkbox" name="xfaq_aktif" value="1" <?php if($faq_aktif==1)
                               echo "checked";?>>
@@ -237,8 +237,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary btn-flat" id="simpan">Update</button>
+                        <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary btn-flat" id="simpan">Simpan Perubahan</button>
                     </div>
                     </form>
                 </div>
@@ -268,18 +268,18 @@
 							<!--end::Svg Icon-->
 						</div>
 						<!--end::Close-->
-                        <h4 class="modal-title" id="myModalLabel">Delete FAQ</h4>
+                        <h4 class="modal-title" id="myModalLabel">Hapus FAQ</h4>
                     </div>
                     <form class="form-horizontal" action="<?php echo base_url().'admin/faq/hapus_faq'?>" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
 							<input type="hidden" name="kode" value="<?php echo $faq_id;?>"/>
                             <input type="hidden" value="<?php echo $faq_gambar;?>" name="gambar">
-                            <p>Are you sure want to delete FAQ <b><?php echo $faq_judul;?></b> ?</p>
+                            <p>Yakin ingin menghapus FAQ <b><?php echo $faq_judul;?></b> ?</p>
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary btn-flat" id="simpan">Delete</button>
+                        <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary btn-flat" id="simpan">Hapus</button>
                     </div>
                     </form>
                 </div>
@@ -308,7 +308,7 @@
 <?php if($this->session->flashdata('msg')=='error'):?>
         <script type="text/javascript">
                 $.toast({
-                    heading: 'Error',
+                    heading: 'Gagal',
                     text: "Password dan Ulangi Password yang Anda masukan tidak sama.",
                     showHideTransition: 'slide',
                     icon: 'error',
@@ -321,7 +321,7 @@
     <?php elseif($this->session->flashdata('msg')=='success'):?>
         <script type="text/javascript">
                 $.toast({
-                    heading: 'Success',
+                    heading: 'Berhasil',
                     text: "FAQ Berhasil disimpan ke database.",
                     showHideTransition: 'slide',
                     icon: 'success',
@@ -345,7 +345,7 @@
     <?php elseif($this->session->flashdata('msg')=='success-hapus'):?>
         <script type="text/javascript">
                 $.toast({
-                    heading: 'Success',
+                    heading: 'Berhasil',
                     text: "FAQ Berhasil dihapus.",
                     showHideTransition: 'slide',
                     icon: 'success',

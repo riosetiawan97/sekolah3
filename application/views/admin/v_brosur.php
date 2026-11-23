@@ -6,7 +6,7 @@
 			<!--begin::Page title-->
 			<div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
 				<!--begin::Title-->
-				<h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Brochure</h1>
+				<h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Brosur</h1>
 				<!--end::Title-->
                 <!--begin::Separator-->
                 <span class="h-20px border-gray-200 border-start mx-4"></span>
@@ -24,7 +24,7 @@
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
-                    <li class="breadcrumb-item text-muted">Brochure</li>
+                    <li class="breadcrumb-item text-muted">Brosur</li>
                     <!--end::Item-->
                     <!--begin::Item-->
                     <li class="breadcrumb-item">
@@ -32,7 +32,7 @@
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
-                    <li class="breadcrumb-item text-dark">List Brochure</li>
+                    <li class="breadcrumb-item text-dark">Daftar Brosur</li>
                     <!--end::Item-->
                 </ul>
                 <!--end::Breadcrumb-->
@@ -56,11 +56,11 @@
           <table id="example1" class="table table-striped" style="font-size:13px;">
             <thead>
             <tr>
-                <th>Picture</th>
-                <th>Date</th>
-                <th>Author</th>
-                <th>Type</th>
-                <th style="text-align:right;">Action</th>
+                <th>Gambar</th>
+                <th>Tanggal</th>
+                <th>Penulis</th>
+                <th>Tipe</th>
+                <th style="text-align:right;">Aksi</th>
             </tr>
             </thead>
             <tbody>
@@ -130,7 +130,7 @@
                         <!--end::Svg Icon-->
                       </div>
                       <!--end::Close-->
-                      <h4 class="modal-title" id="myModalLabel">Edit Brochure</h4>
+                      <h4 class="modal-title" id="myModalLabel">Ubah Brosur</h4>
                 </div>
                 <form class="form-horizontal" action="<?php echo base_url().'admin/brosur/update_brosur'?>" method="post" enctype="multipart/form-data">
                 <div class="modal-body">
@@ -139,15 +139,15 @@
                     <input type="hidden" name="type" value="<?php echo $type;?>"/>
 
                         <div class="form-group mb-4">
-                            <label for="inputUserName" class="col-sm-4 control-label">Cover Brochure</label>
+                            <label for="inputUserName" class="col-sm-4 control-label">Sampul Brosur</label>
                             <div class="col-sm-7">
                                 <input type="file" name="filefoto"/>
                             </div>
                         </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary btn-flat" id="simpan">Save</button>
+                    <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary btn-flat" id="simpan">Simpan</button>
                 </div>
                 </form>
             </div>
@@ -160,7 +160,7 @@
 <?php if($this->session->flashdata('msg')=='error'):?>
     <script type="text/javascript">
             $.toast({
-                heading: 'Error',
+                heading: 'Gagal',
                 text: "Password dan Ulangi Password yang Anda masukan tidak sama.",
                 showHideTransition: 'slide',
                 icon: 'error',
@@ -173,7 +173,7 @@
 <?php elseif($this->session->flashdata('msg')=='success'):?>
     <script type="text/javascript">
             $.toast({
-                heading: 'Success',
+                heading: 'Berhasil',
                 text: "Brosur Berhasil disimpan ke database.",
                 showHideTransition: 'slide',
                 icon: 'success',
@@ -197,7 +197,7 @@
 <?php elseif($this->session->flashdata('msg')=='success-hapus'):?>
     <script type="text/javascript">
             $.toast({
-                heading: 'Success',
+                heading: 'Berhasil',
                 text: "Brosur Berhasil dihapus.",
                 showHideTransition: 'slide',
                 icon: 'success',

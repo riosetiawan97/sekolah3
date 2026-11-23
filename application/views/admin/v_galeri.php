@@ -6,7 +6,7 @@
 			<!--begin::Page title-->
 			<div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
 				<!--begin::Title-->
-				<h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Gallery</h1>
+				<h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Galeri</h1>
 				<!--end::Title-->
                 <!--begin::Separator-->
                 <span class="h-20px border-gray-200 border-start mx-4"></span>
@@ -24,7 +24,7 @@
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
-                    <li class="breadcrumb-item text-muted">Gallery Photos</li>
+                    <li class="breadcrumb-item text-muted">Foto Galeri</li>
                     <!--end::Item-->
                     <!--begin::Item-->
                     <li class="breadcrumb-item">
@@ -32,7 +32,7 @@
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
-                    <li class="breadcrumb-item text-dark">List Photos</li>
+                    <li class="breadcrumb-item text-dark">Daftar Foto</li>
                     <!--end::Item-->
                 </ul>
                 <!--end::Breadcrumb-->
@@ -45,7 +45,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
                 </svg>
-                Add Photos</a>
+                Tambah Foto</a>
 				<!--end::Button-->
 			</div>
 			<!--end::Actions-->
@@ -67,13 +67,13 @@
               <table id="example1" class="table table-striped" style="font-size:13px;">
                 <thead>
                 <tr>
-          					<th>Photos</th>
-          					<th>Title</th>
-          					<th>Date</th>
+          					<th>Foto</th>
+          					<th>Judul</th>
+          					<th>Tanggal</th>
           					<th>Album</th>
-          					<th>Author</th>
+          					<th>Penulis</th>
           					<th>Slider</th>
-                    <th style="text-align:right;">Action</th>
+                    <th style="text-align:right;">Aksi</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -151,15 +151,15 @@
                           <!--end::Svg Icon-->
                         </div>
                         <!--end::Close-->
-                        <h4 class="modal-title" id="myModalLabel">Add Photo</h4>
+                        <h4 class="modal-title" id="myModalLabel">Tambah Foto</h4>
                     </div>
                     <form class="form-horizontal" action="<?php echo base_url().'admin/galeri/simpan_galeri'?>" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
 
                       <div class="form-group mb-4">
-                          <label for="inputUserName" class="col-sm-4 control-label">Title</label>
+                          <label for="inputUserName" class="col-sm-4 control-label">Judul</label>
                           <div class="col-sm-12">
-                              <input type="text" name="xjudul" class="form-control" id="inputUserName" placeholder="Title" required>
+                              <input type="text" name="xjudul" class="form-control" id="inputUserName" placeholder="Judul" required>
                           </div>
                       </div>
 
@@ -168,7 +168,7 @@
                           <div class="col-sm-12">
 
                             <select class="form-control" name="xalbum" style="width: 100%;" required>
-                                      <option value="">-Select-</option>
+                                      <option value="">-Pilih-</option>
                                 <?php
                                 $no=0;
                                 foreach ($alb->result_array() as $a) :
@@ -184,7 +184,7 @@
                       </div>
 
                       <div class="form-group mb-4">
-                          <label for="inputUserName" class="col-sm-4 control-label">Photo</label>
+                          <label for="inputUserName" class="col-sm-4 control-label">Foto</label>
                           <div class="col-sm-12">
                               <input type="file" name="filefoto" required/>
                           </div>
@@ -199,8 +199,8 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary btn-flat" id="simpan">Save</button>
+                        <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary btn-flat" id="simpan">Simpan</button>
                     </div>
                     </form>
                 </div>
@@ -235,16 +235,16 @@
                           <!--end::Svg Icon-->
                         </div>
                         <!--end::Close-->
-                        <h4 class="modal-title" id="myModalLabel">Edit Photo</h4>
+                        <h4 class="modal-title" id="myModalLabel">Ubah Foto</h4>
                     </div>
                     <form class="form-horizontal" action="<?php echo base_url().'admin/galeri/update_galeri'?>" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
                       <input type="hidden" name="kode" value="<?php echo $galeri_id;?>"/>
                       <input type="hidden" value="<?php echo $galeri_gambar;?>" name="gambar">
                       <div class="form-group mb-4">
-                            <label for="inputUserName" class="col-sm-4 control-label">Title</label>
+                            <label for="inputUserName" class="col-sm-4 control-label">Judul</label>
                             <div class="col-sm-12">
-                                <input type="text" name="xjudul" class="form-control" value="<?php echo $galeri_judul;?>" id="inputUserName" placeholder="Title" required>
+                                <input type="text" name="xjudul" class="form-control" value="<?php echo $galeri_judul;?>" id="inputUserName" placeholder="Judul" required>
                             </div>
                         </div>
 
@@ -253,7 +253,7 @@
                             <div class="col-sm-12">
 
                               <select class="form-control" name="xalbum" style="width: 100%;" required>
-                                        <option value="">-Select-</option>
+                                        <option value="">-Pilih-</option>
                                   <?php
                                   foreach ($alb->result_array() as $a) {
                                                 $alb_id=$a['album_id'];
@@ -268,7 +268,7 @@
                         </div>
 
                         <div class="form-group mb-4">
-                            <label for="inputUserName" class="col-sm-4 control-label">Photo</label>
+                            <label for="inputUserName" class="col-sm-4 control-label">Foto</label>
                             <div class="col-sm-12">
                                 <input type="file" name="filefoto"/>
                             </div>
@@ -284,8 +284,8 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary btn-flat" id="simpan">Update</button>
+                        <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary btn-flat" id="simpan">Simpan Perubahan</button>
                     </div>
                     </form>
                 </div>
@@ -320,19 +320,19 @@
                         <!--end::Svg Icon-->
                       </div>
                       <!--end::Close-->
-                      <h4 class="modal-title" id="myModalLabel">Delete Photo</h4>
+                      <h4 class="modal-title" id="myModalLabel">Hapus Foto</h4>
                     </div>
                     <form class="form-horizontal" action="<?php echo base_url().'admin/galeri/hapus_galeri'?>" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
 							       <input type="hidden" name="kode" value="<?php echo $galeri_id;?>"/>
                      <input type="hidden" value="<?php echo $galeri_gambar;?>" name="gambar">
                      <input type="hidden" value="<?php echo $galeri_album_id;?>" name="album">
-                            <p>Are you sure want to delete Photo <b><?php echo $galeri_judul;?></b> ?</p>
+                            <p>Yakin ingin menghapus foto <b><?php echo $galeri_judul;?></b> ?</p>
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary btn-flat" id="simpan">Delete</button>
+                        <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary btn-flat" id="simpan">Hapus</button>
                     </div>
                     </form>
                 </div>
@@ -356,7 +356,7 @@
 <?php if($this->session->flashdata('msg')=='error'):?>
         <script type="text/javascript">
                 $.toast({
-                    heading: 'Error',
+                    heading: 'Gagal',
                     text: "Password dan Ulangi Password yang Anda masukan tidak sama.",
                     showHideTransition: 'slide',
                     icon: 'error',
@@ -369,7 +369,7 @@
     <?php elseif($this->session->flashdata('msg')=='success'):?>
         <script type="text/javascript">
                 $.toast({
-                    heading: 'Success',
+                    heading: 'Berhasil',
                     text: "Photo Berhasil disimpan ke database.",
                     showHideTransition: 'slide',
                     icon: 'success',
@@ -393,7 +393,7 @@
     <?php elseif($this->session->flashdata('msg')=='success-hapus'):?>
         <script type="text/javascript">
                 $.toast({
-                    heading: 'Success',
+                    heading: 'Berhasil',
                     text: "Photo Berhasil dihapus.",
                     showHideTransition: 'slide',
                     icon: 'success',

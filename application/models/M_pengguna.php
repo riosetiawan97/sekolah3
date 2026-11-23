@@ -22,7 +22,7 @@ class M_pengguna extends CI_Model{
 		return $hsl;
 	}
 	function update_pengguna($kode,$nama,$jenkel,$username,$password,$email,$nohp,$level,$gambar){
-		$hsl=$this->db->query("UPDATE tbl_pengguna set pengguna_nama=?,pengguna_jenkel=?,pengguna_username=?,pengguna_password=?,pengguna_email=?,pengguna_nohp=?,pengguna_level=?,pengguna_photo=? where pengguna_id=?", array($nama, $jenkel, $username, $password, $email, $nohp, $level, $gambar, $kode));
+		$hsl=$this->db->query("UPDATE tbl_pengguna set pengguna_nama=?,pengguna_jenkel=?,pengguna_username=?,pengguna_password=md5(?),pengguna_email=?,pengguna_nohp=?,pengguna_level=?,pengguna_photo=? where pengguna_id=?", array($nama, $jenkel, $username, $password, $email, $nohp, $level, $gambar, $kode));
 		return $hsl;
 	}
 
@@ -31,7 +31,7 @@ class M_pengguna extends CI_Model{
 		return $hsl;
 	}
 	function update_pengguna_tanpa_gambar($kode,$nama,$jenkel,$username,$password,$email,$nohp,$level){
-		$hsl=$this->db->query("UPDATE tbl_pengguna set pengguna_nama=?,pengguna_jenkel=?,pengguna_username=?,pengguna_password=?,pengguna_email=?,pengguna_nohp=?,pengguna_level=? where pengguna_id=?", array($nama, $jenkel, $username, $password, $email, $nohp, $level, $kode));
+		$hsl=$this->db->query("UPDATE tbl_pengguna set pengguna_nama=?,pengguna_jenkel=?,pengguna_username=?,pengguna_password=md5(?),pengguna_email=?,pengguna_nohp=?,pengguna_level=? where pengguna_id=?", array($nama, $jenkel, $username, $password, $email, $nohp, $level, $kode));
 		return $hsl;
 	}
 	//END UPDATE PENGGUNA//

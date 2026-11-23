@@ -6,7 +6,7 @@
 			<!--begin::Page title-->
 			<div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
 				<!--begin::Title-->
-				<h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Users</h1>
+				<h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Pengguna</h1>
 				<!--end::Title-->
                 <!--begin::Separator-->
                 <span class="h-20px border-gray-200 border-start mx-4"></span>
@@ -24,7 +24,7 @@
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
-                    <li class="breadcrumb-item text-muted">Users</li>
+                    <li class="breadcrumb-item text-muted">Pengguna</li>
                     <!--end::Item-->
                     <!--begin::Item-->
                     <li class="breadcrumb-item">
@@ -32,7 +32,7 @@
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
-                    <li class="breadcrumb-item text-dark">List Users</li>
+                    <li class="breadcrumb-item text-dark">Daftar Pengguna</li>
                     <!--end::Item-->
                 </ul>
                 <!--end::Breadcrumb-->
@@ -45,7 +45,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
                 </svg>
-                Add Users</a>
+                Tambah Pengguna</a>
 				<!--end::Button-->
 			</div>
 			<!--end::Actions-->
@@ -67,14 +67,14 @@
               <table id="example1" class="table table-striped" style="font-size:13px;">
                 <thead>
                 <tr>
-					<th>Photo</th>
-                    <th>Name</th>
+					<th>Foto</th>
+                    <th>Nama</th>
                     <th>Email</th>
-                    <th>Gender</th>
+                    <th>Jenis Kelamin</th>
                     <th>Password</th>
-                    <th>Contact Person</th>
+                    <th>Nomor Kontak</th>
                     <th>Level</th>
-                    <th style="text-align:center;">Action</th>
+                    <th style="text-align:center;">Aksi</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -103,7 +103,7 @@
                   <?php if($pengguna_level=='1'):?>
                         <td>Administrator</td>
                   <?php else:?>
-                        <td>Author</td>
+                        <td>Penulis</td>
                   <?php endif;?>
                   <td style="text-align:right;">
                         <a class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#ModalEdit<?php echo $pengguna_id;?>">
@@ -116,6 +116,7 @@
                             </span>
                             <!--end::Svg Icon-->
                         </a>
+                        <a class="btn btn-sm btn-light-warning me-1" href="<?php echo base_url('admin/pengguna/reset_password/'.$pengguna_id); ?>" onclick="return confirm('Buat password baru acak untuk pengguna ini?')" title="Reset password">Reset</a>
                         <a class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm" data-bs-toggle="modal" data-bs-target="#ModalHapus<?php echo $pengguna_id;?>">
                             <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
                             <span class="svg-icon svg-icon-3">
@@ -158,15 +159,15 @@
 							<!--end::Svg Icon-->
 						</div>
 						<!--end::Close-->
-                        <h4 class="modal-title" id="myModalLabel">Add Users</h4>
+                        <h4 class="modal-title" id="myModalLabel">Tambah Pengguna</h4>
                     </div>
                     <form class="form-horizontal" action="<?php echo base_url().'admin/pengguna/simpan_pengguna'?>" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
 
                         <div class="form-group mb-4">
-                            <label for="inputUserName" class="col-sm-4 control-label">Name</label>
+                            <label for="inputUserName" class="col-sm-4 control-label">Nama</label>
                             <div class="col-sm-7">
-                                <input type="text" name="xnama" class="form-control" id="inputUserName" placeholder="Full Name" required>
+                                <input type="text" name="xnama" class="form-control" id="inputUserName" placeholder="Nama Lengkap" required>
                             </div>
                         </div>
                         <div class="form-group mb-4">
@@ -176,15 +177,15 @@
                             </div>
                         </div>
                         <div class="form-group mb-4">
-                            <label for="inputUserName" class="col-sm-4 control-label">Gender</label>
+                            <label for="inputUserName" class="col-sm-4 control-label">Jenis Kelamin</label>
                             <div class="col-sm-7">
                                 <div class="radio radio-info radio-inline">
                                     <input type="radio" id="inlineRadio1" value="L" name="xjenkel" checked>
-                                    <label for="inlineRadio1"> Men </label>
+                                    <label for="inlineRadio1"> Laki-laki </label>
                                 </div>
                                 <div class="radio radio-info radio-inline">
                                     <input type="radio" id="inlineRadio1" value="P" name="xjenkel">
-                                    <label for="inlineRadio2"> Women </label>
+                                    <label for="inlineRadio2"> Perempuan </label>
                                 </div>
                             </div>
                         </div>
@@ -201,15 +202,15 @@
                             </div>
                         </div>
                         <div class="form-group mb-4">
-                            <label for="inputPassword4" class="col-sm-4 control-label">Repeat Password</label>
+                            <label for="inputPassword4" class="col-sm-4 control-label">Ulangi Password</label>
                             <div class="col-sm-7">
-                                <input type="password" name="xpassword2" class="form-control" id="inputPassword4" placeholder="Repeat Password" required>
+                                <input type="password" name="xpassword2" class="form-control" id="inputPassword4" placeholder="Ulangi Password" required>
                             </div>
                         </div>
                         <div class="form-group mb-4">
-                            <label for="inputUserName" class="col-sm-4 control-label">Contact Person</label>
+                            <label for="inputUserName" class="col-sm-4 control-label">Nomor Kontak</label>
                             <div class="col-sm-7">
-                                <input type="text" name="xkontak" class="form-control" id="inputUserName" placeholder="Contact Person" required>
+                                <input type="text" name="xkontak" class="form-control" id="inputUserName" placeholder="Nomor Kontak" required>
                             </div>
                         </div>
                         <div class="form-group mb-4">
@@ -217,12 +218,12 @@
                             <div class="col-sm-7">
                                 <select class="form-control" name="xlevel" required>
                                     <option value="1">Administrator</option>
-                                    <option value="2">Author</option>
+                                    <option value="2">Penulis</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group mb-4">
-                            <label for="inputUserName" class="col-sm-4 control-label">Photo</label>
+                            <label for="inputUserName" class="col-sm-4 control-label">Foto</label>
                             <div class="col-sm-7">
                                 <input type="file" name="filefoto" required/>
                             </div>
@@ -231,8 +232,8 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary btn-flat" id="simpan">Save</button>
+                        <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary btn-flat" id="simpan">Simpan</button>
                     </div>
                     </form>
                 </div>
@@ -268,16 +269,16 @@
 							<!--end::Svg Icon-->
 						</div>
 						<!--end::Close-->
-                        <h4 class="modal-title" id="myModalLabel">Edit User</h4>
+                        <h4 class="modal-title" id="myModalLabel">Ubah Pengguna</h4>
                     </div>
                     <form class="form-horizontal" action="<?php echo base_url().'admin/pengguna/update_pengguna'?>" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
 
                         <div class="form-group mb-4">
-                            <label for="inputUserName" class="col-sm-4 control-label">Name</label>
+                            <label for="inputUserName" class="col-sm-4 control-label">Nama</label>
                             <div class="col-sm-7">
                                 <input type="hidden" name="kode" value="<?php echo $pengguna_id;?>"/>
-                                <input type="text" name="xnama" class="form-control" id="inputUserName" value="<?php echo $pengguna_nama;?>" placeholder="Full Name" required>
+                                <input type="text" name="xnama" class="form-control" id="inputUserName" value="<?php echo $pengguna_nama;?>" placeholder="Nama Lengkap" required>
                             </div>
                         </div>
                         <div class="form-group mb-4">
@@ -287,25 +288,25 @@
                             </div>
                         </div>
                         <div class="form-group mb-4">
-                            <label for="inputUserName" class="col-sm-4 control-label">Gender</label>
+                            <label for="inputUserName" class="col-sm-4 control-label">Jenis Kelamin</label>
                             <div class="col-sm-7">
                             <?php if($pengguna_jenkel=='L'):?>
                                 <div class="radio radio-info radio-inline">
                                     <input type="radio" id="inlineRadio1" value="L" name="xjenkel" checked>
-                                    <label for="inlineRadio1"> Men </label>
+                                    <label for="inlineRadio1"> Laki-laki </label>
                                 </div>
                                 <div class="radio radio-info radio-inline">
                                     <input type="radio" id="inlineRadio1" value="P" name="xjenkel">
-                                    <label for="inlineRadio2"> Women </label>
+                                    <label for="inlineRadio2"> Perempuan </label>
                                 </div>
                             <?php else:?>
                                 <div class="radio radio-info radio-inline">
                                     <input type="radio" id="inlineRadio1" value="L" name="xjenkel">
-                                    <label for="inlineRadio1"> Men </label>
+                                    <label for="inlineRadio1"> Laki-laki </label>
                                 </div>
                                 <div class="radio radio-info radio-inline">
                                     <input type="radio" id="inlineRadio1" value="P" name="xjenkel" checked>
-                                    <label for="inlineRadio2"> Women </label>
+                                    <label for="inlineRadio2"> Perempuan </label>
                                 </div>
                             <?php endif;?>
                             </div>
@@ -323,15 +324,15 @@
                             </div>
                         </div>
                         <div class="form-group mb-4">
-                            <label for="inputPassword4" class="col-sm-4 control-label">Repeat Password</label>
+                            <label for="inputPassword4" class="col-sm-4 control-label">Ulangi Password</label>
                             <div class="col-sm-7">
-                                <input type="password" name="xpassword2" class="form-control" id="inputPassword4" placeholder="Repeat Password">
+                                <input type="password" name="xpassword2" class="form-control" id="inputPassword4" placeholder="Ulangi Password">
                             </div>
                         </div>
                         <div class="form-group mb-4">
-                            <label for="inputUserName" class="col-sm-4 control-label">Contact Person</label>
+                            <label for="inputUserName" class="col-sm-4 control-label">Nomor Kontak</label>
                             <div class="col-sm-7">
-                                <input type="text" name="xkontak" class="form-control" value="<?php echo $pengguna_nohp;?>" id="inputUserName" placeholder="Contact Person" required>
+                                <input type="text" name="xkontak" class="form-control" value="<?php echo $pengguna_nohp;?>" id="inputUserName" placeholder="Nomor Kontak" required>
                             </div>
                         </div>
                         <div class="form-group mb-4">
@@ -340,16 +341,16 @@
                                 <select class="form-control" name="xlevel" required>
                                 <?php if($pengguna_level=='1'):?>
                                     <option value="1" selected>Administrator</option>
-                                    <option value="2">Author</option>
+                                    <option value="2">Penulis</option>
                                 <?php else:?>
                                     <option value="1">Administrator</option>
-                                    <option value="2" selected>Author</option>
+                                    <option value="2" selected>Penulis</option>
                                 <?php endif;?>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group mb-4">
-                            <label for="inputUserName" class="col-sm-4 control-label">Photo</label>
+                            <label for="inputUserName" class="col-sm-4 control-label">Foto</label>
                             <div class="col-sm-7">
                                 <input type="file" name="filefoto"/>
                             </div>
@@ -358,8 +359,8 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary btn-flat" id="simpan">Update</button>
+                        <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary btn-flat" id="simpan">Simpan Perubahan</button>
                     </div>
                     </form>
                 </div>
@@ -395,16 +396,16 @@
 							<!--end::Svg Icon-->
 						</div>
 						<!--end::Close-->
-                        <h4 class="modal-title" id="myModalLabel">Hapus User</h4>
+                        <h4 class="modal-title" id="myModalLabel">Hapus Pengguna</h4>
                     </div>
                     <form class="form-horizontal" action="<?php echo base_url().'admin/pengguna/hapus_pengguna'?>" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
 							<input type="hidden" name="kode" value="<?php echo $pengguna_id;?>"/>
-                            <p>Are you sure want to delete User <b><?php echo $pengguna_nama;?></b> ?</p>
+                            <p>Yakin ingin menghapus pengguna <b><?php echo $pengguna_nama;?></b> ?</p>
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Tutup</button>
                         <button type="submit" class="btn btn-primary btn-flat" id="simpan">Hapus</button>
                     </div>
                     </form>
@@ -439,7 +440,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-default" data-bs-dismiss="modal">Tutup</button>
                     </div>
 
                 </div>
@@ -452,7 +453,7 @@
 <?php if($this->session->flashdata('msg')=='error'):?>
         <script type="text/javascript">
                 $.toast({
-                    heading: 'Error',
+                    heading: 'Gagal',
                     text: "Password dan Ulangi Password yang Anda masukan tidak sama.",
                     showHideTransition: 'slide',
                     icon: 'error',
@@ -464,7 +465,7 @@
     <?php elseif($this->session->flashdata('msg')=='warning'):?>
         <script type="text/javascript">
                 $.toast({
-                    heading: 'Warning',
+                    heading: 'Peringatan',
                     text: "Gambar yang Anda masukan terlalu besar.",
                     showHideTransition: 'slide',
                     icon: 'warning',
@@ -476,7 +477,7 @@
     <?php elseif($this->session->flashdata('msg')=='success'):?>
         <script type="text/javascript">
                 $.toast({
-                    heading: 'Success',
+                    heading: 'Berhasil',
                     text: "Pengguna Berhasil disimpan ke database.",
                     showHideTransition: 'slide',
                     icon: 'success',
@@ -500,7 +501,7 @@
     <?php elseif($this->session->flashdata('msg')=='success-hapus'):?>
         <script type="text/javascript">
                 $.toast({
-                    heading: 'Success',
+                    heading: 'Berhasil',
                     text: "Pengguna Berhasil dihapus.",
                     showHideTransition: 'slide',
                     icon: 'success',
@@ -511,7 +512,7 @@
         </script>
     <?php elseif($this->session->flashdata('msg')=='show-modal'):?>
         <script type="text/javascript">
-                $('#ModalResetPassword').modal('show');
+                $(function () { bootstrap.Modal.getOrCreateInstance(document.getElementById('ModalResetPassword')).show(); });
         </script>
     <?php else:?>
 

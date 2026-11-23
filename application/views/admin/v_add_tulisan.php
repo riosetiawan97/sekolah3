@@ -6,7 +6,7 @@
 			<!--begin::Page title-->
 			<div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
 				<!--begin::Title-->
-				<h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">List News</h1>
+				<h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Daftar Berita</h1>
 				<!--end::Title-->
                 <!--begin::Separator-->
                 <span class="h-20px border-gray-200 border-start mx-4"></span>
@@ -24,7 +24,7 @@
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
-                    <li class="breadcrumb-item text-muted">News</li>
+                    <li class="breadcrumb-item text-muted">Berita</li>
                     <!--end::Item-->
                     <!--begin::Item-->
                     <li class="breadcrumb-item">
@@ -32,7 +32,7 @@
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
-                    <li class="breadcrumb-item text-dark">Add News</li>
+                    <li class="breadcrumb-item text-dark">Tambah Berita</li>
                     <!--end::Item-->
                 </ul>
                 <!--end::Breadcrumb-->
@@ -54,7 +54,7 @@
                 <!--begin::Header-->
                 <div class="card-header border-0 pt-5">
                   <h3 class="card-title align-items-start flex-column">
-                    <span class="card-label fw-bolder fs-3 mb-1">Post News</span>
+                    <span class="card-label fw-bolder fs-3 mb-1">Terbitkan Berita</span>
                   </h3>
                 </div>
                 <!--end::Header-->
@@ -66,7 +66,7 @@
                     <!-- /.col -->
                     <div class="col-md-2">
                       <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn-flat pull-right"><span class="fa fa-pencil"></span> Publish</button>
+                        <button type="submit" class="btn btn-primary btn-flat pull-right"><span class="fa fa-pencil"></span> Terbitkan</button>
                       <!-- /.form-group -->
                     </div>
                     <!-- /.col -->
@@ -83,7 +83,7 @@
                 <!--begin::Header-->
                 <div class="card-header border-0 pt-5">
                   <h3 class="card-title align-items-start flex-column">
-                    <span class="card-label fw-bolder fs-3 mb-1">News</span>
+                    <span class="card-label fw-bolder fs-3 mb-1">Berita</span>
                   </h3>
                 </div>
                 <!--end::Header-->
@@ -103,7 +103,7 @@
                 <!--begin::Header-->
                 <div class="card-header border-0 pt-5">
                   <h3 class="card-title align-items-start flex-column">
-                    <span class="card-label fw-bolder fs-3 mb-1">Other Settings</span>
+                    <span class="card-label fw-bolder fs-3 mb-1">Pengaturan Lain</span>
                   </h3>
                 </div>
                 <!--end::Header-->
@@ -111,7 +111,7 @@
                   <div class="row">
                     <div class="col-md-12">                      
                       <div class="form-group mb-4">
-                        <label>Category</label>
+                        <label>Kategori</label>
                         <select class="form-control select2" name="xkategori" style="width: 100%;" required>
                           <option value="">-Pilih-</option>
                           <?php
@@ -127,7 +127,7 @@
                         </select>
                       </div>                  
                       <div class="form-group mb-4">
-                        <label>Picture</label>
+                        <label>Gambar</label>
                         <input type="file" name="filefoto" style="width: 100%;" required>
                       </div>
                       <div class="form-group mb-4">

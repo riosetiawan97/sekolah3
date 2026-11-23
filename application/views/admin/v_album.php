@@ -32,7 +32,7 @@
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
-                    <li class="breadcrumb-item text-dark">List Album</li>
+                    <li class="breadcrumb-item text-dark">Daftar Album</li>
                     <!--end::Item-->
                 </ul>
                 <!--end::Breadcrumb-->
@@ -45,7 +45,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
                 </svg>
-                Add Album</a>
+                Tambah Album</a>
 				<!--end::Button-->
 			</div>
 			<!--end::Actions-->
@@ -67,13 +67,13 @@
           <table id="example1" class="table table-striped" style="font-size:13px;">
             <thead>
             <tr>
-                <th>Picture</th>
+                <th>Gambar</th>
                 <th>Album</th>
-                <th>Date</th>
-                <th>Author</th>
-                <th>Show Home</th>
-                <th>Total Picture</th>
-                <th style="text-align:right;">Action</th>
+                <th>Tanggal</th>
+                <th>Penulis</th>
+                <th>Tampil di Beranda</th>
+                <th>Jumlah Foto</th>
+                <th style="text-align:right;">Aksi</th>
             </tr>
             </thead>
             <tbody>
@@ -149,32 +149,32 @@
 							<!--end::Svg Icon-->
 						</div>
 						<!--end::Close-->
-                        <h4 class="modal-title" id="myModalLabel">Add Album</h4>
+                        <h4 class="modal-title" id="myModalLabel">Tambah Album</h4>
                 </div>
                 <form class="form-horizontal" action="<?php echo base_url().'admin/album/simpan_album'?>" method="post" enctype="multipart/form-data">
                 <div class="modal-body">
 
                     <div class="form-group mb-4">
-                        <label for="inputUserName" class="col-sm-4 control-label">Album Name</label>
+                        <label for="inputUserName" class="col-sm-4 control-label">Nama Album</label>
                         <div class="col-sm-12">
-                            <input type="text" name="xnama_album" class="form-control" id="inputUserName" placeholder="Album Name" required>
+                            <input type="text" name="xnama_album" class="form-control" id="inputUserName" placeholder="Nama Album" required>
                         </div>
                     </div>
 
                     <div class="form-group mb-4">
-                        <label for="inputUserName" class="col-sm-4 control-label">Cover Album</label>
+                        <label for="inputUserName" class="col-sm-4 control-label">Sampul Album</label>
                         <div class="col-sm-12">
                             <input type="file" name="filefoto" required/>
                         </div>
                     </div>
                     <div class="form-group mb-4">
-                    <label class="col-sm-4 control-label">Show Home</label>
+                    <label class="col-sm-4 control-label">Tampil di Beranda</label>
                         <div class="col-sm-12">
                         <input type="checkbox" name="show_home" value="1">
                         </div>
                     </div>
                     <div class="form-group mb-4">
-                        <label for="inputDeskripsi" class="col-sm-4 control-label">Description</label>
+                        <label for="inputDeskripsi" class="col-sm-4 control-label">Deskripsi</label>
                         <div class="col-sm-12">
                             <textarea class="ckeditor" name="deskripsi" required></textarea>
                         </div>
@@ -182,8 +182,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary btn-flat" id="simpan">Save</button>
+                    <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary btn-flat" id="simpan">Simpan</button>
                 </div>
                 </form>
             </div>
@@ -218,41 +218,41 @@
                         <!--end::Svg Icon-->
                     </div>
                     <!--end::Close-->
-                    <h4 class="modal-title" id="myModalLabel">Edit Album</h4>
+                    <h4 class="modal-title" id="myModalLabel">Ubah Album</h4>
                 </div>
                 <form class="form-horizontal" action="<?php echo base_url().'admin/album/update_album'?>" method="post" enctype="multipart/form-data">
                 <div class="modal-body">
                     <input type="hidden" name="kode" value="<?php echo $album_id;?>"/>
                     <input type="hidden" value="<?php echo $album_cover;?>" name="gambar">
                         <div class="form-group mb-4">
-                            <label for="inputUserName" class="col-sm-4 control-label">Album Name</label>
+                            <label for="inputUserName" class="col-sm-4 control-label">Nama Album</label>
                             <div class="col-sm-12">
-                                <input type="text" name="xnama_album" class="form-control" value="<?php echo $album_nama;?>" id="inputUserName" placeholder="Album Name" required>
+                                <input type="text" name="xnama_album" class="form-control" value="<?php echo $album_nama;?>" id="inputUserName" placeholder="Nama Album" required>
                             </div>
                         </div>
                         <div class="form-group mb-4">
-                            <label for="inputUserName" class="col-sm-4 control-label">Cover Album</label>
+                            <label for="inputUserName" class="col-sm-4 control-label">Sampul Album</label>
                             <div class="col-sm-12">
                                 <input type="file" name="filefoto"/>
                             </div>
                         </div>
                         <div class="form-group mb-4">
-                            <label class="col-sm-4 control-label">Show Home</label>
+                            <label class="col-sm-4 control-label">Tampil di Beranda</label>
                             <div class="col-sm-12">
                               <input type="checkbox" name="show_home" value="1" <?php if($album_show_home==1)
                               echo "checked";?>>
                             </div>
                         </div>
                         <div class="form-group mb-4">
-                            <label for="inputDeskripsi" class="col-sm-4 control-label">Description</label>
+                            <label for="inputDeskripsi" class="col-sm-4 control-label">Deskripsi</label>
                             <div class="col-sm-12">
                                 <textarea class="ckeditor" name="deskripsi" required><?php echo $album_deskripsi;?></textarea>
                             </div>
                         </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary btn-flat" id="simpan">Update</button>
+                    <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary btn-flat" id="simpan">Simpan Perubahan</button>
                 </div>
                 </form>
             </div>
@@ -286,18 +286,18 @@
 							<!--end::Svg Icon-->
 						</div>
 						<!--end::Close-->
-                        <h4 class="modal-title" id="myModalLabel">Delete Album</h4>
+                        <h4 class="modal-title" id="myModalLabel">Hapus Album</h4>
                 </div>
                 <form class="form-horizontal" action="<?php echo base_url().'admin/album/hapus_album'?>" method="post" enctype="multipart/form-data">
                 <div class="modal-body">
                   <input type="hidden" name="kode" value="<?php echo $album_id;?>"/>
                   <input type="hidden" value="<?php echo $album_cover;?>" name="gambar">
-                        <p>Are you sure want to delete Album <b><?php echo $album_nama;?></b> ?</p>
+                        <p>Yakin ingin menghapus album <b><?php echo $album_nama;?></b> ?</p>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary btn-flat" id="simpan">Delete</button>
+                    <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary btn-flat" id="simpan">Hapus</button>
                 </div>
                 </form>
             </div>
@@ -308,7 +308,7 @@
 <?php if($this->session->flashdata('msg')=='error'):?>
     <script type="text/javascript">
             $.toast({
-                heading: 'Error',
+                heading: 'Gagal',
                 text: "Password dan Ulangi Password yang Anda masukan tidak sama.",
                 showHideTransition: 'slide',
                 icon: 'error',
@@ -321,7 +321,7 @@
 <?php elseif($this->session->flashdata('msg')=='success'):?>
     <script type="text/javascript">
             $.toast({
-                heading: 'Success',
+                heading: 'Berhasil',
                 text: "Album Berhasil disimpan ke database.",
                 showHideTransition: 'slide',
                 icon: 'success',
@@ -345,7 +345,7 @@
 <?php elseif($this->session->flashdata('msg')=='success-hapus'):?>
     <script type="text/javascript">
             $.toast({
-                heading: 'Success',
+                heading: 'Berhasil',
                 text: "Album Berhasil dihapus.",
                 showHideTransition: 'slide',
                 icon: 'success',

@@ -32,7 +32,7 @@
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
-                    <li class="breadcrumb-item text-dark">Edit Setup</li>
+                    <li class="breadcrumb-item text-dark">Ubah Data Sekolah</li>
                     <!--end::Item-->
                 </ul>
                 <!--end::Breadcrumb-->
@@ -59,7 +59,7 @@
   <!-- SELECT2 EXAMPLE -->
   <div class="box box-default">
     <div class="box-header with-border mb-4">
-      <h3 class="box-title">Update Setup</h3>
+      <h3 class="box-title">Ubah Data Sekolah</h3>
     </div>
 <?php
     $b=$data->row_array();
@@ -74,24 +74,24 @@
       </div>
       <input type="hidden" name="id" value="<?php echo $b['id'];?>">
       <div class="form-group mb-4">
-        <label>School Name</label>
-        <input type="text" name="nama_sekolah" class="form-control" value="<?php echo $b['nama_sekolah'];?>" placeholder="School Name" required/>
+        <label>Nama Sekolah</label>
+        <input type="text" name="nama_sekolah" class="form-control" value="<?php echo $b['nama_sekolah'];?>" placeholder="Nama Sekolah" required/>
       </div>
       <div class="form-group mb-4">
-        <label>Sub District</label>
-        <input type="text" name="kecamatan" class="form-control" value="<?php echo $b['kecamatan'];?>" placeholder="Sub District" required/>
+        <label>Kecamatan</label>
+        <input type="text" name="kecamatan" class="form-control" value="<?php echo $b['kecamatan'];?>" placeholder="Kecamatan" required/>
       </div>
       <div class="form-group mb-4">
-        <label>City</label>
-        <input type="text" name="kota" class="form-control" value="<?php echo $b['kota'];?>" placeholder="City" required/>
+        <label>Kota</label>
+        <input type="text" name="kota" class="form-control" value="<?php echo $b['kota'];?>" placeholder="Kota" required/>
       </div>
       <div class="form-group mb-4">
-        <label>Address</label>
-        <input type="text" name="alamat" class="form-control" value="<?php echo $b['alamat'];?>" placeholder="Address" required/>
+        <label>Alamat</label>
+        <input type="text" name="alamat" class="form-control" value="<?php echo $b['alamat'];?>" placeholder="Alamat" required/>
       </div>
       <div class="form-group mb-4">
-        <label>Phone</label>
-        <input type="text" name="telepon" class="form-control" value="<?php echo $b['telepon'];?>" placeholder="Phone" required/>
+        <label>Telepon</label>
+        <input type="text" name="telepon" class="form-control" value="<?php echo $b['telepon'];?>" placeholder="Telepon" required/>
       </div>
       <div class="form-group mb-4">
         <label>Email</label>
@@ -106,22 +106,22 @@
         <input type="text" name="gmaps" class="form-control" value="<?php echo $b['gmaps'];?>" placeholder="Google Maps" required/>
       </div>
       <div class="form-group mb-4">
-        <label>Whatsapp</label>
-        <input type="text" name="whatsapp" class="form-control" value="<?php echo $b['whatsapp'];?>" placeholder="Whatsapp" required/>
+        <label>WhatsApp</label>
+        <input type="text" name="whatsapp" class="form-control" value="<?php echo $b['whatsapp'];?>" placeholder="WhatsApp" required/>
       </div>
       <div class="form-group mb-4">
         <label>Instagram</label>
         <input type="text" name="instagram" class="form-control" value="<?php echo $b['instagram'];?>" placeholder="Instagram" required/>
       </div>
       <div class="form-group mb-4">
-        <label>Title Website</label>
-        <input type="text" name="judul_website" class="form-control" value="<?php echo $b['judul_website'];?>" placeholder="Title Website" required/>
+        <label>Judul Website</label>
+        <input type="text" name="judul_website" class="form-control" value="<?php echo $b['judul_website'];?>" placeholder="Judul Website" required/>
       </div>
     <!-- /.box-body -->
     </div>
     <div class="modal-footer">
       <div class="form-group mb-4">
-        <button type="submit" class="btn btn-primary btn-flat pull-right"><span class="fa fa-pencil"></span> Update</button>
+        <button type="submit" class="btn btn-primary btn-flat pull-right"><span class="fa fa-pencil"></span> Simpan Perubahan</button>
       <!-- /.form-group mb-4 -->
       </div>
     </div>

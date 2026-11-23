@@ -6,7 +6,7 @@
 			<!--begin::Page title-->
 			<div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
 				<!--begin::Title-->
-				<h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Category News</h1>
+				<h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Kategori Berita</h1>
 				<!--end::Title-->
                 <!--begin::Separator-->
                 <span class="h-20px border-gray-200 border-start mx-4"></span>
@@ -24,7 +24,7 @@
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
-                    <li class="breadcrumb-item text-muted">Category</li>
+                    <li class="breadcrumb-item text-muted">Kategori</li>
                     <!--end::Item-->
                     <!--begin::Item-->
                     <li class="breadcrumb-item">
@@ -32,7 +32,7 @@
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
-                    <li class="breadcrumb-item text-dark">List Category</li>
+                    <li class="breadcrumb-item text-dark">Daftar Kategori</li>
                     <!--end::Item-->
                 </ul>
                 <!--end::Breadcrumb-->
@@ -45,7 +45,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
                 </svg>
-                Add Category</a>
+                Tambah Kategori</a>
 				<!--end::Button-->
 			</div>
 			<!--end::Actions-->
@@ -68,8 +68,8 @@
                 <thead>
                 <tr>
 					<th style="width:100px;">#</th>
-                    <th>Category</th>
-                    <th style="text-align:right;">Action</th>
+                    <th>Kategori</th>
+                    <th style="text-align:right;">Aksi</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -138,22 +138,22 @@
 							<!--end::Svg Icon-->
 						</div>
 						<!--end::Close-->
-                        <h4 class="modal-title" id="myModalLabel">Add Category</h4>
+                        <h4 class="modal-title" id="myModalLabel">Tambah Kategori</h4>
                     </div>
                     <form class="form-horizontal" action="<?php echo base_url().'admin/kategori/simpan_kategori'?>" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
 
                                     <div class="form-group mb-4">
-                                        <label for="inputUserName" class="col-sm-4 control-label">Category</label>
+                                        <label for="inputUserName" class="col-sm-4 control-label">Kategori</label>
                                         <div class="col-sm-7">
-                                            <input type="text" name="xkategori" class="form-control" id="inputUserName" placeholder="Category" required>
+                                            <input type="text" name="xkategori" class="form-control" id="inputUserName" placeholder="Kategori" required>
                                         </div>
                                     </div>
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary btn-flat" id="simpan">Save</button>
+                        <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary btn-flat" id="simpan">Simpan</button>
                     </div>
                     </form>
                 </div>
@@ -182,13 +182,13 @@
 							<!--end::Svg Icon-->
 						</div>
 						<!--end::Close-->
-                        <h4 class="modal-title" id="myModalLabel">Edit Category</h4>
+                        <h4 class="modal-title" id="myModalLabel">Ubah Kategori</h4>
                     </div>
                     <form class="form-horizontal" action="<?php echo base_url().'admin/kategori/update_kategori'?>" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
 
                                     <div class="form-group mb-4">
-                                        <label for="inputUserName" class="col-sm-4 control-label">Category</label>
+                                        <label for="inputUserName" class="col-sm-4 control-label">Kategori</label>
                                         <div class="col-sm-7">
 											<input type="hidden" name="kode" value="<?php echo $kategori_id;?>"/>
                                             <input type="text" name="xkategori" class="form-control" id="inputUserName" value="<?php echo $kategori_nama;?>" placeholder="Kategori" required>
@@ -197,8 +197,8 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary btn-flat" id="simpan">Update</button>
+                        <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary btn-flat" id="simpan">Simpan Perubahan</button>
                     </div>
                     </form>
                 </div>
@@ -227,17 +227,17 @@
 							<!--end::Svg Icon-->
 						</div>
 						<!--end::Close-->
-                        <h4 class="modal-title" id="myModalLabel">Delete Category</h4>
+                        <h4 class="modal-title" id="myModalLabel">Hapus Kategori</h4>
                     </div>
                     <form class="form-horizontal" action="<?php echo base_url().'admin/kategori/hapus_kategori'?>" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
 							<input type="hidden" name="kode" value="<?php echo $kategori_id;?>"/>
-                            <p>Are you sure want to delete category <b><?php echo $kategori_nama;?></b> ?</p>
+                            <p>Yakin ingin menghapus kategori <b><?php echo $kategori_nama;?></b> ?</p>
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary btn-flat" id="simpan">Delete</button>
+                        <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary btn-flat" id="simpan">Hapus</button>
                     </div>
                     </form>
                 </div>
@@ -266,7 +266,7 @@
 <?php if($this->session->flashdata('msg')=='error'):?>
         <script type="text/javascript">
                 $.toast({
-                    heading: 'Error',
+                    heading: 'Gagal',
                     text: "Password dan Ulangi Password yang Anda masukan tidak sama.",
                     showHideTransition: 'slide',
                     icon: 'error',
@@ -279,7 +279,7 @@
     <?php elseif($this->session->flashdata('msg')=='success'):?>
         <script type="text/javascript">
                 $.toast({
-                    heading: 'Success',
+                    heading: 'Berhasil',
                     text: "Kategori Berhasil disimpan ke database.",
                     showHideTransition: 'slide',
                     icon: 'success',
@@ -303,7 +303,7 @@
     <?php elseif($this->session->flashdata('msg')=='success-hapus'):?>
         <script type="text/javascript">
                 $.toast({
-                    heading: 'Success',
+                    heading: 'Berhasil',
                     text: "Kategori Berhasil dihapus.",
                     showHideTransition: 'slide',
                     icon: 'success',

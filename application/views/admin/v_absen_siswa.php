@@ -6,7 +6,7 @@
 			<!--begin::Page title-->
 			<div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
 				<!--begin::Title-->
-				<h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Student Attendance</h1>
+				<h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Absensi Siswa</h1>
 				<!--end::Title-->
                 <!--begin::Separator-->
                 <span class="h-20px border-gray-200 border-start mx-4"></span>
@@ -24,7 +24,7 @@
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
-                    <li class="breadcrumb-item text-muted">Student Attendance</li>
+                    <li class="breadcrumb-item text-muted">Absensi Siswa</li>
                     <!--end::Item-->
                     <!--begin::Item-->
                     <li class="breadcrumb-item">
@@ -32,7 +32,7 @@
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
-                    <li class="breadcrumb-item text-dark">List Student Attendance</li>
+                    <li class="breadcrumb-item text-dark">Daftar Absensi Siswa</li>
                     <!--end::Item-->
                 </ul>
                 <!--end::Breadcrumb-->
@@ -58,7 +58,7 @@
 					<form action="<?php echo site_url('admin/siswa/absen');?>" method="post">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label>Date Range</label>
+								<label>Rentang Tanggal</label>
 								<div class="input-group">
 								  <div class="input-group-addon">
 									<i class="fa fa-calendar"></i>
@@ -68,21 +68,21 @@
 							</div>							
 						</div>
 						<div class="col-md-4">						
-							<label>Submit</label>
+							<label>Tampilkan</label>
 							<div class="input-group date">
-								<button type="submit" class="btn btn-primary btn-submit">Submit</button>
+								<button type="submit" class="btn btn-primary btn-submit">Tampilkan</button>
 							</div>
 						</div>
 					</form>					
 				</div>
                 <thead>
                 <tr>
-					<th style="width:70px;">#Date</th>
-                    <th>Time</th>
-                    <th>Name</th>
-                    <th>Class</th>
-                    <th>Major</th>
-                    <th style="text-align:right;">Action</th>
+					<th style="width:70px;">Tanggal</th>
+                    <th>Waktu</th>
+                    <th>Nama</th>
+                    <th>Kelas</th>
+                    <th>Jurusan</th>
+                    <th style="text-align:right;">Aksi</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -153,17 +153,17 @@
                 <!--end::Svg Icon-->
               </div>
               <!--end::Close-->
-              <h4 class="modal-title" id="myModalLabel">Delete Student Attendance</h4>
+              <h4 class="modal-title" id="myModalLabel">Hapus Absensi Siswa</h4>
             </div>
-            <form class="form-horizontal" action="<?php echo base_url().'admin/siswa/hapus_absen'?>" method="post" enctype="multipart/form-data">
+            <form class="form-horizontal" action="<?php echo base_url().'admin/siswa/hapus_absen_siswa'?>" method="post" enctype="multipart/form-data">
             <div class="modal-body">
               <input type="hidden" name="id" value="<?php echo $id;?>"/>
-                    <p>Are you sure want to delete ?</p>
+                    <p>Yakin ingin menghapus data ini?</p>
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary btn-flat" id="simpan">Delete</button>
+                <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Tutup</button>
+                <button type="submit" class="btn btn-primary btn-flat" id="simpan">Hapus</button>
             </div>
             </form>
         </div>
@@ -197,6 +197,8 @@
       "autoWidth": false
     }); */
 
+  $(function () {
+    if ( ! $.fn.datepicker) return;
     $('#datepicker').datepicker({
       autoclose: true,
       format: 'yyyy-mm-dd'
@@ -213,16 +215,17 @@
       autoclose: true,
       format: 'yyyy-mm-dd'
     });
-    $(".timepicker").timepicker({
+    if ($.fn.timepicker) $(".timepicker").timepicker({
       showInputs: true
     });
+  });
 
   /*});*/
 </script>
 <?php if($this->session->flashdata('msg')=='error'):?>
         <script type="text/javascript">
                 $.toast({
-                    heading: 'Error',
+                    heading: 'Gagal',
                     text: "Password dan Ulangi Password yang Anda masukan tidak sama.",
                     showHideTransition: 'slide',
                     icon: 'error',
@@ -247,7 +250,7 @@
     <?php elseif($this->session->flashdata('msg')=='success-hapus'):?>
         <script type="text/javascript">
                 $.toast({
-                    heading: 'Success',
+                    heading: 'Berhasil',
                     text: "Pesan Berhasil dihapus.",
                     showHideTransition: 'slide',
                     icon: 'success',
