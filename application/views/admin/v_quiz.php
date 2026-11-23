@@ -15,7 +15,7 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-                    <a class="btn btn-success btn-flat" href="<?php echo base_url() . 'admin/quiz/add_quiz' ?>"><span class="fa fa-plus"></span> Add Quiz</a>
+                    <a class="btn btn-success btn-flat" href="<?php echo base_url() . 'admin/quiz/add_quiz' ?>"><span class="fa fa-plus"></span> Tambah Quiz</a>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -69,7 +69,7 @@
                         <p>Apakah Anda yakin mau menghapus quiz <b><?php echo $i['judul']; ?></b> ?</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Tutup</button>
                         <button type="submit" class="btn btn-primary btn-flat" id="simpan">Hapus</button>
                     </div>
                 </form>

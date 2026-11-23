@@ -1,12 +1,12 @@
 <section class="content-header">
     <h1>
-        Edit Quiz
+        Ubah Quiz
         <small></small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="<?php echo base_url() . 'admin/quiz' ?>">Quiz</a></li>
-        <li class="active">Edit Quiz</li>
+        <li class="active">Ubah Quiz</li>
     </ol>
 </section>
 

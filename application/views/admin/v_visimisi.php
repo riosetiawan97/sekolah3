@@ -6,7 +6,7 @@
 			<!--begin::Page title-->
 			<div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
 				<!--begin::Title-->
-				<h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Visi Misi</h1>
+				<h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Visi & Misi</h1>
 				<!--end::Title-->
                 <!--begin::Separator-->
                 <span class="h-20px border-gray-200 border-start mx-4"></span>
@@ -32,7 +32,7 @@
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
-                    <li class="breadcrumb-item text-dark">Edit Vision and Mission</li>
+                    <li class="breadcrumb-item text-dark">Ubah Visi & Misi</li>
                     <!--end::Item-->
                 </ul>
                 <!--end::Breadcrumb-->
@@ -59,7 +59,7 @@
   <!-- SELECT2 EXAMPLE -->
   <div class="box box-default">
     <div class="box-header with-border mb-4">
-      <h3 class="box-title">Update Vision and Mission</h3>
+      <h3 class="box-title">Ubah Visi & Misi</h3>
     </div>
 <?php
     $b=$data->row_array();
@@ -69,21 +69,21 @@
     <div class="box-body">
       <input type="hidden" name="id" value="<?php echo $b['id'];?>">
       <div class="form-group mb-4">
-        <label>Vision and Mission Picture</label>
+        <label>Gambar Visi & Misi</label>
         <input type="file" name="gambarvisimisi" style="width: 100%;">
       </div>
       <div class="form-group mb-4">
-        <label>Vision</label>
+        <label>Visi</label>
         <textarea class="ckeditor" name="visi" class="form-control" rows="3" placeholder="Visi" id="visi"><?php echo $b['visi'];?></textarea>
       </div>  
       <div class="form-group mb-4">
-        <label>Mission</label>
+        <label>Misi</label>
         <textarea class="ckeditor" name="misi" class="form-control" rows="3" placeholder="Misi" id="misi"><?php echo $b['misi'];?></textarea>
       </div>      
     </div>
     <div class="modal-footer">
       <div class="form-group mb-4">
-        <button type="submit" class="btn btn-primary btn-flat pull-right"><span class="fa fa-pencil"></span> Update</button>
+        <button type="submit" class="btn btn-primary btn-flat pull-right"><span class="fa fa-pencil"></span> Simpan Perubahan</button>
       <!-- /.form-group mb-4 -->
       </div>
     </div>

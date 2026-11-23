@@ -32,7 +32,7 @@
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
-                    <li class="breadcrumb-item text-dark">List Event</li>
+                    <li class="breadcrumb-item text-dark">Daftar Event</li>
                     <!--end::Item-->
                 </ul>
                 <!--end::Breadcrumb-->
@@ -45,7 +45,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
                 </svg>
-                Add Event</a>
+                Tambah Event</a>
 				<!--end::Button-->
 			</div>
 			<!--end::Actions-->
@@ -69,11 +69,11 @@
                 <tr>
 					          <th style="width:70px;">#</th>
                     <th>Event</th>
-                    <th>Date</th>
-                    <th>Place</th>
-                    <th>Time</th>
-                    <th>Author</th>
-                    <th style="text-align:right;">Action</th>
+                    <th>Tanggal</th>
+                    <th>Tempat</th>
+                    <th>Waktu</th>
+                    <th>Penulis</th>
+                    <th style="text-align:right;">Aksi</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -153,32 +153,32 @@
 							<!--end::Svg Icon-->
 						</div>
 						<!--end::Close-->
-                        <h4 class="modal-title" id="myModalLabel">Add Event</h4>
+                        <h4 class="modal-title" id="myModalLabel">Tambah Event</h4>
                     </div>
                     <form class="form-horizontal" action="<?php echo base_url().'admin/agenda/simpan_agenda'?>" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
 
                         <div class="form-group mb-4">
-                            <label for="inputUserName" class="col-sm-4 control-label">Event Name</label>
+                            <label for="inputUserName" class="col-sm-4 control-label">Nama Event</label>
                             <div class="col-sm-7">
-                                <input type="text" name="xnama_agenda" class="form-control" id="inputUserName" placeholder="Event Name" required>
+                                <input type="text" name="xnama_agenda" class="form-control" id="inputUserName" placeholder="Nama Event" required>
                             </div>
                         </div>
                         <div class="form-group mb-4">
-                            <label for="inputUserName" class="col-sm-4 control-label">Event Picture</label>
+                            <label for="inputUserName" class="col-sm-4 control-label">Gambar Event</label>
                             <div class="col-sm-12">
                                 <input type="file" name="filefoto" />
                             </div>
                         </div>
                         <div class="form-group mb-4">
-                            <label for="inputUserName" class="col-sm-4 control-label">Description</label>
+                            <label for="inputUserName" class="col-sm-4 control-label">Deskripsi</label>
                             <div class="col-sm-7">
-                                <textarea class="form-control" rows="3" name="xdeskripsi" placeholder="Description ..." required></textarea>
+                                <textarea class="form-control" rows="3" name="xdeskripsi" placeholder="Deskripsi ..." required></textarea>
                             </div>
                         </div>
 
                         <div class="form-group mb-4">
-                            <label for="inputUserName" class="col-sm-4 control-label">Date From</label>
+                            <label for="inputUserName" class="col-sm-4 control-label">Tanggal Mulai</label>
                             <div class="col-sm-7">
                             <div class="input-group date">
                                 <div class="input-group-addon">
@@ -193,7 +193,7 @@
 
                         <!-- Date range -->
                         <div class="form-group mb-4">
-                            <label for="inputUserName" class="col-sm-4 control-label">Date To</label>
+                            <label for="inputUserName" class="col-sm-4 control-label">Tanggal Selesai</label>
                             <div class="col-sm-7">
                             <div class="input-group date">
                                 <div class="input-group-addon">
@@ -206,15 +206,15 @@
                         </div>
                         <!-- /.form group -->
                         <div class="form-group mb-4">
-                            <label for="inputUserName" class="col-sm-4 control-label">Place</label>
+                            <label for="inputUserName" class="col-sm-4 control-label">Tempat</label>
                             <div class="col-sm-7">
-                                <input type="text" name="xtempat" class="form-control" id="inputUserName" placeholder="Place" required>
+                                <input type="text" name="xtempat" class="form-control" id="inputUserName" placeholder="Tempat" required>
                             </div>
                         </div>
                         <div class="form-group mb-4">
-                            <label for="inputUserName" class="col-sm-4 control-label">Time</label>
+                            <label for="inputUserName" class="col-sm-4 control-label">Waktu</label>
                             <div class="col-sm-7">
-                                <input type="text" name="xwaktu" class="form-control" id="inputUserName" placeholder="Example: 10.30-11.00 WIB" required>
+                                <input type="text" name="xwaktu" class="form-control" id="inputUserName" placeholder="Contoh: 10.30-11.00 WIB" required>
                             </div>
                         </div>
 
@@ -226,16 +226,16 @@
                         </div>
 
                         <div class="form-group mb-4">
-                            <label for="inputUserName" class="col-sm-4 control-label">Remarks</label>
+                            <label for="inputUserName" class="col-sm-4 control-label">Keterangan</label>
                             <div class="col-sm-7">
-                                <textarea class="form-control" name="xketerangan" rows="2" placeholder="Remarks ..."></textarea>
+                                <textarea class="form-control" name="xketerangan" rows="2" placeholder="Keterangan ..."></textarea>
                             </div>
                         </div>
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary btn-flat" id="simpan">Save</button>
+                        <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary btn-flat" id="simpan">Simpan</button>
                     </div>
                     </form>
                 </div>
@@ -273,34 +273,34 @@
 							<!--end::Svg Icon-->
 						</div>
 						<!--end::Close-->
-                        <h4 class="modal-title" id="myModalLabel">Edit Event</h4>
+                        <h4 class="modal-title" id="myModalLabel">Ubah Event</h4>
                     </div>
                     <form class="form-horizontal" action="<?php echo base_url().'admin/agenda/update_agenda'?>" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
 
                             <div class="form-group mb-4">
-                                <label for="inputUserName" class="col-sm-4 control-label">Event Name</label>
+                                <label for="inputUserName" class="col-sm-4 control-label">Nama Event</label>
                                 <div class="col-sm-7">
                                   <input type="hidden" name="kode" value="<?php echo $agenda_id;?>">
                                   <input type="hidden" value="<?php echo $agenda_gambar;?>" name="gambar">
-                                  <input type="text" name="xnama_agenda" class="form-control" value="<?php echo $agenda_nama;?>" id="inputUserName" placeholder="Agenda Name" required>
+                                  <input type="text" name="xnama_agenda" class="form-control" value="<?php echo $agenda_nama;?>" id="inputUserName" placeholder="Nama Agenda" required>
                                 </div>
                             </div>
                             <div class="form-group mb-4">
-                                <label for="inputUserName" class="col-sm-4 control-label">Event Picture</label>
+                                <label for="inputUserName" class="col-sm-4 control-label">Gambar Event</label>
                                 <div class="col-sm-12">
                                     <input type="file" name="filefoto" required/>
                                 </div>
                             </div>
                             <div class="form-group mb-4">
-                                <label for="inputUserName" class="col-sm-4 control-label">Description</label>
+                                <label for="inputUserName" class="col-sm-4 control-label">Deskripsi</label>
                                 <div class="col-sm-7">
-                                  <textarea class="form-control" rows="3" name="xdeskripsi" placeholder="Description ..." required><?php echo $agenda_deskripsi;?></textarea>
+                                  <textarea class="form-control" rows="3" name="xdeskripsi" placeholder="Deskripsi ..." required><?php echo $agenda_deskripsi;?></textarea>
                                 </div>
                             </div>
 
                             <div class="form-group mb-4">
-                              <label for="inputUserName" class="col-sm-4 control-label">Date From</label>
+                              <label for="inputUserName" class="col-sm-4 control-label">Tanggal Mulai</label>
                               <div class="col-sm-7">
                                 <div class="input-group date">
                                   <div class="input-group-addon">
@@ -315,7 +315,7 @@
 
                             <!-- Date range -->
                             <div class="form-group mb-4">
-                             <label for="inputUserName" class="col-sm-4 control-label">Date To</label>
+                             <label for="inputUserName" class="col-sm-4 control-label">Tanggal Selesai</label>
                               <div class="col-sm-7">
                                 <div class="input-group date">
                                   <div class="input-group-addon">
@@ -328,15 +328,15 @@
                             </div>
                             <!-- /.form group -->
                             <div class="form-group mb-4">
-                                <label for="inputUserName" class="col-sm-4 control-label">Place</label>
+                                <label for="inputUserName" class="col-sm-4 control-label">Tempat</label>
                                 <div class="col-sm-7">
-                                  <input type="text" name="xtempat" class="form-control" value="<?php echo $agenda_tempat;?>" id="inputUserName" placeholder="Place" required>
+                                  <input type="text" name="xtempat" class="form-control" value="<?php echo $agenda_tempat;?>" id="inputUserName" placeholder="Tempat" required>
                                 </div>
                             </div>
                             <div class="form-group mb-4">
-                                <label for="inputUserName" class="col-sm-4 control-label">Time</label>
+                                <label for="inputUserName" class="col-sm-4 control-label">Waktu</label>
                                 <div class="col-sm-7">
-                                    <input type="text" name="xwaktu" class="form-control" value="<?php echo $agenda_waktu;?>" id="inputUserName" placeholder="Example: 10.30-11.00 WIB" required>
+                                    <input type="text" name="xwaktu" class="form-control" value="<?php echo $agenda_waktu;?>" id="inputUserName" placeholder="Contoh: 10.30-11.00 WIB" required>
                                 </div>
                             </div>
 
@@ -348,16 +348,16 @@
                             </div>
 
                             <div class="form-group mb-4">
-                                <label for="inputUserName" class="col-sm-4 control-label">Remarks</label>
+                                <label for="inputUserName" class="col-sm-4 control-label">Keterangan</label>
                                 <div class="col-sm-7">
-                                  <textarea class="form-control" name="xketerangan" rows="2" placeholder="Remarks ..."><?php echo $agenda_keterangan;?></textarea>
+                                  <textarea class="form-control" name="xketerangan" rows="2" placeholder="Keterangan ..."><?php echo $agenda_keterangan;?></textarea>
                                 </div>
                             </div>
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary btn-flat" id="simpan">Update</button>
+                        <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary btn-flat" id="simpan">Simpan Perubahan</button>
                     </div>
                     </form>
                 </div>
@@ -395,18 +395,18 @@
 							<!--end::Svg Icon-->
 						</div>
 						<!--end::Close-->
-                        <h4 class="modal-title" id="myModalLabel">Delete Event</h4>
+                        <h4 class="modal-title" id="myModalLabel">Hapus Event</h4>
                     </div>
                     <form class="form-horizontal" action="<?php echo base_url().'admin/agenda/hapus_agenda'?>" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
 							<input type="hidden" name="kode" value="<?php echo $agenda_id;?>"/>
                             <input type="hidden" value="<?php echo $agenda_gambar;?>" name="gambar">
-                            <p>Are You sure want to delete Event <b><?php echo $agenda_nama;?></b> ?</p>
+                            <p>Yakin ingin menghapus event <b><?php echo $agenda_nama;?></b> ?</p>
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary btn-flat" id="simpan">Delete</button>
+                        <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary btn-flat" id="simpan">Hapus</button>
                     </div>
                     </form>
                 </div>
@@ -417,7 +417,7 @@
 <?php if($this->session->flashdata('msg')=='error'):?>
         <script type="text/javascript">
                 $.toast({
-                    heading: 'Error',
+                    heading: 'Gagal',
                     text: "Password dan Ulangi Password yang Anda masukan tidak sama.",
                     showHideTransition: 'slide',
                     icon: 'error',
@@ -430,7 +430,7 @@
     <?php elseif($this->session->flashdata('msg')=='success'):?>
         <script type="text/javascript">
                 $.toast({
-                    heading: 'Success',
+                    heading: 'Berhasil',
                     text: "Agenda Berhasil disimpan ke database.",
                     showHideTransition: 'slide',
                     icon: 'success',
@@ -454,7 +454,7 @@
     <?php elseif($this->session->flashdata('msg')=='success-hapus'):?>
         <script type="text/javascript">
                 $.toast({
-                    heading: 'Success',
+                    heading: 'Berhasil',
                     text: "Agenda Berhasil dihapus.",
                     showHideTransition: 'slide',
                     icon: 'success',

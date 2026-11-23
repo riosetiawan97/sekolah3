@@ -12,7 +12,7 @@ $nama_sekolah = ! empty($setup->nama_sekolah) ? $setup->nama_sekolah : 'Sekolah'
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="<?php echo base_url('assets/admin/tema-admin.css?v=1'); ?>">
+	<link rel="stylesheet" href="<?php echo base_url('assets/admin/tema-admin.css?v=3'); ?>">
 	<style>:root{--navy:<?php echo te('warna_utama'); ?>;--gold:<?php echo te('warna_aksen'); ?>}*{box-sizing:border-box}body{margin:0}</style>
 </head>
 <body>

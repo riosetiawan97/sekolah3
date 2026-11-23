@@ -145,3 +145,17 @@ a:hover { color: var(--gold); }
   .masuk-kiri .masuk-teks p { display: none; }
   .masuk-kotak { padding: 28px 20px; }
 }
+
+/* Panah urutan kolom tabel (gambar bawaan DataTables tidak tersedia) */
+table.dataTable thead .sorting, table.dataTable thead .sorting_asc, table.dataTable thead .sorting_desc { background-image: none !important; position: relative; padding-right: 22px !important; }
+table.dataTable thead .sorting::after, table.dataTable thead .sorting_asc::after, table.dataTable thead .sorting_desc::after { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); font-size: 10px; color: var(--gray); }
+table.dataTable thead .sorting::after { content: '⇅'; opacity: .5; }
+table.dataTable thead .sorting_asc::after { content: '▲'; color: var(--gold); }
+table.dataTable thead .sorting_desc::after { content: '▼'; color: var(--gold); }
+
+/* Pop-up form lama (markup Bootstrap 3): judul di kiri, tombol tutup di kanan, isian selebar kotak */
+.modal-header { display: flex; align-items: center; }
+.modal-header .modal-title { order: -1; margin-right: auto; }
+.modal-body .form-group > [class*="col-sm-"], .modal-body .form-group > .control-label { width: 100%; max-width: 100%; flex: 0 0 100%; padding-left: 0; padding-right: 0; }
+.modal-body .form-group .control-label { display: block; margin-bottom: 6px; }
+.modal-body .input-group, .modal-body .input-group .form-control { width: 100%; }

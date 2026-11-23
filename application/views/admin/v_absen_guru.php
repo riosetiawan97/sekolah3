@@ -80,7 +80,7 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default btn-flat" data-bs-dismiss="modal">Tutup</button>
                 <button type="submit" class="btn btn-primary btn-flat" id="simpan">Hapus</button>
             </div>
             </form>
@@ -128,7 +128,7 @@
 <?php if($this->session->flashdata('msg')=='error'):?>
         <script type="text/javascript">
                 $.toast({
-                    heading: 'Error',
+                    heading: 'Gagal',
                     text: "Password dan Ulangi Password yang Anda masukan tidak sama.",
                     showHideTransition: 'slide',
                     icon: 'error',
@@ -153,7 +153,7 @@
     <?php elseif($this->session->flashdata('msg')=='success-hapus'):?>
         <script type="text/javascript">
                 $.toast({
-                    heading: 'Success',
+                    heading: 'Berhasil',
                     text: "Pesan Berhasil dihapus.",
                     showHideTransition: 'slide',
                     icon: 'success',

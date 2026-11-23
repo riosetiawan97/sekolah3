@@ -51,7 +51,7 @@ License: For each use you must have a valid license purchased only from above li
   <!-- daterange picker -->
   <link rel="stylesheet" href="<?php echo base_url().'assets/plugins/daterangepicker/daterangepicker.css'?>">
   <!-- Tema admin: disamakan dengan halaman publik -->
-  <link rel="stylesheet" href="<?php echo base_url('assets/admin/tema-admin.css?v=1'); ?>">
+  <link rel="stylesheet" href="<?php echo base_url('assets/admin/tema-admin.css?v=3'); ?>">
   <style>:root{--navy:<?php echo te('warna_utama'); ?>;--gold:<?php echo te('warna_aksen'); ?>}</style>
     <?php
       /* Mengambil query report*/
@@ -484,6 +484,18 @@ License: For each use you must have a valid license purchased only from above li
           ?>
 					<!--end::Header-->
 					<!--begin::Content-->
+            <script>
+            // Skrip di halaman admin dijalankan sebelum jQuery dimuat (jQuery ada di bawah halaman).
+            // Penampung sementara ini menyimpan $(function(){...}) dan $.toast({...}) lalu
+            // menjalankannya setelah jQuery siap, agar notifikasi & tabel tetap berfungsi.
+            (function () {
+              var antri = [], toast = [];
+              var s = function (a) { if (typeof a === 'function') antri.push(a); return s; };
+              s.toast = function (o) { toast.push(o); };
+              s.antri = antri; s.antriToast = toast;
+              window.$ = window.__jqSementara = s;
+            })();
+            </script>
             <?php echo $contents ?>
 					<!--end::Content-->
 					<!--begin::Footer-->
@@ -603,7 +615,7 @@ License: For each use you must have a valid license purchased only from above li
 				<!--end::Body-->
 				<!--begin::Footer-->
 				<div class="card-footer py-5 text-center" id="kt_activities_footer">
-					<a href="<?php echo base_url().'admin/inbox'?>" class="btn btn-bg-body text-primary">View All Message
+					<a href="<?php echo base_url().'admin/inbox'?>" class="btn btn-bg-body text-primary">Lihat Semua Pesan
 					<!--begin::Svg Icon | path: icons/duotune/arrows/arr064.svg-->
 					<span class="svg-icon svg-icon-3 svg-icon-primary">
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -636,6 +648,25 @@ License: For each use you must have a valid license purchased only from above li
 		<!--begin::Global Javascript Bundle(used by all pages)-->
 		<script src="<?php echo base_url().'assets/metronic/plugins/global/plugins.bundle.js'?>"></script>
 		<script src="<?php echo base_url().'assets/metronic/js/scripts.bundle.js'?>"></script>
+		<script>
+		(function () {
+		  var s = window.__jqSementara;
+		  window.$ = jQuery;
+		  // Notifikasi $.toast dialihkan ke toastr bawaan Metronic.
+		  jQuery.toast = function (o) {
+		    if ( ! window.toastr) return;
+		    var jenis = {success: 'success', error: 'error', warning: 'warning', info: 'info'}[o.icon] || 'info';
+		    toastr.options = {positionClass: 'toast-bottom-right', closeButton: true, timeOut: o.hideAfter === false ? 0 : 5000};
+		    toastr[jenis](o.text || '', o.heading || '');
+		  };
+		  if ( ! s) return;
+		  // Dijalankan setelah semua skrip (DataTables, datepicker, CKEditor) termuat.
+		  jQuery(window).on('load', function () {
+		    s.antri.forEach(function (f) { try { f.call(document, jQuery); } catch (e) { console.error(e); } });
+		    s.antriToast.forEach(jQuery.toast);
+		  });
+		})();
+		</script>
 		<!--end::Global Javascript Bundle-->
 		<!--begin::Page Vendors Javascript(used by this page)-->
 		<script src="<?php echo base_url().'assets/metronic/plugins/custom/fullcalendar/fullcalendar.bundle.js'?>"></script>
@@ -653,6 +684,17 @@ License: For each use you must have a valid license purchased only from above li
 <script src="<?php echo base_url().'assets/plugins/datatables/jszip.min.js'?>"></script>
 <script src="<?php echo base_url().'assets/plugins/datatables/pdfmake.min.js'?>"></script>
 <script src="<?php echo base_url().'assets/plugins/datatables/vfs_fonts.js'?>"></script>
+<script>
+if (window.jQuery && $.fn.dataTable) {
+	$.extend(true, $.fn.dataTable.defaults, { language: {
+		search: 'Cari:', lengthMenu: 'Tampilkan _MENU_ data', info: 'Menampilkan _START_–_END_ dari _TOTAL_ data',
+		infoEmpty: 'Tidak ada data', infoFiltered: '(disaring dari _MAX_ data)', zeroRecords: 'Data tidak ditemukan',
+		emptyTable: 'Belum ada data', loadingRecords: 'Memuat...', processing: 'Memproses...',
+		paginate: { first: 'Pertama', last: 'Terakhir', next: 'Berikutnya', previous: 'Sebelumnya' },
+		buttons: { copy: 'Salin', print: 'Cetak', copyTitle: 'Disalin', copySuccess: { _: '%d baris disalin', 1: '1 baris disalin' } }
+	} });
+}
+</script>
 <script src="<?php echo base_url().'assets/plugins/datatables/buttons.html5.min.js'?>"></script>
 <script src="<?php echo base_url().'assets/plugins/datatables/buttons.print.min.js'?>"></script>
 <script src="<?=base_url()?>assets/ckeditor/ckeditor.js"></script>
@@ -693,8 +735,9 @@ License: For each use you must have a valid license purchased only from above li
     });
   });
 
+  // Textarea .ckeditor tanpa id sudah diganti otomatis oleh CKEditor; yang ber-id diganti di sini.
   $('.ckeditor').each(function () {
-        CKEDITOR.replace($(this).prop('id'));
+        if (this.id && window.CKEDITOR && ! CKEDITOR.instances[this.id]) CKEDITOR.replace(this.id);
     });
 	
     //Date range picker
