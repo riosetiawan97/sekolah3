@@ -18,7 +18,7 @@ Dribbble: www.dribbble.com/keenthemes
 Like: www.facebook.com/keenthemes
 License: For each use you must have a valid license purchased only from above link in order to legally use the theme for your project.
 -->
-<html lang="en">
+<html lang="id">
 	<!--begin::Head-->
 	<head><base href="">
     <title><?php echo $title ?></title>
@@ -34,7 +34,7 @@ License: For each use you must have a valid license purchased only from above li
 		<link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
     <link rel="shorcut icon" type="text/css" href="<?php echo base_url().'assets/images/'.$setup->logo;?>">
 		<!--begin::Fonts-->
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" />
 		<!--end::Fonts-->
 		<!--begin::Page Vendor Stylesheets(used by this page)-->
 		<link href="<?php echo base_url().'assets/metronic/plugins/custom/fullcalendar/fullcalendar.bundle.css'?>" rel="stylesheet" type="text/css" />
@@ -50,6 +50,9 @@ License: For each use you must have a valid license purchased only from above li
 		<!--end::Global Stylesheets Bundle-->
   <!-- daterange picker -->
   <link rel="stylesheet" href="<?php echo base_url().'assets/plugins/daterangepicker/daterangepicker.css'?>">
+  <!-- Tema admin: disamakan dengan halaman publik -->
+  <link rel="stylesheet" href="<?php echo base_url('assets/admin/tema-admin.css?v=1'); ?>">
+  <style>:root{--navy:<?php echo te('warna_utama'); ?>;--gold:<?php echo te('warna_aksen'); ?>}</style>
     <?php
       /* Mengambil query report*/
       foreach($visitor as $result){
@@ -73,8 +76,8 @@ License: For each use you must have a valid license purchased only from above li
 					<div class="aside-logo flex-column-auto" id="kt_aside_logo">
 						<!--begin::Logo-->
 						<a href="<?php echo base_url().'admin/dashboard'?>">
-							<img alt="Logo" src="<?php echo base_url().'assets/images/'.$setup->logo;?>" class="h-25px logo" />
-              <h6 class="text-light">SMP Al-Hadiriyah</h6>
+							<img alt="Logo" src="<?php echo gambar_url($setup->logo); ?>" class="h-25px logo" />
+							<p class="brand-nama"><?php echo te('nama_baris2') !== '' ? te('nama_baris2') : html_escape($setup->nama_sekolah); ?><small>Panel Admin</small></p>
 						</a>
 						<!--end::Logo-->
 						<!--begin::Aside toggler-->
@@ -128,7 +131,7 @@ License: For each use you must have a valid license purchased only from above li
 											</span>
 											<!--end::Svg Icon-->
 										</span>
-										<span class="menu-title">News</span>
+										<span class="menu-title">Berita</span>
 										<span class="menu-arrow"></span>
 									</span>
 									<div class="menu-sub menu-sub-accordion">
@@ -137,7 +140,7 @@ License: For each use you must have a valid license purchased only from above li
 												<span class="menu-bullet">
 													<span class="bullet bullet-dot"></span>
 												</span>
-												<span class="menu-title">List News</span>
+												<span class="menu-title">Daftar Berita</span>
 											</a>
 										</div>
 										<div class="menu-item">
@@ -145,7 +148,7 @@ License: For each use you must have a valid license purchased only from above li
 												<span class="menu-bullet">
 													<span class="bullet bullet-dot"></span>
 												</span>
-												<span class="menu-title">Post News</span>
+												<span class="menu-title">Tulis Berita</span>
 											</a>
 										</div>
 										<div class="menu-item">
@@ -153,7 +156,7 @@ License: For each use you must have a valid license purchased only from above li
 												<span class="menu-bullet">
 													<span class="bullet bullet-dot"></span>
 												</span>
-												<span class="menu-title">Category</span>
+												<span class="menu-title">Kategori</span>
 											</a>
 										</div>
 									</div>
@@ -169,7 +172,7 @@ License: For each use you must have a valid license purchased only from above li
 											</span>
 											<!--end::Svg Icon-->
 										</span>
-										<span class="menu-title">Users</span>
+										<span class="menu-title">Pengguna</span>
 									</a>
 								</div>
 								<div class="menu-item">
@@ -230,7 +233,7 @@ License: For each use you must have a valid license purchased only from above li
 											</span>
 											<!--end::Svg Icon-->
 										</span>
-										<span class="menu-title">Announcement</span>
+										<span class="menu-title">Pengumuman</span>
 									</a>
 								</div>
 								<div data-kt-menu-trigger="click" class="menu-item menu-accordion mb-1">
@@ -245,7 +248,7 @@ License: For each use you must have a valid license purchased only from above li
 											</span>
 											<!--end::Svg Icon-->
 										</span>
-										<span class="menu-title">Gallery</span>
+										<span class="menu-title">Galeri</span>
 										<span class="menu-arrow"></span>
 									</span>
 									<div class="menu-sub menu-sub-accordion">
@@ -262,7 +265,7 @@ License: For each use you must have a valid license purchased only from above li
 												<span class="menu-bullet">
 													<span class="bullet bullet-dot"></span>
 												</span>
-												<span class="menu-title">Photos</span>
+												<span class="menu-title">Foto</span>
 											</a>
 										</div>
 									</div>
@@ -293,7 +296,7 @@ License: For each use you must have a valid license purchased only from above li
 											</span>
 											<!--end::Svg Icon-->
 										</span>
-										<span class="menu-title">Student Attendance</span>
+										<span class="menu-title">Absensi Siswa</span>
 									</a>
 								</div>
 								<div class="menu-item">
@@ -307,7 +310,7 @@ License: For each use you must have a valid license purchased only from above li
 											</span>
 											<!--end::Svg Icon-->
 										</span>
-										<span class="menu-title">Inbox</span>
+										<span class="menu-title">Kotak Masuk</span>
 									</a>
 								</div>
 								<div class="menu-item">
@@ -321,7 +324,7 @@ License: For each use you must have a valid license purchased only from above li
 											</span>
 											<!--end::Svg Icon-->
 										</span>
-										<span class="menu-title">comment</span>
+										<span class="menu-title">Komentar</span>
 									</a>
 								</div>
 								<div class="menu-item">
@@ -335,7 +338,7 @@ License: For each use you must have a valid license purchased only from above li
 											</span>
 											<!--end::Svg Icon-->
 										</span>
-										<span class="menu-title">Brochure</span>
+										<span class="menu-title">Brosur</span>
 									</a>
 								</div>
 								<div data-kt-menu-trigger="click" class="menu-item menu-accordion mb-1">
@@ -359,7 +362,7 @@ License: For each use you must have a valid license purchased only from above li
 												<span class="menu-bullet">
 													<span class="bullet bullet-dot"></span>
 												</span>
-												<span class="menu-title">Data Setup</span>
+												<span class="menu-title">Identitas Sekolah</span>
 											</a>
 										</div>
 										<div class="menu-item">
@@ -367,7 +370,7 @@ License: For each use you must have a valid license purchased only from above li
 												<span class="menu-bullet">
 													<span class="bullet bullet-dot"></span>
 												</span>
-												<span class="menu-title">Vision and Mission</span>
+												<span class="menu-title">Visi & Misi</span>
 											</a>
 										</div>
 										<div class="menu-item">
@@ -383,7 +386,7 @@ License: For each use you must have a valid license purchased only from above li
 												<span class="menu-bullet">
 													<span class="bullet bullet-dot"></span>
 												</span>
-												<span class="menu-title">Registration</span>
+												<span class="menu-title">Pendaftaran</span>
 											</a>
 										</div>
 										<div class="menu-item">
@@ -462,7 +465,7 @@ License: For each use you must have a valid license purchased only from above li
 											</span>
 											<!--end::Svg Icon-->
 										</span>
-										<span class="menu-title">Sign Out</span>
+										<span class="menu-title">Keluar</span>
 									</a>
 								</div>
 							</div>
@@ -489,13 +492,13 @@ License: For each use you must have a valid license purchased only from above li
 						<div class="container-fluid d-flex flex-column flex-md-row align-items-center justify-content-between">
 							<!--begin::Copyright-->
 							<div class="text-dark order-2 order-md-1">
-								<strong>Copyright &copy; <?php echo date('Y');?> SMK Al-Hadiriyah</a>.</strong> All rights reserved.
+								&copy; <?php echo date('Y'); ?> <strong><?php echo html_escape($setup->nama_sekolah); ?></strong>. Hak cipta dilindungi.
 							</div>
 							<!--end::Copyright-->
 							<!--begin::Menu-->
 							<ul class="menu menu-gray-600 menu-hover-primary fw-bold order-1">
 								<li class="menu-item">
-									<strong><b>Version</b> 1.0</strong>
+									<a href="<?php echo base_url(); ?>" target="_blank" rel="noopener">Lihat website →</a>
 								</li>
 							</ul>
 							<!--end::Menu-->
