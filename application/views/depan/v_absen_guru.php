@@ -7,7 +7,7 @@ $pesan = $this->session->flashdata('absen_guru');
 		<?php if ($pesan): ?>
 			<div class="sukses" style="padding:16px"><div class="sukses-ikon" aria-hidden="true">✅</div><h3>Absensi Tercatat!</h3><p>Terima kasih, <strong><?php echo html_escape($pesan); ?></strong>.</p><a class="btn btn-navy btn-kecil" href="<?php echo base_url('guru'); ?>">Absen Lagi</a></div>
 		<?php else: ?>
-			<div class="absen-kepala"><div class="absen-ikon" aria-hidden="true">👩‍🏫</div><h2>Teacher Attendance</h2><p><?php echo tgl_indo(date('Y-m-d')); ?></p></div>
+			<div class="absen-kepala"><div class="absen-ikon" aria-hidden="true">👩‍🏫</div><h2><?php echo te('judul_absen_guru'); ?></h2><p><?php echo tgl_indo(date('Y-m-d')); ?></p></div>
 			<form class="tumpuk-form" action="<?php echo base_url('guru/simpan_absen_guru'); ?>" method="post" data-kirim>
 				<div class="field">
 					<label for="g-nama" style="font-size:14px;font-weight:700">Nama Guru <span class="wajib">*</span></label>

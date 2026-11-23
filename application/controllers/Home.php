@@ -33,6 +33,9 @@ class Home extends CI_Controller{
 		if ($agenda) {
 			return $agenda;
 		}
+		if ( ! t_on('contoh_aktif')) {
+			return $agenda;
+		}
 		$this->config->load('tampilan', TRUE);
 		foreach ((array) $this->config->item('tampilan_event_cadangan', 'tampilan') as $c) {
 			$agenda[] = (object) array(
@@ -62,7 +65,7 @@ class Home extends CI_Controller{
 	// Kalau kurang dari 2, ditambah gambar cadangan dari config/tampilan.php agar carousel tetap jalan.
 	private function _slider(){
 		$slider = $this->m_galeri->get_galeri_slider()->result();
-		if (count($slider) >= 2) {
+		if (count($slider) >= 2 || ! t_on('contoh_aktif')) {
 			return $slider;
 		}
 		$this->config->load('tampilan', TRUE);

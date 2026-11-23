@@ -7,7 +7,7 @@ $peta_link = $setup->gmaps ? $setup->gmaps : 'https://www.google.com/maps/search
 <div class="halaman" style="max-width:1100px">
 	<div class="kontak-grid">
 		<section class="panel">
-			<div class="judul-panel"><h2>Kirim Pesan</h2></div>
+			<div class="judul-panel"><h2><?php echo te('judul_kirim_pesan'); ?></h2></div>
 			<?php if ($status === 'ok'): ?>
 				<div class="sukses">
 					<div class="sukses-ikon" aria-hidden="true">📬</div>
@@ -39,7 +39,7 @@ $peta_link = $setup->gmaps ? $setup->gmaps : 'https://www.google.com/maps/search
 				<?php if (preg_match('#^https://(www\.)?google\.[a-z.]+/maps/embed#', t('peta_embed'))): ?>
 					<iframe src="<?php echo te('peta_embed'); ?>" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Peta lokasi sekolah"></iframe>
 				<?php else: ?>
-					<div class="ph" style="height:160px;flex-direction:column;gap:6px"><span aria-hidden="true" style="font-size:36px">🗺️</span><small>Peta Lokasi</small></div>
+					<div class="ph" style="height:160px;flex-direction:column;gap:6px"><span aria-hidden="true" style="font-size:36px">🗺️</span><small><?php echo te('judul_peta'); ?></small></div>
 				<?php endif; ?>
 				<a href="<?php echo html_escape($peta_link); ?>" target="_blank" rel="noopener">📍 Lihat di Google Maps</a>
 			</div>

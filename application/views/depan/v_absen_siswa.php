@@ -18,7 +18,7 @@ $hari_ini = $hari[(int) date('w')].', '.tgl_indo(date('Y-m-d'));
 		<?php else: ?>
 			<div class="absen-kepala">
 				<div class="absen-ikon" aria-hidden="true">📋</div>
-				<h2>Student Attendance</h2>
+				<h2><?php echo te('judul_absen_siswa'); ?></h2>
 				<p><?php echo $hari_ini; ?></p>
 			</div>
 			<form class="tumpuk-form" action="<?php echo base_url('siswa/simpan_absen_siswa'); ?>" method="post" data-kirim>

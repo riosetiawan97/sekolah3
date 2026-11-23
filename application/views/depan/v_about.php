@@ -4,7 +4,7 @@ $fakta = items('fakta');
 $this->load->view('depan/_banner', array('judul' => t('hal_about_judul'), 'sub' => t('hal_about_sub'), 'remah' => array('Tentang' => base_url('about'), t('hal_about_judul') => NULL)));
 ?>
 <div class="halaman dua-kolom">
-	<?php $this->load->view('depan/_sisi_tentang', array('aktif' => 'about')); ?>
+	<?php $this->load->view('depan/_sisi_menu', array('jalur' => 'about', 'grup' => 'Tentang')); ?>
 	<article class="panel">
 		<div class="about-grid">
 			<div>
@@ -12,7 +12,7 @@ $this->load->view('depan/_banner', array('judul' => t('hal_about_judul'), 'sub' 
 				<div class="about-nama"><b><?php echo te('kepsek_nama'); ?></b><span><?php echo te('kepsek_jabatan'); ?></span></div>
 			</div>
 			<div>
-				<div class="judul-panel"><h2>Kata Sambutan</h2></div>
+				<div class="judul-panel"><h2><?php echo te('judul_sambutan'); ?></h2></div>
 				<div class="konten"><?php echo $setup->about; ?></div>
 				<?php if ($fakta): ?>
 				<div class="fakta">

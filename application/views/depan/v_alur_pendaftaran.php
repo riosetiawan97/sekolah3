@@ -5,10 +5,10 @@ $syarat = items('syarat');
 ?>
 <div class="halaman dua-kolom">
 	<div class="tumpuk" style="gap:16px">
-		<?php $this->load->view('depan/_sisi_ppdb', array('aktif' => 'alur')); ?>
+		<?php $this->load->view('depan/_sisi_menu', array('jalur' => 'alur_pendaftaran', 'grup' => 'PPDB')); ?>
 		<?php if ($jadwal): ?>
 		<div class="kotak-navy">
-			<h4>📅 Jadwal PPDB</h4>
+			<h4><?php echo te('judul_jadwal_ppdb'); ?></h4>
 			<div class="jadwal"><?php foreach ($jadwal as $j): ?><div><small><?php echo html_escape($j->judul); ?></small><b><?php echo html_escape($j->nilai); ?></b></div><?php endforeach; ?></div>
 		</div>
 		<?php endif; ?>
@@ -16,7 +16,7 @@ $syarat = items('syarat');
 	<div class="tumpuk" style="gap:24px">
 		<?php if ($alur): ?>
 		<section class="panel" style="padding:36px">
-			<div class="judul-panel" style="margin-bottom:28px"><h2>Alur Pendaftaran</h2></div>
+			<div class="judul-panel" style="margin-bottom:28px"><h2><?php echo te('judul_alur'); ?></h2></div>
 			<div class="alur-grid">
 				<?php foreach ($alur as $s): ?>
 				<div class="alur" style="--c:<?php echo html_escape($s->warna_tampil); ?>">
@@ -34,7 +34,7 @@ $syarat = items('syarat');
 		<?php endif; ?>
 		<?php if ($syarat): ?>
 		<section class="panel" style="padding:36px">
-			<div class="judul-panel" style="margin-bottom:20px"><h2>Syarat Pendaftaran</h2></div>
+			<div class="judul-panel" style="margin-bottom:20px"><h2><?php echo te('judul_syarat'); ?></h2></div>
 			<ul class="syarat"><?php foreach ($syarat as $r): ?><li><?php echo html_escape($r->judul); ?></li><?php endforeach; ?></ul>
 		</section>
 		<?php endif; ?>
